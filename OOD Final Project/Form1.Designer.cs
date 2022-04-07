@@ -62,21 +62,21 @@
             this.cbAB = new System.Windows.Forms.CheckBox();
             this.cbPA = new System.Windows.Forms.CheckBox();
             this.gbAdvanced = new System.Windows.Forms.GroupBox();
-            this.lbMLBTeams = new System.Windows.Forms.ListBox();
-            this.cbBABIP = new System.Windows.Forms.CheckBox();
-            this.cbISO = new System.Windows.Forms.CheckBox();
-            this.cbOPSPlus = new System.Windows.Forms.CheckBox();
-            this.cbPASO = new System.Windows.Forms.CheckBox();
-            this.cbRC = new System.Windows.Forms.CheckBox();
-            this.cbwRAA = new System.Windows.Forms.CheckBox();
-            this.cbwOBA = new System.Windows.Forms.CheckBox();
-            this.cbwRCPlus = new System.Windows.Forms.CheckBox();
-            this.cbWAR = new System.Windows.Forms.CheckBox();
-            this.cbTB = new System.Windows.Forms.CheckBox();
-            this.cbHBP = new System.Windows.Forms.CheckBox();
             this.cbIBB = new System.Windows.Forms.CheckBox();
+            this.cbHBP = new System.Windows.Forms.CheckBox();
+            this.cbTB = new System.Windows.Forms.CheckBox();
+            this.cbwRCPlus = new System.Windows.Forms.CheckBox();
+            this.cbwOBA = new System.Windows.Forms.CheckBox();
+            this.cbwRAA = new System.Windows.Forms.CheckBox();
+            this.cbRC = new System.Windows.Forms.CheckBox();
+            this.cbPASO = new System.Windows.Forms.CheckBox();
+            this.cbOPSPlus = new System.Windows.Forms.CheckBox();
+            this.cbISO = new System.Windows.Forms.CheckBox();
+            this.cbBABIP = new System.Windows.Forms.CheckBox();
+            this.lbMLBTeams = new System.Windows.Forms.ListBox();
             this.lbHitterPosition = new System.Windows.Forms.ListBox();
             this.btnDictionary = new System.Windows.Forms.Button();
+            this.cbFlipStats = new System.Windows.Forms.CheckBox();
             this.gbLeague.SuspendLayout();
             this.gbLeagueDivisions.SuspendLayout();
             this.gbHittersBasic.SuspendLayout();
@@ -87,9 +87,10 @@
             // 
             this.rtbOut.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtbOut.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbOut.Location = new System.Drawing.Point(0, 262);
+            this.rtbOut.Location = new System.Drawing.Point(0, 350);
+            this.rtbOut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rtbOut.Name = "rtbOut";
-            this.rtbOut.Size = new System.Drawing.Size(1049, 468);
+            this.rtbOut.Size = new System.Drawing.Size(1180, 562);
             this.rtbOut.TabIndex = 0;
             this.rtbOut.Text = "";
             // 
@@ -97,7 +98,8 @@
             // 
             this.radHitters.AutoSize = true;
             this.radHitters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radHitters.Location = new System.Drawing.Point(6, 29);
+            this.radHitters.Location = new System.Drawing.Point(7, 36);
+            this.radHitters.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radHitters.Name = "radHitters";
             this.radHitters.Size = new System.Drawing.Size(148, 29);
             this.radHitters.TabIndex = 1;
@@ -112,9 +114,11 @@
             this.gbLeague.Controls.Add(this.radPitchers);
             this.gbLeague.Controls.Add(this.radHitters);
             this.gbLeague.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbLeague.Location = new System.Drawing.Point(13, 13);
+            this.gbLeague.Location = new System.Drawing.Point(15, 16);
+            this.gbLeague.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbLeague.Name = "gbLeague";
-            this.gbLeague.Size = new System.Drawing.Size(191, 171);
+            this.gbLeague.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbLeague.Size = new System.Drawing.Size(215, 214);
             this.gbLeague.TabIndex = 2;
             this.gbLeague.TabStop = false;
             this.gbLeague.Text = "League";
@@ -123,7 +127,8 @@
             // 
             this.radWNBA.AutoSize = true;
             this.radWNBA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radWNBA.Location = new System.Drawing.Point(6, 134);
+            this.radWNBA.Location = new System.Drawing.Point(7, 168);
+            this.radWNBA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radWNBA.Name = "radWNBA";
             this.radWNBA.Size = new System.Drawing.Size(94, 29);
             this.radWNBA.TabIndex = 4;
@@ -134,7 +139,8 @@
             // 
             this.radNBA.AutoSize = true;
             this.radNBA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radNBA.Location = new System.Drawing.Point(6, 99);
+            this.radNBA.Location = new System.Drawing.Point(7, 124);
+            this.radNBA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radNBA.Name = "radNBA";
             this.radNBA.Size = new System.Drawing.Size(74, 29);
             this.radNBA.TabIndex = 3;
@@ -145,7 +151,8 @@
             // 
             this.radPitchers.AutoSize = true;
             this.radPitchers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radPitchers.Location = new System.Drawing.Point(6, 64);
+            this.radPitchers.Location = new System.Drawing.Point(7, 80);
+            this.radPitchers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radPitchers.Name = "radPitchers";
             this.radPitchers.Size = new System.Drawing.Size(163, 29);
             this.radPitchers.TabIndex = 2;
@@ -156,17 +163,19 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(12, 226);
+            this.textBox1.Location = new System.Drawing.Point(14, 282);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(705, 30);
+            this.textBox1.Size = new System.Drawing.Size(793, 30);
             this.textBox1.TabIndex = 3;
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnClear.Location = new System.Drawing.Point(834, 225);
+            this.btnClear.Location = new System.Drawing.Point(938, 281);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(98, 31);
+            this.btnClear.Size = new System.Drawing.Size(110, 39);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -175,9 +184,10 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExit.Location = new System.Drawing.Point(939, 226);
+            this.btnExit.Location = new System.Drawing.Point(1056, 282);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(98, 31);
+            this.btnExit.Size = new System.Drawing.Size(110, 39);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -186,9 +196,10 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSearch.Location = new System.Drawing.Point(724, 225);
+            this.btnSearch.Location = new System.Drawing.Point(814, 281);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(104, 31);
+            this.btnSearch.Size = new System.Drawing.Size(117, 39);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -202,9 +213,11 @@
             this.gbLeagueDivisions.Controls.Add(this.cbCentral);
             this.gbLeagueDivisions.Controls.Add(this.cbEast);
             this.gbLeagueDivisions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbLeagueDivisions.Location = new System.Drawing.Point(209, 13);
+            this.gbLeagueDivisions.Location = new System.Drawing.Point(235, 16);
+            this.gbLeagueDivisions.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbLeagueDivisions.Name = "gbLeagueDivisions";
-            this.gbLeagueDivisions.Size = new System.Drawing.Size(209, 207);
+            this.gbLeagueDivisions.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbLeagueDivisions.Size = new System.Drawing.Size(235, 259);
             this.gbLeagueDivisions.TabIndex = 7;
             this.gbLeagueDivisions.TabStop = false;
             this.gbLeagueDivisions.Text = "Leagues/Divisions";
@@ -215,7 +228,8 @@
             this.cbAL.AutoSize = true;
             this.cbAL.Checked = true;
             this.cbAL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAL.Location = new System.Drawing.Point(6, 170);
+            this.cbAL.Location = new System.Drawing.Point(7, 212);
+            this.cbAL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbAL.Name = "cbAL";
             this.cbAL.Size = new System.Drawing.Size(188, 29);
             this.cbAL.TabIndex = 6;
@@ -227,7 +241,8 @@
             this.cbNL.AutoSize = true;
             this.cbNL.Checked = true;
             this.cbNL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbNL.Location = new System.Drawing.Point(7, 134);
+            this.cbNL.Location = new System.Drawing.Point(8, 168);
+            this.cbNL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbNL.Name = "cbNL";
             this.cbNL.Size = new System.Drawing.Size(176, 29);
             this.cbNL.TabIndex = 5;
@@ -239,7 +254,8 @@
             this.cbWest.AutoSize = true;
             this.cbWest.Checked = true;
             this.cbWest.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbWest.Location = new System.Drawing.Point(6, 99);
+            this.cbWest.Location = new System.Drawing.Point(7, 124);
+            this.cbWest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbWest.Name = "cbWest";
             this.cbWest.Size = new System.Drawing.Size(80, 29);
             this.cbWest.TabIndex = 4;
@@ -251,7 +267,8 @@
             this.cbCentral.AutoSize = true;
             this.cbCentral.Checked = true;
             this.cbCentral.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCentral.Location = new System.Drawing.Point(6, 64);
+            this.cbCentral.Location = new System.Drawing.Point(7, 80);
+            this.cbCentral.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbCentral.Name = "cbCentral";
             this.cbCentral.Size = new System.Drawing.Size(97, 29);
             this.cbCentral.TabIndex = 3;
@@ -263,7 +280,8 @@
             this.cbEast.AutoSize = true;
             this.cbEast.Checked = true;
             this.cbEast.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbEast.Location = new System.Drawing.Point(6, 30);
+            this.cbEast.Location = new System.Drawing.Point(7, 38);
+            this.cbEast.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbEast.Name = "cbEast";
             this.cbEast.Size = new System.Drawing.Size(73, 29);
             this.cbEast.TabIndex = 2;
@@ -289,9 +307,11 @@
             this.gbHittersBasic.Controls.Add(this.cbAB);
             this.gbHittersBasic.Controls.Add(this.cbPA);
             this.gbHittersBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbHittersBasic.Location = new System.Drawing.Point(425, 13);
+            this.gbHittersBasic.Location = new System.Drawing.Point(478, 16);
+            this.gbHittersBasic.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbHittersBasic.Name = "gbHittersBasic";
-            this.gbHittersBasic.Size = new System.Drawing.Size(292, 171);
+            this.gbHittersBasic.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbHittersBasic.Size = new System.Drawing.Size(328, 214);
             this.gbHittersBasic.TabIndex = 8;
             this.gbHittersBasic.TabStop = false;
             this.gbHittersBasic.Text = "Basic Statistics";
@@ -302,7 +322,8 @@
             this.cbOPS.AutoSize = true;
             this.cbOPS.Checked = true;
             this.cbOPS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbOPS.Location = new System.Drawing.Point(210, 134);
+            this.cbOPS.Location = new System.Drawing.Point(236, 168);
+            this.cbOPS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbOPS.Name = "cbOPS";
             this.cbOPS.Size = new System.Drawing.Size(77, 29);
             this.cbOPS.TabIndex = 15;
@@ -314,7 +335,8 @@
             this.cbSLG.AutoSize = true;
             this.cbSLG.Checked = true;
             this.cbSLG.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSLG.Location = new System.Drawing.Point(210, 100);
+            this.cbSLG.Location = new System.Drawing.Point(236, 125);
+            this.cbSLG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSLG.Name = "cbSLG";
             this.cbSLG.Size = new System.Drawing.Size(74, 29);
             this.cbSLG.TabIndex = 14;
@@ -326,7 +348,8 @@
             this.cbOBP.AutoSize = true;
             this.cbOBP.Checked = true;
             this.cbOBP.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbOBP.Location = new System.Drawing.Point(210, 64);
+            this.cbOBP.Location = new System.Drawing.Point(236, 80);
+            this.cbOBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbOBP.Name = "cbOBP";
             this.cbOBP.Size = new System.Drawing.Size(76, 29);
             this.cbOBP.TabIndex = 13;
@@ -338,7 +361,8 @@
             this.cbAVG.AutoSize = true;
             this.cbAVG.Checked = true;
             this.cbAVG.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAVG.Location = new System.Drawing.Point(210, 30);
+            this.cbAVG.Location = new System.Drawing.Point(236, 38);
+            this.cbAVG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbAVG.Name = "cbAVG";
             this.cbAVG.Size = new System.Drawing.Size(77, 29);
             this.cbAVG.TabIndex = 12;
@@ -350,7 +374,8 @@
             this.cSO.AutoSize = true;
             this.cSO.Checked = true;
             this.cSO.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cSO.Location = new System.Drawing.Point(142, 134);
+            this.cSO.Location = new System.Drawing.Point(160, 168);
+            this.cSO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cSO.Name = "cSO";
             this.cSO.Size = new System.Drawing.Size(64, 29);
             this.cSO.TabIndex = 11;
@@ -362,7 +387,8 @@
             this.cbBB.AutoSize = true;
             this.cbBB.Checked = true;
             this.cbBB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBB.Location = new System.Drawing.Point(142, 100);
+            this.cbBB.Location = new System.Drawing.Point(160, 125);
+            this.cbBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbBB.Name = "cbBB";
             this.cbBB.Size = new System.Drawing.Size(60, 29);
             this.cbBB.TabIndex = 10;
@@ -374,7 +400,8 @@
             this.cbCS.AutoSize = true;
             this.cbCS.Checked = true;
             this.cbCS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbCS.Location = new System.Drawing.Point(142, 64);
+            this.cbCS.Location = new System.Drawing.Point(160, 80);
+            this.cbCS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbCS.Name = "cbCS";
             this.cbCS.Size = new System.Drawing.Size(63, 29);
             this.cbCS.TabIndex = 9;
@@ -386,7 +413,8 @@
             this.cbSB.AutoSize = true;
             this.cbSB.Checked = true;
             this.cbSB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSB.Location = new System.Drawing.Point(142, 30);
+            this.cbSB.Location = new System.Drawing.Point(160, 38);
+            this.cbSB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSB.Name = "cbSB";
             this.cbSB.Size = new System.Drawing.Size(61, 29);
             this.cbSB.TabIndex = 8;
@@ -398,7 +426,8 @@
             this.cbRBI.AutoSize = true;
             this.cbRBI.Checked = true;
             this.cbRBI.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbRBI.Location = new System.Drawing.Point(74, 134);
+            this.cbRBI.Location = new System.Drawing.Point(83, 168);
+            this.cbRBI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbRBI.Name = "cbRBI";
             this.cbRBI.Size = new System.Drawing.Size(65, 29);
             this.cbRBI.TabIndex = 7;
@@ -410,7 +439,8 @@
             this.cbHR.AutoSize = true;
             this.cbHR.Checked = true;
             this.cbHR.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbHR.Location = new System.Drawing.Point(74, 99);
+            this.cbHR.Location = new System.Drawing.Point(83, 124);
+            this.cbHR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbHR.Name = "cbHR";
             this.cbHR.Size = new System.Drawing.Size(61, 29);
             this.cbHR.TabIndex = 6;
@@ -422,7 +452,8 @@
             this.cb3B.AutoSize = true;
             this.cb3B.Checked = true;
             this.cb3B.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb3B.Location = new System.Drawing.Point(74, 64);
+            this.cb3B.Location = new System.Drawing.Point(83, 80);
+            this.cb3B.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cb3B.Name = "cb3B";
             this.cb3B.Size = new System.Drawing.Size(58, 29);
             this.cb3B.TabIndex = 5;
@@ -434,7 +465,8 @@
             this.cb2B.AutoSize = true;
             this.cb2B.Checked = true;
             this.cb2B.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb2B.Location = new System.Drawing.Point(74, 29);
+            this.cb2B.Location = new System.Drawing.Point(83, 36);
+            this.cb2B.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cb2B.Name = "cb2B";
             this.cb2B.Size = new System.Drawing.Size(58, 29);
             this.cb2B.TabIndex = 4;
@@ -446,7 +478,8 @@
             this.cbH.AutoSize = true;
             this.cbH.Checked = true;
             this.cbH.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbH.Location = new System.Drawing.Point(7, 135);
+            this.cbH.Location = new System.Drawing.Point(8, 169);
+            this.cbH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbH.Name = "cbH";
             this.cbH.Size = new System.Drawing.Size(48, 29);
             this.cbH.TabIndex = 3;
@@ -458,7 +491,8 @@
             this.cbR.AutoSize = true;
             this.cbR.Checked = true;
             this.cbR.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbR.Location = new System.Drawing.Point(7, 100);
+            this.cbR.Location = new System.Drawing.Point(8, 125);
+            this.cbR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbR.Name = "cbR";
             this.cbR.Size = new System.Drawing.Size(47, 29);
             this.cbR.TabIndex = 2;
@@ -470,7 +504,8 @@
             this.cbAB.AutoSize = true;
             this.cbAB.Checked = true;
             this.cbAB.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAB.Location = new System.Drawing.Point(7, 64);
+            this.cbAB.Location = new System.Drawing.Point(8, 80);
+            this.cbAB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbAB.Name = "cbAB";
             this.cbAB.Size = new System.Drawing.Size(61, 29);
             this.cbAB.TabIndex = 1;
@@ -482,7 +517,8 @@
             this.cbPA.AutoSize = true;
             this.cbPA.Checked = true;
             this.cbPA.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbPA.Location = new System.Drawing.Point(7, 30);
+            this.cbPA.Location = new System.Drawing.Point(8, 38);
+            this.cbPA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbPA.Name = "cbPA";
             this.cbPA.Size = new System.Drawing.Size(61, 29);
             this.cbPA.TabIndex = 0;
@@ -494,7 +530,6 @@
             this.gbAdvanced.Controls.Add(this.cbIBB);
             this.gbAdvanced.Controls.Add(this.cbHBP);
             this.gbAdvanced.Controls.Add(this.cbTB);
-            this.gbAdvanced.Controls.Add(this.cbWAR);
             this.gbAdvanced.Controls.Add(this.cbwRCPlus);
             this.gbAdvanced.Controls.Add(this.cbwOBA);
             this.gbAdvanced.Controls.Add(this.cbwRAA);
@@ -504,13 +539,136 @@
             this.gbAdvanced.Controls.Add(this.cbISO);
             this.gbAdvanced.Controls.Add(this.cbBABIP);
             this.gbAdvanced.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbAdvanced.Location = new System.Drawing.Point(724, 13);
+            this.gbAdvanced.Location = new System.Drawing.Point(814, 16);
+            this.gbAdvanced.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbAdvanced.Name = "gbAdvanced";
-            this.gbAdvanced.Size = new System.Drawing.Size(313, 171);
+            this.gbAdvanced.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbAdvanced.Size = new System.Drawing.Size(352, 214);
             this.gbAdvanced.TabIndex = 9;
             this.gbAdvanced.TabStop = false;
             this.gbAdvanced.Text = "Advanced Statistics";
             this.gbAdvanced.Visible = false;
+            // 
+            // cbIBB
+            // 
+            this.cbIBB.AutoSize = true;
+            this.cbIBB.Location = new System.Drawing.Point(244, 124);
+            this.cbIBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbIBB.Name = "cbIBB";
+            this.cbIBB.Size = new System.Drawing.Size(65, 29);
+            this.cbIBB.TabIndex = 11;
+            this.cbIBB.Text = "IBB";
+            this.cbIBB.UseVisualStyleBackColor = true;
+            // 
+            // cbHBP
+            // 
+            this.cbHBP.AutoSize = true;
+            this.cbHBP.Location = new System.Drawing.Point(244, 81);
+            this.cbHBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHBP.Name = "cbHBP";
+            this.cbHBP.Size = new System.Drawing.Size(74, 29);
+            this.cbHBP.TabIndex = 10;
+            this.cbHBP.Text = "HBP";
+            this.cbHBP.UseVisualStyleBackColor = true;
+            // 
+            // cbTB
+            // 
+            this.cbTB.AutoSize = true;
+            this.cbTB.Location = new System.Drawing.Point(244, 37);
+            this.cbTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTB.Name = "cbTB";
+            this.cbTB.Size = new System.Drawing.Size(60, 29);
+            this.cbTB.TabIndex = 9;
+            this.cbTB.Text = "TB";
+            this.cbTB.UseVisualStyleBackColor = true;
+            // 
+            // cbwRCPlus
+            // 
+            this.cbwRCPlus.AutoSize = true;
+            this.cbwRCPlus.Location = new System.Drawing.Point(134, 168);
+            this.cbwRCPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwRCPlus.Name = "cbwRCPlus";
+            this.cbwRCPlus.Size = new System.Drawing.Size(88, 29);
+            this.cbwRCPlus.TabIndex = 7;
+            this.cbwRCPlus.Text = "wRC+";
+            this.cbwRCPlus.UseVisualStyleBackColor = true;
+            // 
+            // cbwOBA
+            // 
+            this.cbwOBA.AutoSize = true;
+            this.cbwOBA.Location = new System.Drawing.Point(134, 124);
+            this.cbwOBA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwOBA.Name = "cbwOBA";
+            this.cbwOBA.Size = new System.Drawing.Size(91, 29);
+            this.cbwOBA.TabIndex = 6;
+            this.cbwOBA.Text = "wOBA";
+            this.cbwOBA.UseVisualStyleBackColor = true;
+            // 
+            // cbwRAA
+            // 
+            this.cbwRAA.AutoSize = true;
+            this.cbwRAA.Location = new System.Drawing.Point(134, 80);
+            this.cbwRAA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwRAA.Name = "cbwRAA";
+            this.cbwRAA.Size = new System.Drawing.Size(89, 29);
+            this.cbwRAA.TabIndex = 5;
+            this.cbwRAA.Text = "wRAA";
+            this.cbwRAA.UseVisualStyleBackColor = true;
+            // 
+            // cbRC
+            // 
+            this.cbRC.AutoSize = true;
+            this.cbRC.Location = new System.Drawing.Point(134, 36);
+            this.cbRC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbRC.Name = "cbRC";
+            this.cbRC.Size = new System.Drawing.Size(62, 29);
+            this.cbRC.TabIndex = 4;
+            this.cbRC.Text = "RC";
+            this.cbRC.UseVisualStyleBackColor = true;
+            // 
+            // cbPASO
+            // 
+            this.cbPASO.AutoSize = true;
+            this.cbPASO.Location = new System.Drawing.Point(8, 168);
+            this.cbPASO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPASO.Name = "cbPASO";
+            this.cbPASO.Size = new System.Drawing.Size(97, 29);
+            this.cbPASO.TabIndex = 3;
+            this.cbPASO.Text = "PA/SO";
+            this.cbPASO.UseVisualStyleBackColor = true;
+            // 
+            // cbOPSPlus
+            // 
+            this.cbOPSPlus.AutoSize = true;
+            this.cbOPSPlus.Location = new System.Drawing.Point(8, 124);
+            this.cbOPSPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbOPSPlus.Name = "cbOPSPlus";
+            this.cbOPSPlus.Size = new System.Drawing.Size(89, 29);
+            this.cbOPSPlus.TabIndex = 2;
+            this.cbOPSPlus.Text = "OPS+";
+            this.cbOPSPlus.UseVisualStyleBackColor = true;
+            // 
+            // cbISO
+            // 
+            this.cbISO.AutoSize = true;
+            this.cbISO.Location = new System.Drawing.Point(8, 80);
+            this.cbISO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbISO.Name = "cbISO";
+            this.cbISO.Size = new System.Drawing.Size(69, 29);
+            this.cbISO.TabIndex = 1;
+            this.cbISO.Text = "ISO";
+            this.cbISO.UseVisualStyleBackColor = true;
+            // 
+            // cbBABIP
+            // 
+            this.cbBABIP.AutoSize = true;
+            this.cbBABIP.Location = new System.Drawing.Point(8, 38);
+            this.cbBABIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBABIP.Name = "cbBABIP";
+            this.cbBABIP.Size = new System.Drawing.Size(92, 29);
+            this.cbBABIP.TabIndex = 0;
+            this.cbBABIP.Text = "BABIP";
+            this.cbBABIP.UseVisualStyleBackColor = true;
             // 
             // lbMLBTeams
             // 
@@ -549,131 +707,12 @@
             "Texas Rangers",
             "Toronto Blue Jays",
             "Washington Nationals"});
-            this.lbMLBTeams.Location = new System.Drawing.Point(425, 190);
+            this.lbMLBTeams.Location = new System.Drawing.Point(476, 238);
+            this.lbMLBTeams.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbMLBTeams.Name = "lbMLBTeams";
-            this.lbMLBTeams.Size = new System.Drawing.Size(292, 29);
+            this.lbMLBTeams.Size = new System.Drawing.Size(330, 29);
             this.lbMLBTeams.TabIndex = 10;
             this.lbMLBTeams.Visible = false;
-            // 
-            // cbBABIP
-            // 
-            this.cbBABIP.AutoSize = true;
-            this.cbBABIP.Location = new System.Drawing.Point(7, 30);
-            this.cbBABIP.Name = "cbBABIP";
-            this.cbBABIP.Size = new System.Drawing.Size(92, 29);
-            this.cbBABIP.TabIndex = 0;
-            this.cbBABIP.Text = "BABIP";
-            this.cbBABIP.UseVisualStyleBackColor = true;
-            // 
-            // cbISO
-            // 
-            this.cbISO.AutoSize = true;
-            this.cbISO.Location = new System.Drawing.Point(7, 64);
-            this.cbISO.Name = "cbISO";
-            this.cbISO.Size = new System.Drawing.Size(69, 29);
-            this.cbISO.TabIndex = 1;
-            this.cbISO.Text = "ISO";
-            this.cbISO.UseVisualStyleBackColor = true;
-            // 
-            // cbOPSPlus
-            // 
-            this.cbOPSPlus.AutoSize = true;
-            this.cbOPSPlus.Location = new System.Drawing.Point(7, 99);
-            this.cbOPSPlus.Name = "cbOPSPlus";
-            this.cbOPSPlus.Size = new System.Drawing.Size(89, 29);
-            this.cbOPSPlus.TabIndex = 2;
-            this.cbOPSPlus.Text = "OPS+";
-            this.cbOPSPlus.UseVisualStyleBackColor = true;
-            // 
-            // cbPASO
-            // 
-            this.cbPASO.AutoSize = true;
-            this.cbPASO.Location = new System.Drawing.Point(7, 134);
-            this.cbPASO.Name = "cbPASO";
-            this.cbPASO.Size = new System.Drawing.Size(97, 29);
-            this.cbPASO.TabIndex = 3;
-            this.cbPASO.Text = "PA/SO";
-            this.cbPASO.UseVisualStyleBackColor = true;
-            // 
-            // cbRC
-            // 
-            this.cbRC.AutoSize = true;
-            this.cbRC.Location = new System.Drawing.Point(119, 29);
-            this.cbRC.Name = "cbRC";
-            this.cbRC.Size = new System.Drawing.Size(62, 29);
-            this.cbRC.TabIndex = 4;
-            this.cbRC.Text = "RC";
-            this.cbRC.UseVisualStyleBackColor = true;
-            // 
-            // cbwRAA
-            // 
-            this.cbwRAA.AutoSize = true;
-            this.cbwRAA.Location = new System.Drawing.Point(119, 64);
-            this.cbwRAA.Name = "cbwRAA";
-            this.cbwRAA.Size = new System.Drawing.Size(89, 29);
-            this.cbwRAA.TabIndex = 5;
-            this.cbwRAA.Text = "wRAA";
-            this.cbwRAA.UseVisualStyleBackColor = true;
-            // 
-            // cbwOBA
-            // 
-            this.cbwOBA.AutoSize = true;
-            this.cbwOBA.Location = new System.Drawing.Point(119, 99);
-            this.cbwOBA.Name = "cbwOBA";
-            this.cbwOBA.Size = new System.Drawing.Size(91, 29);
-            this.cbwOBA.TabIndex = 6;
-            this.cbwOBA.Text = "wOBA";
-            this.cbwOBA.UseVisualStyleBackColor = true;
-            // 
-            // cbwRCPlus
-            // 
-            this.cbwRCPlus.AutoSize = true;
-            this.cbwRCPlus.Location = new System.Drawing.Point(119, 134);
-            this.cbwRCPlus.Name = "cbwRCPlus";
-            this.cbwRCPlus.Size = new System.Drawing.Size(88, 29);
-            this.cbwRCPlus.TabIndex = 7;
-            this.cbwRCPlus.Text = "wRC+";
-            this.cbwRCPlus.UseVisualStyleBackColor = true;
-            // 
-            // cbWAR
-            // 
-            this.cbWAR.AutoSize = true;
-            this.cbWAR.Location = new System.Drawing.Point(217, 30);
-            this.cbWAR.Name = "cbWAR";
-            this.cbWAR.Size = new System.Drawing.Size(81, 29);
-            this.cbWAR.TabIndex = 8;
-            this.cbWAR.Text = "WAR";
-            this.cbWAR.UseVisualStyleBackColor = true;
-            // 
-            // cbTB
-            // 
-            this.cbTB.AutoSize = true;
-            this.cbTB.Location = new System.Drawing.Point(217, 64);
-            this.cbTB.Name = "cbTB";
-            this.cbTB.Size = new System.Drawing.Size(60, 29);
-            this.cbTB.TabIndex = 9;
-            this.cbTB.Text = "TB";
-            this.cbTB.UseVisualStyleBackColor = true;
-            // 
-            // cbHBP
-            // 
-            this.cbHBP.AutoSize = true;
-            this.cbHBP.Location = new System.Drawing.Point(217, 99);
-            this.cbHBP.Name = "cbHBP";
-            this.cbHBP.Size = new System.Drawing.Size(74, 29);
-            this.cbHBP.TabIndex = 10;
-            this.cbHBP.Text = "HBP";
-            this.cbHBP.UseVisualStyleBackColor = true;
-            // 
-            // cbIBB
-            // 
-            this.cbIBB.AutoSize = true;
-            this.cbIBB.Location = new System.Drawing.Point(217, 135);
-            this.cbIBB.Name = "cbIBB";
-            this.cbIBB.Size = new System.Drawing.Size(65, 29);
-            this.cbIBB.TabIndex = 11;
-            this.cbIBB.Text = "IBB";
-            this.cbIBB.UseVisualStyleBackColor = true;
             // 
             // lbHitterPosition
             // 
@@ -691,28 +730,43 @@
             "Center Field",
             "Right Field",
             "Designated Hitter"});
-            this.lbHitterPosition.Location = new System.Drawing.Point(724, 190);
+            this.lbHitterPosition.Location = new System.Drawing.Point(814, 238);
+            this.lbHitterPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbHitterPosition.Name = "lbHitterPosition";
-            this.lbHitterPosition.Size = new System.Drawing.Size(313, 29);
+            this.lbHitterPosition.Size = new System.Drawing.Size(196, 29);
             this.lbHitterPosition.TabIndex = 11;
             this.lbHitterPosition.Visible = false;
             // 
             // btnDictionary
             // 
             this.btnDictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnDictionary.Location = new System.Drawing.Point(13, 190);
+            this.btnDictionary.Location = new System.Drawing.Point(15, 238);
+            this.btnDictionary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDictionary.Name = "btnDictionary";
-            this.btnDictionary.Size = new System.Drawing.Size(190, 30);
+            this.btnDictionary.Size = new System.Drawing.Size(214, 38);
             this.btnDictionary.TabIndex = 12;
             this.btnDictionary.Text = "Dictionary";
             this.btnDictionary.UseVisualStyleBackColor = true;
             this.btnDictionary.Click += new System.EventHandler(this.btnDictionary_Click);
             // 
+            // cbFlipStats
+            // 
+            this.cbFlipStats.AutoSize = true;
+            this.cbFlipStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbFlipStats.Location = new System.Drawing.Point(1020, 238);
+            this.cbFlipStats.Name = "cbFlipStats";
+            this.cbFlipStats.Size = new System.Drawing.Size(148, 29);
+            this.cbFlipStats.TabIndex = 13;
+            this.cbFlipStats.Text = "Flip Statistics";
+            this.cbFlipStats.UseVisualStyleBackColor = true;
+            this.cbFlipStats.Visible = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 730);
+            this.ClientSize = new System.Drawing.Size(1180, 912);
+            this.Controls.Add(this.cbFlipStats);
             this.Controls.Add(this.btnDictionary);
             this.Controls.Add(this.lbHitterPosition);
             this.Controls.Add(this.lbMLBTeams);
@@ -725,6 +779,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.gbLeague);
             this.Controls.Add(this.rtbOut);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "OOD Final Project";
             this.gbLeague.ResumeLayout(false);
@@ -780,7 +835,6 @@
         private System.Windows.Forms.CheckBox cbIBB;
         private System.Windows.Forms.CheckBox cbHBP;
         private System.Windows.Forms.CheckBox cbTB;
-        private System.Windows.Forms.CheckBox cbWAR;
         private System.Windows.Forms.CheckBox cbwRCPlus;
         private System.Windows.Forms.CheckBox cbwOBA;
         private System.Windows.Forms.CheckBox cbwRAA;
@@ -791,6 +845,7 @@
         private System.Windows.Forms.CheckBox cbBABIP;
         private System.Windows.Forms.ListBox lbHitterPosition;
         private System.Windows.Forms.Button btnDictionary;
+        private System.Windows.Forms.CheckBox cbFlipStats;
     }
 }
 

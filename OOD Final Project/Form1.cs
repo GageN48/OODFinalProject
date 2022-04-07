@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace OOD_Final_Project
 {
@@ -21,7 +22,7 @@ namespace OOD_Final_Project
         {
             if(radHitters.Checked)
             {
-
+                
             }
         }
 
@@ -42,17 +43,21 @@ namespace OOD_Final_Project
             gbAdvanced.Visible = true;
             lbMLBTeams.Visible = true;
             lbHitterPosition.Visible = true;
+            cbFlipStats.Visible = true;
         }
 
         private void radPitchers_CheckedChanged(object sender, EventArgs e)
         {
             gbLeagueDivisions.Visible = true;
             lbMLBTeams.Visible = true;
+            cbFlipStats.Visible = true;
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
         {
-            rtbOut.AppendText("Hitters Stats:\n\n" +
+            if(radHitters.Checked)
+            {
+                rtbOut.AppendText("Hitters Stats:\n\n" +
                 "PA    - Plate Appearences\n" +
                 "AB    - At Bats\n" +
                 "R     - Runs Scored\n" +
@@ -60,7 +65,7 @@ namespace OOD_Final_Project
                 "2B    - Doubles\n" +
                 "3B    - Triples\n" +
                 "HR    - Home Runs\n" +
-                "RBI   - Runs Batted In\n" + 
+                "RBI   - Runs Batted In\n" +
                 "SB    - Stolen Bases\n" +
                 "CS    - Caught Stealing\n" +
                 "BB    - Base on Balls\n" +
@@ -77,10 +82,22 @@ namespace OOD_Final_Project
                 "wRAA  - Weighted Runs Above Average (measures how many runs a hitter contributes, compared with an average player)\n" +
                 "wOBA  - Weighted On Base Average (a version of on-base percentage for how a player reached base instead of whether a player reached base)\n" +
                 "wRC+  - Takes the statistic Runs Created and adjusts that number to account for important external factors\n" +
-                "WAR   - Measures a player's value in all facets of the game\n" +
                 "TB    - Total Bases\n" +
                 "HBP   - Hit by Pitch\n" +
                 "IBB   - Intentional Base on Balls\n");
+            }
+            else if (radPitchers.Checked)
+            {
+
+            }
+            else if (radNBA.Checked)
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
