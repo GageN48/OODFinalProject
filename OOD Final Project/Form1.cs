@@ -36,6 +36,11 @@ namespace OOD_Final_Project
                         double[] plateAppearaces = new double[0];
                         double[] atBats = new double[0];
                         double[] runs = new double[0];
+                        double[] hits = new double[0];
+                        double[] doubles = new double[0];
+                        double[] triples = new double[0];
+                        double[] homeRuns = new double[0];
+
 
                         while (textIn.Peek() != -1)
                         {
@@ -77,6 +82,44 @@ namespace OOD_Final_Project
 
                                 rtbOut.AppendText(runs[num].ToString("n0").PadLeft(4));
                             }
+
+                            if (cbH.Checked)
+                            {
+                                Array.Resize<double>(ref hits, hits.Length + 1);
+
+                                hits[num] = Convert.ToDouble(record[8]);
+
+                                rtbOut.AppendText(hits[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cb2B.Checked)
+                            {
+                                Array.Resize<double>(ref doubles, doubles.Length + 1);
+
+                                doubles[num] = Convert.ToDouble(record[9]);
+
+                                rtbOut.AppendText(doubles[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cb3B.Checked)
+                            {
+                                Array.Resize<double>(ref triples, triples.Length + 1);
+
+                                triples[num] = Convert.ToDouble(record[10]);
+
+                                rtbOut.AppendText(triples[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cbHR.Checked)
+                            {
+                                Array.Resize<double>(ref homeRuns, homeRuns.Length + 1);
+
+                                homeRuns[num] = Convert.ToDouble(record[11]);
+
+                                rtbOut.AppendText(homeRuns[num].ToString("n0").PadLeft(4));
+                            }
+
+
 
                             rtbOut.AppendText("\n");
                             num++;

@@ -90,9 +90,9 @@
             // 
             this.rtbOut.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtbOut.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbOut.Location = new System.Drawing.Point(0, 262);
+            this.rtbOut.Location = new System.Drawing.Point(0, 284);
             this.rtbOut.Name = "rtbOut";
-            this.rtbOut.Size = new System.Drawing.Size(1049, 468);
+            this.rtbOut.Size = new System.Drawing.Size(1049, 446);
             this.rtbOut.TabIndex = 0;
             this.rtbOut.Text = "";
             // 
@@ -159,7 +159,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(12, 226);
+            this.textBox1.Location = new System.Drawing.Point(12, 248);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(705, 30);
             this.textBox1.TabIndex = 3;
@@ -167,9 +167,9 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnClear.Location = new System.Drawing.Point(834, 225);
+            this.btnClear.Location = new System.Drawing.Point(833, 247);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(98, 25);
+            this.btnClear.Size = new System.Drawing.Size(98, 31);
             this.btnClear.TabIndex = 4;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -178,9 +178,9 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExit.Location = new System.Drawing.Point(939, 226);
+            this.btnExit.Location = new System.Drawing.Point(937, 247);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(98, 24);
+            this.btnExit.Size = new System.Drawing.Size(98, 31);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -189,9 +189,9 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSearch.Location = new System.Drawing.Point(724, 225);
+            this.btnSearch.Location = new System.Drawing.Point(723, 247);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(104, 25);
+            this.btnSearch.Size = new System.Drawing.Size(104, 31);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@
             this.gbHittersBasic.Controls.Add(this.cbAB);
             this.gbHittersBasic.Controls.Add(this.cbPA);
             this.gbHittersBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbHittersBasic.Location = new System.Drawing.Point(425, 13);
+            this.gbHittersBasic.Location = new System.Drawing.Point(426, 13);
             this.gbHittersBasic.Name = "gbHittersBasic";
             this.gbHittersBasic.Size = new System.Drawing.Size(292, 171);
             this.gbHittersBasic.TabIndex = 8;
@@ -638,7 +638,7 @@
             "Washington Nationals"});
             this.lbMLBTeams.Location = new System.Drawing.Point(423, 190);
             this.lbMLBTeams.Name = "lbMLBTeams";
-            this.lbMLBTeams.Size = new System.Drawing.Size(294, 4);
+            this.lbMLBTeams.Size = new System.Drawing.Size(294, 54);
             this.lbMLBTeams.TabIndex = 10;
             this.lbMLBTeams.Visible = false;
             // 
@@ -660,7 +660,7 @@
             "Designated Hitter"});
             this.lbHitterPosition.Location = new System.Drawing.Point(724, 190);
             this.lbHitterPosition.Name = "lbHitterPosition";
-            this.lbHitterPosition.Size = new System.Drawing.Size(313, 4);
+            this.lbHitterPosition.Size = new System.Drawing.Size(313, 54);
             this.lbHitterPosition.TabIndex = 11;
             this.lbHitterPosition.Visible = false;
             // 
@@ -669,7 +669,7 @@
             this.btnDictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDictionary.Location = new System.Drawing.Point(13, 190);
             this.btnDictionary.Name = "btnDictionary";
-            this.btnDictionary.Size = new System.Drawing.Size(190, 30);
+            this.btnDictionary.Size = new System.Drawing.Size(190, 52);
             this.btnDictionary.TabIndex = 12;
             this.btnDictionary.Text = "Dictionary";
             this.btnDictionary.UseVisualStyleBackColor = true;
