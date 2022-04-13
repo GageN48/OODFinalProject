@@ -78,6 +78,7 @@
             this.radWest = new System.Windows.Forms.RadioButton();
             this.radCentral = new System.Windows.Forms.RadioButton();
             this.radEast = new System.Windows.Forms.RadioButton();
+            this.rtbLabels = new System.Windows.Forms.RichTextBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
             this.gbHittersBasic.SuspendLayout();
@@ -89,9 +90,9 @@
             // 
             this.rtbOut.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtbOut.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbOut.Location = new System.Drawing.Point(0, 284);
+            this.rtbOut.Location = new System.Drawing.Point(0, 310);
             this.rtbOut.Name = "rtbOut";
-            this.rtbOut.Size = new System.Drawing.Size(1049, 446);
+            this.rtbOut.Size = new System.Drawing.Size(1384, 420);
             this.rtbOut.TabIndex = 0;
             this.rtbOut.Text = "";
             // 
@@ -724,11 +725,21 @@
             this.radEast.Text = "East";
             this.radEast.UseVisualStyleBackColor = true;
             // 
+            // rtbLabels
+            // 
+            this.rtbLabels.Font = new System.Drawing.Font("Courier New", 12F);
+            this.rtbLabels.Location = new System.Drawing.Point(0, 284);
+            this.rtbLabels.Name = "rtbLabels";
+            this.rtbLabels.Size = new System.Drawing.Size(1384, 30);
+            this.rtbLabels.TabIndex = 15;
+            this.rtbLabels.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 730);
+            this.ClientSize = new System.Drawing.Size(1384, 730);
+            this.Controls.Add(this.rtbLabels);
             this.Controls.Add(this.gbDivisions);
             this.Controls.Add(this.btnDictionary);
             this.Controls.Add(this.lbHitterPosition);
@@ -810,6 +821,7 @@
         private System.Windows.Forms.RadioButton radCentral;
         private System.Windows.Forms.RadioButton radEast;
         private System.Windows.Forms.RadioButton radAllDivisions;
+        private System.Windows.Forms.RichTextBox rtbLabels;
     }
 }
 
