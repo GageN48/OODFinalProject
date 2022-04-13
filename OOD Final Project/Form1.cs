@@ -20,9 +20,69 @@ namespace OOD_Final_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if(radHitters.Checked)
+            if (radHitters.Checked)
             {
-                
+                string path = @"Hitters.csv";
+                StreamReader textIn = new StreamReader(
+                new FileStream(path, FileMode.Open, FileAccess.Read));
+                if (radMLB.Checked)
+                {
+                    if(radAllDivisions.Checked && radMLB.Checked)
+                    {
+                        int num = 0;
+                        string[] firstName = new string[0];
+                        string[] lastName = new string [0];
+                        string[] team = new string[0]; 
+                        double[] plateAppearaces = new double[0];
+                        double[] atBats = new double[0];
+                        double[] runs = new double[0];
+
+                        while (textIn.Peek() != -1)
+                        {
+                            Array.Resize<string>(ref team, team.Length + 1);
+                            Array.Resize<string>(ref firstName, firstName.Length + 1);
+                            Array.Resize<string>(ref lastName, lastName.Length + 1);
+
+                            string row = textIn.ReadLine();
+                            string[] record = row.Split(',');
+                            team[num] = Convert.ToString(record[2]).ToUpper();
+                            firstName[num] = Convert.ToString(record[3]);
+                            lastName[num] = Convert.ToString(record[4]);
+
+                            rtbOut.AppendText(team[num].PadRight(4) + firstName[num].PadRight(12) + lastName[num].PadRight(12));
+                            
+                            if (cbPA.Checked)
+                            {
+                                Array.Resize<double>(ref plateAppearaces, plateAppearaces.Length + 1);
+
+                                plateAppearaces[num] = Convert.ToDouble(record[18]);
+
+                                rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if(cbAB.Checked)
+                            {
+                                Array.Resize<double>(ref atBats, atBats.Length + 1);
+
+                                atBats[num] = Convert.ToDouble(record[6]);
+
+                                rtbOut.AppendText(atBats[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cbR.Checked)
+                            {
+                                Array.Resize<double>(ref runs, runs.Length + 1);
+
+                                runs[num] = Convert.ToDouble(record[7]);
+
+                                rtbOut.AppendText(runs[num].ToString("n0").PadLeft(4));
+                            }
+
+                            rtbOut.AppendText("\n");
+                            num++;
+                        }
+                    }
+                }
             }
         }
 
@@ -38,19 +98,17 @@ namespace OOD_Final_Project
 
         private void radHitters_CheckedChanged(object sender, EventArgs e)
         {
-            gbLeagueDivisions.Visible = true;
+            gbNLorAL.Visible = true;
             gbHittersBasic.Visible = true;
             gbAdvanced.Visible = true;
             lbMLBTeams.Visible = true;
             lbHitterPosition.Visible = true;
-            cbFlipStats.Visible = true;
         }
 
         private void radPitchers_CheckedChanged(object sender, EventArgs e)
         {
-            gbLeagueDivisions.Visible = true;
+            gbNLorAL.Visible = true;
             lbMLBTeams.Visible = true;
-            cbFlipStats.Visible = true;
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
