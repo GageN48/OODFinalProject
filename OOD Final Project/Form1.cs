@@ -20,8 +20,26 @@ namespace OOD_Final_Project
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            rtbOut.Clear();
             if (radHitters.Checked)
             {
+                int num = 0;
+                string[] firstName = new string[0];
+                string[] lastName = new string[0];
+                string[] team = new string[0];
+                double[] plateAppearaces = new double[0];
+                double[] atBats = new double[0];
+                double[] runs = new double[0];
+                double[] hits = new double[0];
+                double[] doubles = new double[0];
+                double[] triples = new double[0];
+                double[] homeRuns = new double[0];
+                double[] runsBattedIn = new double[0];
+                double[] steals = new double[0];
+                double[] caughtStealing = new double[0];
+                double[] walks = new double[0];
+                double[] strikeOuts = new double[0];
+
                 string path = @"Hitters.csv";
                 StreamReader textIn = new StreamReader(
                 new FileStream(path, FileMode.Open, FileAccess.Read));
@@ -29,19 +47,6 @@ namespace OOD_Final_Project
                 {
                     if(radAllDivisions.Checked && radMLB.Checked)
                     {
-                        int num = 0;
-                        string[] firstName = new string[0];
-                        string[] lastName = new string [0];
-                        string[] team = new string[0]; 
-                        double[] plateAppearaces = new double[0];
-                        double[] atBats = new double[0];
-                        double[] runs = new double[0];
-                        double[] hits = new double[0];
-                        double[] doubles = new double[0];
-                        double[] triples = new double[0];
-                        double[] homeRuns = new double[0];
-
-
                         while (textIn.Peek() != -1)
                         {
                             Array.Resize<string>(ref team, team.Length + 1);
@@ -119,7 +124,50 @@ namespace OOD_Final_Project
                                 rtbOut.AppendText(homeRuns[num].ToString("n0").PadLeft(4));
                             }
 
+                            if (cbRBI.Checked)
+                            {
+                                Array.Resize<double>(ref runsBattedIn, runsBattedIn.Length + 1);
 
+                                runsBattedIn[num] = Convert.ToDouble(record[12]);
+
+                                rtbOut.AppendText(runsBattedIn[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cbSB.Checked)
+                            {
+                                Array.Resize<double>(ref steals, steals.Length + 1);
+
+                                steals[num] = Convert.ToDouble(record[13]);
+
+                                rtbOut.AppendText(steals[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cbCS.Checked)
+                            {
+                                Array.Resize<double>(ref caughtStealing, caughtStealing.Length + 1);
+
+                                caughtStealing[num] = Convert.ToDouble(record[14]);
+
+                                rtbOut.AppendText(caughtStealing[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cbBB.Checked)
+                            {
+                                Array.Resize<double>(ref walks, walks.Length + 1);
+
+                                walks[num] = Convert.ToDouble(record[15]);
+
+                                rtbOut.AppendText(walks[num].ToString("n0").PadLeft(4));
+                            }
+
+                            if (cbSO.Checked)
+                            {
+                                Array.Resize<double>(ref strikeOuts, strikeOuts.Length + 1);
+
+                                strikeOuts[num] = Convert.ToDouble(record[7]);
+
+                                rtbOut.AppendText(strikeOuts[num].ToString("n0").PadLeft(4));
+                            }
 
                             rtbOut.AppendText("\n");
                             num++;
@@ -127,11 +175,6 @@ namespace OOD_Final_Project
                     }
                 }
             }
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            rtbOut.Clear();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -146,6 +189,7 @@ namespace OOD_Final_Project
             gbAdvanced.Visible = true;
             lbMLBTeams.Visible = true;
             lbHitterPosition.Visible = true;
+            gbDivisions.Visible = true;
         }
 
         private void radPitchers_CheckedChanged(object sender, EventArgs e)

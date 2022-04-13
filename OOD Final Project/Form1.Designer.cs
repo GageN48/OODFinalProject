@@ -35,7 +35,6 @@
             this.radNBA = new System.Windows.Forms.RadioButton();
             this.radPitchers = new System.Windows.Forms.RadioButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.gbNLorAL = new System.Windows.Forms.GroupBox();
@@ -47,7 +46,7 @@
             this.cbSLG = new System.Windows.Forms.CheckBox();
             this.cbOBP = new System.Windows.Forms.CheckBox();
             this.cbAVG = new System.Windows.Forms.CheckBox();
-            this.cSO = new System.Windows.Forms.CheckBox();
+            this.cbSO = new System.Windows.Forms.CheckBox();
             this.cbBB = new System.Windows.Forms.CheckBox();
             this.cbCS = new System.Windows.Forms.CheckBox();
             this.cbSB = new System.Windows.Forms.CheckBox();
@@ -161,19 +160,8 @@
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBox1.Location = new System.Drawing.Point(12, 248);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(705, 30);
+            this.textBox1.Size = new System.Drawing.Size(811, 30);
             this.textBox1.TabIndex = 3;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnClear.Location = new System.Drawing.Point(833, 247);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(98, 31);
-            this.btnClear.TabIndex = 4;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnExit
             // 
@@ -189,9 +177,9 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSearch.Location = new System.Drawing.Point(723, 247);
+            this.btnSearch.Location = new System.Drawing.Point(829, 247);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(104, 31);
+            this.btnSearch.Size = new System.Drawing.Size(105, 31);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -254,7 +242,7 @@
             this.gbHittersBasic.Controls.Add(this.cbSLG);
             this.gbHittersBasic.Controls.Add(this.cbOBP);
             this.gbHittersBasic.Controls.Add(this.cbAVG);
-            this.gbHittersBasic.Controls.Add(this.cSO);
+            this.gbHittersBasic.Controls.Add(this.cbSO);
             this.gbHittersBasic.Controls.Add(this.cbBB);
             this.gbHittersBasic.Controls.Add(this.cbCS);
             this.gbHittersBasic.Controls.Add(this.cbSB);
@@ -290,8 +278,6 @@
             // cbSLG
             // 
             this.cbSLG.AutoSize = true;
-            this.cbSLG.Checked = true;
-            this.cbSLG.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSLG.Location = new System.Drawing.Point(210, 100);
             this.cbSLG.Name = "cbSLG";
             this.cbSLG.Size = new System.Drawing.Size(74, 29);
@@ -323,17 +309,17 @@
             this.cbAVG.Text = "AVG";
             this.cbAVG.UseVisualStyleBackColor = true;
             // 
-            // cSO
+            // cbSO
             // 
-            this.cSO.AutoSize = true;
-            this.cSO.Checked = true;
-            this.cSO.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cSO.Location = new System.Drawing.Point(142, 134);
-            this.cSO.Name = "cSO";
-            this.cSO.Size = new System.Drawing.Size(64, 29);
-            this.cSO.TabIndex = 11;
-            this.cSO.Text = "SO";
-            this.cSO.UseVisualStyleBackColor = true;
+            this.cbSO.AutoSize = true;
+            this.cbSO.Checked = true;
+            this.cbSO.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSO.Location = new System.Drawing.Point(142, 134);
+            this.cbSO.Name = "cbSO";
+            this.cbSO.Size = new System.Drawing.Size(64, 29);
+            this.cbSO.TabIndex = 11;
+            this.cbSO.Text = "SO";
+            this.cbSO.UseVisualStyleBackColor = true;
             // 
             // cbBB
             // 
@@ -690,6 +676,7 @@
             this.gbDivisions.TabIndex = 14;
             this.gbDivisions.TabStop = false;
             this.gbDivisions.Text = "Divisions";
+            this.gbDivisions.Visible = false;
             // 
             // radAllDivisions
             // 
@@ -751,7 +738,6 @@
             this.Controls.Add(this.gbNLorAL);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.gbLeague);
             this.Controls.Add(this.rtbOut);
@@ -781,7 +767,6 @@
         private System.Windows.Forms.RadioButton radNBA;
         private System.Windows.Forms.RadioButton radPitchers;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox gbNLorAL;
@@ -790,7 +775,7 @@
         private System.Windows.Forms.CheckBox cbSLG;
         private System.Windows.Forms.CheckBox cbOBP;
         private System.Windows.Forms.CheckBox cbAVG;
-        private System.Windows.Forms.CheckBox cSO;
+        private System.Windows.Forms.CheckBox cbSO;
         private System.Windows.Forms.CheckBox cbBB;
         private System.Windows.Forms.CheckBox cbCS;
         private System.Windows.Forms.CheckBox cbSB;
