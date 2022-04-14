@@ -52,6 +52,13 @@ namespace OOD_Final_Project
                 double[] hitByPitch = new double[0];
                 double[] intentionalWalks = new double[0];
                 double[] battingAverageOnBallsInPlay = new double[0];
+                double[] isolatedPower = new double[0];
+                double[] OPSPlus = new double[0];
+                double[] plateAppearancesPerStrikeOut = new double[0];
+                double[] runsCreated = new double[0];
+                double[] weightedOnBaseAverage = new double[0];
+                double[] weightRunsCretedPlus = new double[0];
+                double[] weightRunsAboveAverage = new double[0];
 
                 double h = 0;
                 double ab = 0;
@@ -65,6 +72,12 @@ namespace OOD_Final_Project
                 double sf = 0;
                 double ibb = 0;
                 double k = 0;
+                double ops = 0;
+                double pa = 0;
+                double tb = 0;
+                double bb = 0;
+                double rc = 0;
+                double wOBA = 0;
 
                 string path = @"Hitters.csv";
                 StreamReader textIn = new StreamReader(
@@ -112,7 +125,20 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText(" IBB");
                 if (cbBABIP.Checked)
                     rtbLabels.AppendText(" BABIP");
-
+                if (cbISO.Checked)
+                    rtbLabels.AppendText("   ISO");
+                if (cbOPSPlus.Checked)
+                    rtbLabels.AppendText(" OPS+");
+                if (cbPASO.Checked)
+                    rtbLabels.AppendText(" PA/SO");
+                if (cbRC.Checked)
+                    rtbLabels.AppendText("    RC");
+                if (cbwOBA.Checked)
+                    rtbLabels.AppendText("  wOBA");
+                if (cbwRCPlus.Checked)
+                    rtbLabels.AppendText("  wRC+");
+                if (cbwRAA.Checked)
+                    rtbLabels.AppendText("  wRAA");
 
                 while (textIn.Peek() != -1)
                 {
@@ -128,6 +154,7 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref plateAppearaces, plateAppearaces.Length + 1);
                     plateAppearaces[num] = Convert.ToDouble(record[18]);
+                    pa = Convert.ToDouble(record[18]);
 
                     Array.Resize<double>(ref atBats, atBats.Length + 1);
                     atBats[num] = Convert.ToDouble(record[6]);
@@ -163,6 +190,7 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref walks, walks.Length + 1);
                     walks[num] = Convert.ToDouble(record[15]);
+                    bb = Convert.ToDouble(record[15]);
 
                     Array.Resize<double>(ref strikeOuts, strikeOuts.Length + 1);
                     strikeOuts[num] = Convert.ToDouble(record[16]);
@@ -185,10 +213,12 @@ namespace OOD_Final_Project
                     Array.Resize<double>(ref onBasePlusSlugging, onBasePlusSlugging.Length + 1);
                     var OPS = new Hitters(obp, slg, 0);
                     onBasePlusSlugging[num] = OPS.CalculateOPS();
+                    ops = Convert.ToDouble(onBasePlusSlugging[num]);
 
                     Array.Resize<double>(ref totalBases, totalBases.Length + 1);
                     var TB = new Hitters(h, d, t, hr);
                     totalBases[num] = TB.CalculateTB();
+                    tb = Convert.ToDouble(totalBases[num]);
 
                     Array.Resize<double>(ref onBasePercentage, onBasePercentage.Length + 1);
                     onBasePercentage[num] = Convert.ToDouble(record[17]);
@@ -209,6 +239,36 @@ namespace OOD_Final_Project
                     Array.Resize<double>(ref battingAverageOnBallsInPlay, battingAverageOnBallsInPlay.Length + 1);
                     var BABIP = new Hitters(h, ab, hr, sf, k, 0);
                     battingAverageOnBallsInPlay[num] = BABIP.CalculateBABIP();
+
+                    Array.Resize<double>(ref isolatedPower, isolatedPower.Length + 1);
+                    var ISO = new Hitters(d, t, hr, ab, 0, 0, 0);
+                    isolatedPower[num] = ISO.CalculateISO();
+
+                    Array.Resize<double>(ref OPSPlus, OPSPlus.Length + 1);
+                    var OPSp = new Hitters(ops);
+                    OPSPlus[num] = OPSp.CalculateOPSPlus();
+
+                    Array.Resize<double>(ref plateAppearancesPerStrikeOut, plateAppearancesPerStrikeOut.Length + 1);
+                    var PASO = new Hitters(pa, k, 0, 0, 0, 0, 0, 0);
+                    plateAppearancesPerStrikeOut[num] = PASO.CalculatePASO();
+
+                    Array.Resize<double>(ref runsCreated, runsCreated.Length + 1);
+                    var RC = new Hitters(tb, h, bb, hbp, ibb, ab, 0, 0, 0);
+                    runsCreated[num] = RC.CalculateRC();
+                    rc = runsCreated[num];
+
+                    Array.Resize<double>(ref weightedOnBaseAverage, weightedOnBaseAverage.Length + 1);
+                    var WOBA = new Hitters(bb, hbp, h, d, t, hr, ab, ibb, sf, 0);
+                    weightedOnBaseAverage[num] = WOBA.CalculateWOBA();
+                    wOBA = weightedOnBaseAverage[num];
+
+                    Array.Resize<double>(ref weightRunsAboveAverage, weightRunsAboveAverage.Length + 1);
+                    var WRAA = new Hitters(wOBA, pa, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    weightRunsAboveAverage[num] = WRAA.CalculatewRAA();
+
+                    /*                    Array.Resize<double>(ref weightRunsCretedPlus, weightRunsCretedPlus.Length + 1);
+                                        var WRC = new Hitters(tb, h, bb, hbp, ibb, ab, 0, 0, 0);
+                                        weightRunsCretedPlus[num] = WRC.CalculatewRCPlus();*/
 
                     if (radMLB.Checked)
                     {
@@ -278,6 +338,27 @@ namespace OOD_Final_Project
 
                             if (cbBABIP.Checked)
                                 rtbOut.AppendText(battingAverageOnBallsInPlay[num].ToString("n3").PadLeft(6));
+
+                            if (cbISO.Checked)
+                                rtbOut.AppendText(isolatedPower[num].ToString("n3").PadLeft(6));
+
+                            if (cbOPSPlus.Checked)
+                                rtbOut.AppendText(OPSPlus[num].ToString("n0").PadLeft(5));
+
+                            if (cbPASO.Checked)
+                                rtbOut.AppendText(plateAppearancesPerStrikeOut[num].ToString("n3").PadLeft(6));
+
+                            if (cbRC.Checked)
+                                rtbOut.AppendText(runsCreated[num].ToString("n1").PadLeft(6));
+
+                            if (cbwRCPlus.Checked)
+                                rtbOut.AppendText(weightRunsCretedPlus[num].ToString("n1").PadLeft(6));
+
+                            if (cbwOBA.Checked)
+                                rtbOut.AppendText(weightedOnBaseAverage[num].ToString("n3").PadLeft(6));
+
+                            if (cbwRAA.Checked)
+                                rtbOut.AppendText(weightRunsAboveAverage[num].ToString("n1").PadLeft(6));
 
                             rtbOut.AppendText("\n");
                             num++;

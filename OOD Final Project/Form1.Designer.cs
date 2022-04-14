@@ -511,7 +511,7 @@
             // cbwRCPlus
             // 
             this.cbwRCPlus.AutoSize = true;
-            this.cbwRCPlus.Location = new System.Drawing.Point(119, 134);
+            this.cbwRCPlus.Location = new System.Drawing.Point(119, 65);
             this.cbwRCPlus.Name = "cbwRCPlus";
             this.cbwRCPlus.Size = new System.Drawing.Size(88, 29);
             this.cbwRCPlus.TabIndex = 7;
@@ -531,7 +531,7 @@
             // cbwRAA
             // 
             this.cbwRAA.AutoSize = true;
-            this.cbwRAA.Location = new System.Drawing.Point(119, 64);
+            this.cbwRAA.Location = new System.Drawing.Point(119, 134);
             this.cbwRAA.Name = "cbwRAA";
             this.cbwRAA.Size = new System.Drawing.Size(89, 29);
             this.cbwRAA.TabIndex = 5;
