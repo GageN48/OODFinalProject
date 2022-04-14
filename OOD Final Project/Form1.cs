@@ -46,12 +46,17 @@ namespace OOD_Final_Project
                 double[] battingAverage = new double[0];
                 double[] onBasePercentage = new double[0];
                 double[] slugging = new double[0];
+                double[] onBasePlusSlugging = new double[0];
+                double[] totalBases = new double[0];
 
                 double h = 0;
                 double ab = 0;
                 double d = 0;
                 double t = 0;
                 double hr = 0;
+                double avg = 0;
+                double obp = 0;
+                double slg = 0;
 
                 string path = @"Hitters.csv";
                 StreamReader textIn = new StreamReader(
@@ -87,6 +92,11 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText("   OBP");
                 if (cbSLG.Checked)
                     rtbLabels.AppendText("   SLG");
+                if (cbOPS.Checked)
+                    rtbLabels.AppendText("   OPS");
+                if (cbTB.Checked)
+                    rtbLabels.AppendText("  TB");
+
 
                 while (textIn.Peek() != -1)
                 {
@@ -99,8 +109,6 @@ namespace OOD_Final_Project
                     team[num] = Convert.ToString(record[2]).ToUpper();
                     firstName[num] = Convert.ToString(record[3]);
                     lastName[num] = Convert.ToString(record[4]);
-
-                    rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(24));
 
                     Array.Resize<double>(ref plateAppearaces, plateAppearaces.Length + 1);
                     plateAppearaces[num] = Convert.ToDouble(record[18]);
@@ -118,13 +126,15 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref doubles, doubles.Length + 1);
                     doubles[num] = Convert.ToDouble(record[9]);
-
+                    d = Convert.ToDouble(record[9]);
 
                     Array.Resize<double>(ref triples, triples.Length + 1);
                     triples[num] = Convert.ToDouble(record[10]);
+                    t = Convert.ToDouble(record[10]);
 
                     Array.Resize<double>(ref homeRuns, homeRuns.Length + 1);
                     homeRuns[num] = Convert.ToDouble(record[11]);
+                    hr = Convert.ToDouble(record[11]);
 
                     Array.Resize<double>(ref runsBattedIn, runsBattedIn.Length + 1);
                     runsBattedIn[num] = Convert.ToDouble(record[12]);
@@ -144,18 +154,31 @@ namespace OOD_Final_Project
                     Array.Resize<double>(ref battingAverage, battingAverage.Length + 1);
                     var AVG = new Hitters(h, ab);
                     battingAverage[num] = AVG.CalculateBA();
+                    avg = Convert.ToDouble(battingAverage[num]);
 
                     Array.Resize<double>(ref onBasePercentage, onBasePercentage.Length + 1);
                     onBasePercentage[num] = Convert.ToDouble(record[17]);
+                    obp = Convert.ToDouble(record[17]);
 
                     Array.Resize<double>(ref slugging, slugging.Length + 1);
-                    var SLG = new Hitters(h,d,t,hr,ab);
+                    var SLG = new Hitters(h, ab, d, t, hr);
                     slugging[num] = SLG.CalculateSLG();
+                    slg = Convert.ToDouble(slugging[num]);
+
+                    Array.Resize<double>(ref onBasePlusSlugging, onBasePlusSlugging.Length + 1);
+                    var OPS = new Hitters(obp, slg, 0);
+                    onBasePlusSlugging[num] = OPS.CalculateOPS();
+
+                    Array.Resize<double>(ref totalBases, totalBases.Length + 1);
+                    var TB = new Hitters(h, d, t, hr);
+                    totalBases[num] = TB.CalculateTB();
 
                     if (radMLB.Checked)
                     {
                         if (radAllDivisions.Checked && radMLB.Checked)
                         {
+                            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(24));
+
                             if (cbPA.Checked)
                                 rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
 
@@ -200,6 +223,12 @@ namespace OOD_Final_Project
 
                             if (cbSLG.Checked)
                                 rtbOut.AppendText(slugging[num].ToString("n3").PadLeft(6));
+
+                            if (cbOPS.Checked)
+                                rtbOut.AppendText(onBasePlusSlugging[num].ToString("n3").PadLeft(6));
+
+                            if (cbTB.Checked)
+                                rtbOut.AppendText(totalBases[num].ToString("n0").PadLeft(4));
 
                             rtbOut.AppendText("\n");
                             num++;
