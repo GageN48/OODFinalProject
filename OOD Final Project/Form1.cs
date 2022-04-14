@@ -43,124 +43,163 @@ namespace OOD_Final_Project
                 double[] caughtStealing = new double[0];
                 double[] walks = new double[0];
                 double[] strikeOuts = new double[0];
+                double[] battingAverage = new double[0];
+                double[] onBasePercentage = new double[0];
+                double[] slugging = new double[0];
+
+                double h = 0;
+                double ab = 0;
+                double d = 0;
+                double t = 0;
+                double hr = 0;
 
                 string path = @"Hitters.csv";
                 StreamReader textIn = new StreamReader(
                 new FileStream(path, FileMode.Open, FileAccess.Read));
 
-                if (radMLB.Checked)
+                if (cbPA.Checked)
+                    rtbLabels.AppendText("  PA");
+                if (cbAB.Checked)
+                    rtbLabels.AppendText("  AB");
+                if (cbR.Checked)
+                    rtbLabels.AppendText("   R");
+                if (cbH.Checked)
+                    rtbLabels.AppendText("   H");
+                if (cb2B.Checked)
+                    rtbLabels.AppendText("  2B");
+                if (cb3B.Checked)
+                    rtbLabels.AppendText("  3B");
+                if (cbHR.Checked)
+                    rtbLabels.AppendText("  HR");
+                if (cbRBI.Checked)
+                    rtbLabels.AppendText(" RBI");
+                if (cbSB.Checked)
+                    rtbLabels.AppendText("  SB");
+                if (cbCS.Checked)
+                    rtbLabels.AppendText("  CS");
+                if (cbBB.Checked)
+                    rtbLabels.AppendText("  BB");
+                if (cbSO.Checked)
+                    rtbLabels.AppendText("  SO");
+                if (cbAVG.Checked)
+                    rtbLabels.AppendText("   AVG");
+                if (cbOBP.Checked)
+                    rtbLabels.AppendText("   OBP");
+                if (cbSLG.Checked)
+                    rtbLabels.AppendText("   SLG");
+
+                while (textIn.Peek() != -1)
                 {
-                    if(radAllDivisions.Checked && radMLB.Checked)
+                    Array.Resize<string>(ref team, team.Length + 1);
+                    Array.Resize<string>(ref firstName, firstName.Length + 1);
+                    Array.Resize<string>(ref lastName, lastName.Length + 1);
+
+                    string row = textIn.ReadLine();
+                    string[] record = row.Split(',');
+                    team[num] = Convert.ToString(record[2]).ToUpper();
+                    firstName[num] = Convert.ToString(record[3]);
+                    lastName[num] = Convert.ToString(record[4]);
+
+                    rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(24));
+
+                    Array.Resize<double>(ref plateAppearaces, plateAppearaces.Length + 1);
+                    plateAppearaces[num] = Convert.ToDouble(record[18]);
+
+                    Array.Resize<double>(ref atBats, atBats.Length + 1);
+                    atBats[num] = Convert.ToDouble(record[6]);
+                    ab = Convert.ToDouble(record[6]);
+
+                    Array.Resize<double>(ref runs, runs.Length + 1);
+                    runs[num] = Convert.ToDouble(record[7]);
+
+                    Array.Resize<double>(ref hits, hits.Length + 1);
+                    hits[num] = Convert.ToDouble(record[8]);
+                    h = Convert.ToDouble(record[8]);
+
+                    Array.Resize<double>(ref doubles, doubles.Length + 1);
+                    doubles[num] = Convert.ToDouble(record[9]);
+
+
+                    Array.Resize<double>(ref triples, triples.Length + 1);
+                    triples[num] = Convert.ToDouble(record[10]);
+
+                    Array.Resize<double>(ref homeRuns, homeRuns.Length + 1);
+                    homeRuns[num] = Convert.ToDouble(record[11]);
+
+                    Array.Resize<double>(ref runsBattedIn, runsBattedIn.Length + 1);
+                    runsBattedIn[num] = Convert.ToDouble(record[12]);
+
+                    Array.Resize<double>(ref steals, steals.Length + 1);
+                    steals[num] = Convert.ToDouble(record[13]);
+
+                    Array.Resize<double>(ref caughtStealing, caughtStealing.Length + 1);
+                    caughtStealing[num] = Convert.ToDouble(record[14]);
+
+                    Array.Resize<double>(ref walks, walks.Length + 1);
+                    walks[num] = Convert.ToDouble(record[15]);
+
+                    Array.Resize<double>(ref strikeOuts, strikeOuts.Length + 1);
+                    strikeOuts[num] = Convert.ToDouble(record[16]);
+
+                    Array.Resize<double>(ref battingAverage, battingAverage.Length + 1);
+                    var AVG = new Hitters(h, ab);
+                    battingAverage[num] = AVG.CalculateBA();
+
+                    Array.Resize<double>(ref onBasePercentage, onBasePercentage.Length + 1);
+                    onBasePercentage[num] = Convert.ToDouble(record[17]);
+
+                    Array.Resize<double>(ref slugging, slugging.Length + 1);
+                    var SLG = new Hitters(h,d,t,hr,ab);
+                    slugging[num] = SLG.CalculateSLG();
+
+                    if (radMLB.Checked)
                     {
-                        while (textIn.Peek() != -1)
+                        if (radAllDivisions.Checked && radMLB.Checked)
                         {
-                            Array.Resize<string>(ref team, team.Length + 1);
-                            Array.Resize<string>(ref firstName, firstName.Length + 1);
-                            Array.Resize<string>(ref lastName, lastName.Length + 1);
-
-                            string row = textIn.ReadLine();
-                            string[] record = row.Split(',');
-                            team[num] = Convert.ToString(record[2]).ToUpper();
-                            firstName[num] = Convert.ToString(record[3]);
-                            lastName[num] = Convert.ToString(record[4]);
-
-                            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(24));
-                            
                             if (cbPA.Checked)
-                            {
-                                rtbLabels.AppendText("  PA");
-                                Array.Resize<double>(ref plateAppearaces, plateAppearaces.Length + 1);
-                                plateAppearaces[num] = Convert.ToDouble(record[18]);
                                 rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
-                            }
 
-                            if(cbAB.Checked)
-                            {
-                                rtbLabels.AppendText("  AB");
-                                Array.Resize<double>(ref atBats, atBats.Length + 1);
-                                atBats[num] = Convert.ToDouble(record[6]);
+                            if (cbAB.Checked)
                                 rtbOut.AppendText(atBats[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbR.Checked)
-                            {
-                                rtbLabels.AppendText("   R");
-                                Array.Resize<double>(ref runs, runs.Length + 1);
-                                runs[num] = Convert.ToDouble(record[7]);
                                 rtbOut.AppendText(runs[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbH.Checked)
-                            {
-                                rtbLabels.AppendText("   H");
-                                Array.Resize<double>(ref hits, hits.Length + 1);
-                                hits[num] = Convert.ToDouble(record[8]);
                                 rtbOut.AppendText(hits[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cb2B.Checked)
-                            {
-                                rtbLabels.AppendText("  2B");
-                                Array.Resize<double>(ref doubles, doubles.Length + 1);
-                                doubles[num] = Convert.ToDouble(record[9]);
                                 rtbOut.AppendText(doubles[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cb3B.Checked)
-                            {
-                                rtbLabels.AppendText("  3B");
-                                Array.Resize<double>(ref triples, triples.Length + 1);
-                                triples[num] = Convert.ToDouble(record[10]);
                                 rtbOut.AppendText(triples[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbHR.Checked)
-                            {
-                                rtbLabels.AppendText("  HR");
-                                Array.Resize<double>(ref homeRuns, homeRuns.Length + 1);
-                                homeRuns[num] = Convert.ToDouble(record[11]);
                                 rtbOut.AppendText(homeRuns[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbRBI.Checked)
-                            {
-                                rtbLabels.AppendText(" RBI");
-                                Array.Resize<double>(ref runsBattedIn, runsBattedIn.Length + 1);
-                                runsBattedIn[num] = Convert.ToDouble(record[12]);
                                 rtbOut.AppendText(runsBattedIn[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbSB.Checked)
-                            {
-                                rtbLabels.AppendText("  SB");
-                                Array.Resize<double>(ref steals, steals.Length + 1);
-                                steals[num] = Convert.ToDouble(record[13]);
                                 rtbOut.AppendText(steals[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbCS.Checked)
-                            {
-                                rtbLabels.AppendText("  CS");
-                                Array.Resize<double>(ref caughtStealing, caughtStealing.Length + 1);
-                                caughtStealing[num] = Convert.ToDouble(record[14]);
                                 rtbOut.AppendText(caughtStealing[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbBB.Checked)
-                            {
-                                rtbLabels.AppendText("  BB");
-                                Array.Resize<double>(ref walks, walks.Length + 1);
-                                walks[num] = Convert.ToDouble(record[15]);
                                 rtbOut.AppendText(walks[num].ToString("n0").PadLeft(4));
-                            }
 
                             if (cbSO.Checked)
-                            {
-                                rtbLabels.AppendText("  SO");
-                                Array.Resize<double>(ref strikeOuts, strikeOuts.Length + 1);
-                                strikeOuts[num] = Convert.ToDouble(record[7]);
                                 rtbOut.AppendText(strikeOuts[num].ToString("n0").PadLeft(4));
-                            }
+
+                            if (cbAVG.Checked)
+                                rtbOut.AppendText(battingAverage[num].ToString("n3").PadLeft(6));
+
+                            if (cbOBP.Checked)
+                                rtbOut.AppendText(onBasePercentage[num].ToString("n3").PadLeft(6));
+
+                            if (cbSLG.Checked)
+                                rtbOut.AppendText(slugging[num].ToString("n3").PadLeft(6));
 
                             rtbOut.AppendText("\n");
                             num++;

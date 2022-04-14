@@ -90,9 +90,9 @@
             // 
             this.rtbOut.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtbOut.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbOut.Location = new System.Drawing.Point(0, 310);
+            this.rtbOut.Location = new System.Drawing.Point(0, 300);
             this.rtbOut.Name = "rtbOut";
-            this.rtbOut.Size = new System.Drawing.Size(1384, 420);
+            this.rtbOut.Size = new System.Drawing.Size(1384, 430);
             this.rtbOut.TabIndex = 0;
             this.rtbOut.Text = "";
             // 
@@ -159,15 +159,15 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(12, 248);
+            this.textBox1.Location = new System.Drawing.Point(12, 235);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(811, 30);
+            this.textBox1.Size = new System.Drawing.Size(1129, 30);
             this.textBox1.TabIndex = 3;
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExit.Location = new System.Drawing.Point(937, 247);
+            this.btnExit.Location = new System.Drawing.Point(1258, 235);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(98, 31);
             this.btnExit.TabIndex = 5;
@@ -178,7 +178,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnSearch.Location = new System.Drawing.Point(829, 247);
+            this.btnSearch.Location = new System.Drawing.Point(1147, 235);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 31);
             this.btnSearch.TabIndex = 6;
@@ -258,7 +258,7 @@
             this.gbHittersBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.gbHittersBasic.Location = new System.Drawing.Point(426, 13);
             this.gbHittersBasic.Name = "gbHittersBasic";
-            this.gbHittersBasic.Size = new System.Drawing.Size(292, 171);
+            this.gbHittersBasic.Size = new System.Drawing.Size(292, 216);
             this.gbHittersBasic.TabIndex = 8;
             this.gbHittersBasic.TabStop = false;
             this.gbHittersBasic.Text = "Basic Statistics";
@@ -470,7 +470,7 @@
             this.gbAdvanced.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.gbAdvanced.Location = new System.Drawing.Point(724, 13);
             this.gbAdvanced.Name = "gbAdvanced";
-            this.gbAdvanced.Size = new System.Drawing.Size(313, 171);
+            this.gbAdvanced.Size = new System.Drawing.Size(313, 216);
             this.gbAdvanced.TabIndex = 9;
             this.gbAdvanced.TabStop = false;
             this.gbAdvanced.Text = "Advanced Statistics";
@@ -623,9 +623,9 @@
             "Texas Rangers",
             "Toronto Blue Jays",
             "Washington Nationals"});
-            this.lbMLBTeams.Location = new System.Drawing.Point(423, 190);
+            this.lbMLBTeams.Location = new System.Drawing.Point(1043, 18);
             this.lbMLBTeams.Name = "lbMLBTeams";
-            this.lbMLBTeams.Size = new System.Drawing.Size(294, 54);
+            this.lbMLBTeams.Size = new System.Drawing.Size(313, 104);
             this.lbMLBTeams.TabIndex = 10;
             this.lbMLBTeams.Visible = false;
             // 
@@ -645,9 +645,9 @@
             "Center Field",
             "Right Field",
             "Designated Hitter"});
-            this.lbHitterPosition.Location = new System.Drawing.Point(724, 190);
+            this.lbHitterPosition.Location = new System.Drawing.Point(1043, 123);
             this.lbHitterPosition.Name = "lbHitterPosition";
-            this.lbHitterPosition.Size = new System.Drawing.Size(313, 54);
+            this.lbHitterPosition.Size = new System.Drawing.Size(313, 104);
             this.lbHitterPosition.TabIndex = 11;
             this.lbHitterPosition.Visible = false;
             // 
@@ -656,7 +656,7 @@
             this.btnDictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDictionary.Location = new System.Drawing.Point(13, 190);
             this.btnDictionary.Name = "btnDictionary";
-            this.btnDictionary.Size = new System.Drawing.Size(190, 52);
+            this.btnDictionary.Size = new System.Drawing.Size(190, 39);
             this.btnDictionary.TabIndex = 12;
             this.btnDictionary.Text = "Dictionary";
             this.btnDictionary.UseVisualStyleBackColor = true;
@@ -673,7 +673,7 @@
             this.gbDivisions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbDivisions.Name = "gbDivisions";
             this.gbDivisions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbDivisions.Size = new System.Drawing.Size(208, 122);
+            this.gbDivisions.Size = new System.Drawing.Size(208, 131);
             this.gbDivisions.TabIndex = 14;
             this.gbDivisions.TabStop = false;
             this.gbDivisions.Text = "Divisions";
@@ -728,7 +728,7 @@
             // rtbLabels
             // 
             this.rtbLabels.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbLabels.Location = new System.Drawing.Point(0, 284);
+            this.rtbLabels.Location = new System.Drawing.Point(0, 272);
             this.rtbLabels.Name = "rtbLabels";
             this.rtbLabels.Size = new System.Drawing.Size(1384, 30);
             this.rtbLabels.TabIndex = 15;
