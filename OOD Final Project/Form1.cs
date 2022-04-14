@@ -25,7 +25,7 @@ namespace OOD_Final_Project
 
             if (radHitters.Checked)
             {
-                rtbLabels.AppendText("Team Player                  ");
+                rtbLabels.AppendText("Team Player              ");
 
                 int num = 0;
                 string[] firstName = new string[0];
@@ -48,6 +48,10 @@ namespace OOD_Final_Project
                 double[] slugging = new double[0];
                 double[] onBasePlusSlugging = new double[0];
                 double[] totalBases = new double[0];
+                double[] sacrificeFlies = new double[0];
+                double[] hitByPitch = new double[0];
+                double[] intentionalWalks = new double[0];
+                double[] battingAverageOnBallsInPlay = new double[0];
 
                 double h = 0;
                 double ab = 0;
@@ -57,6 +61,10 @@ namespace OOD_Final_Project
                 double avg = 0;
                 double obp = 0;
                 double slg = 0;
+                double hbp = 0;
+                double sf = 0;
+                double ibb = 0;
+                double k = 0;
 
                 string path = @"Hitters.csv";
                 StreamReader textIn = new StreamReader(
@@ -96,6 +104,14 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText("   OPS");
                 if (cbTB.Checked)
                     rtbLabels.AppendText("  TB");
+                if (cbSF.Checked)
+                    rtbLabels.AppendText(" HBP");
+                if (cbHBP.Checked)
+                    rtbLabels.AppendText("  SF");
+                if (cbIBB.Checked)
+                    rtbLabels.AppendText(" IBB");
+                if (cbBABIP.Checked)
+                    rtbLabels.AppendText(" BABIP");
 
 
                 while (textIn.Peek() != -1)
@@ -150,6 +166,7 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref strikeOuts, strikeOuts.Length + 1);
                     strikeOuts[num] = Convert.ToDouble(record[16]);
+                    k = Convert.ToDouble(record[16]);
 
                     Array.Resize<double>(ref battingAverage, battingAverage.Length + 1);
                     var AVG = new Hitters(h, ab);
@@ -173,11 +190,31 @@ namespace OOD_Final_Project
                     var TB = new Hitters(h, d, t, hr);
                     totalBases[num] = TB.CalculateTB();
 
+                    Array.Resize<double>(ref onBasePercentage, onBasePercentage.Length + 1);
+                    onBasePercentage[num] = Convert.ToDouble(record[17]);
+                    obp = Convert.ToDouble(record[17]);
+
+                    Array.Resize<double>(ref hitByPitch, hitByPitch.Length + 1);
+                    hitByPitch[num] = Convert.ToDouble(record[19]);
+                    hbp = Convert.ToDouble(record[19]);
+
+                    Array.Resize<double>(ref sacrificeFlies, sacrificeFlies.Length + 1);
+                    sacrificeFlies[num] = Convert.ToDouble(record[20]);
+                    sf = Convert.ToDouble(record[20]);
+
+                    Array.Resize<double>(ref intentionalWalks, intentionalWalks.Length + 1);
+                    intentionalWalks[num] = Convert.ToDouble(record[21]);
+                    ibb = Convert.ToDouble(record[21]);
+
+                    Array.Resize<double>(ref battingAverageOnBallsInPlay, battingAverageOnBallsInPlay.Length + 1);
+                    var BABIP = new Hitters(h, ab, hr, sf, k, 0);
+                    battingAverageOnBallsInPlay[num] = BABIP.CalculateBABIP();
+
                     if (radMLB.Checked)
                     {
                         if (radAllDivisions.Checked && radMLB.Checked)
                         {
-                            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(24));
+                            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(20));
 
                             if (cbPA.Checked)
                                 rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
@@ -229,6 +266,18 @@ namespace OOD_Final_Project
 
                             if (cbTB.Checked)
                                 rtbOut.AppendText(totalBases[num].ToString("n0").PadLeft(4));
+
+                            if (cbHBP.Checked)
+                                rtbOut.AppendText(hitByPitch[num].ToString("n0").PadLeft(4));
+
+                            if (cbSF.Checked)
+                                rtbOut.AppendText(sacrificeFlies[num].ToString("n0").PadLeft(4));
+
+                            if (cbIBB.Checked)
+                                rtbOut.AppendText(intentionalWalks[num].ToString("n0").PadLeft(4));
+
+                            if (cbBABIP.Checked)
+                                rtbOut.AppendText(battingAverageOnBallsInPlay[num].ToString("n3").PadLeft(6));
 
                             rtbOut.AppendText("\n");
                             num++;

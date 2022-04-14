@@ -79,6 +79,7 @@
             this.radCentral = new System.Windows.Forms.RadioButton();
             this.radEast = new System.Windows.Forms.RadioButton();
             this.rtbLabels = new System.Windows.Forms.RichTextBox();
+            this.cbSF = new System.Windows.Forms.CheckBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
             this.gbHittersBasic.SuspendLayout();
@@ -456,6 +457,7 @@
             // 
             // gbAdvanced
             // 
+            this.gbAdvanced.Controls.Add(this.cbSF);
             this.gbAdvanced.Controls.Add(this.cbIBB);
             this.gbAdvanced.Controls.Add(this.cbHBP);
             this.gbAdvanced.Controls.Add(this.cbTB);
@@ -734,6 +736,16 @@
             this.rtbLabels.TabIndex = 15;
             this.rtbLabels.Text = "";
             // 
+            // cbSF
+            // 
+            this.cbSF.AutoSize = true;
+            this.cbSF.Location = new System.Drawing.Point(217, 134);
+            this.cbSF.Name = "cbSF";
+            this.cbSF.Size = new System.Drawing.Size(60, 29);
+            this.cbSF.TabIndex = 12;
+            this.cbSF.Text = "SF";
+            this.cbSF.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -822,6 +834,7 @@
         private System.Windows.Forms.RadioButton radEast;
         private System.Windows.Forms.RadioButton radAllDivisions;
         private System.Windows.Forms.RichTextBox rtbLabels;
+        private System.Windows.Forms.CheckBox cbSF;
     }
 }
 

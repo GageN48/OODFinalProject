@@ -17,9 +17,11 @@ namespace OOD_Final_Project
         private double singles;
         private double _obp;
         private double _slg;
+        private double _sf;
+        private double _k;
 
         private double _filler1;
-//        private double _filler2;
+        private double _filler2;
 //        private double _filler3;
 //        private double _filler4;
 //        private double _filler5;
@@ -66,10 +68,28 @@ namespace OOD_Final_Project
             set { _slg = value; }
         }
 
+        public double sf
+        {
+            get { return _sf; }
+            set { _sf = value; }
+        }
+
+        public double k
+        {
+            get { return _k; }
+            set { _k = value; }
+        }
+
         public double filler1
         {
             get { return _filler1; }
             set { _filler1 = value; }
+        }
+
+        public double filler2
+        {
+            get { return _filler2; }
+            set { _filler2 = value; }
         }
 
         public Hitters(double hits, double atBats)
@@ -102,6 +122,16 @@ namespace OOD_Final_Project
             _homeRuns = homeRuns;
         }
 
+        public Hitters(double hits, double atBats, double homeRuns, double sf, double k, double filler2)
+        {
+            _hits = hits;
+            _atBats = atBats;
+            _homeRuns = homeRuns;
+            _sf = sf;
+            _k = k;
+            _filler2 = filler2;
+        }
+
         public double CalculateBA()
         {
             return (hits / atBats);
@@ -123,6 +153,11 @@ namespace OOD_Final_Project
         {
             singles = hits - doubles - triples - homeRuns;
             return (singles + (doubles * 2) + (triples * 3) + (homeRuns * 4));
+        }
+
+        public double CalculateBABIP()
+        {
+            return ((hits - homeRuns) / (atBats - k - homeRuns + sf));
         }
     }
 }
