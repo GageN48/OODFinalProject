@@ -19,6 +19,10 @@ namespace OOD_Final_Project
         private double homeRunFactor = 2.10;
         private double wOBAScale = 1.25;
         private double leaguewOBA = 0.320;
+        private double leagueRperPA = 0.114;
+        private double parkFactor = 1;
+        private double leagueWRC = 10032;
+        private double leaguePA = 85797;
 
         private double _hits;
         private double _atBats;
@@ -37,6 +41,7 @@ namespace OOD_Final_Project
         private double _hbp;
         private double _ibb;
         private double _wOBA;
+        private double _wRAA;
 
         private double _filler1;
         private double _filler2;
@@ -47,6 +52,7 @@ namespace OOD_Final_Project
         private double _filler7;
         private double _filler8;
         private double _filler9;
+        private double _filler10;
 
         public double hits
         {
@@ -150,40 +156,10 @@ namespace OOD_Final_Project
             set { _wOBA = value; }
         }
 
-        public double filler1
+        public double wRAA
         {
-            get { return _filler1; }
-            set { _filler1 = value; }
-        }
-
-        public double filler2
-        {
-            get { return _filler2; }
-            set { _filler2 = value; }
-        }
-
-        public double filler3
-        {
-            get { return _filler3; }
-            set { _filler3 = value; }
-        }
-
-        public double filler4
-        {
-            get { return _filler4; }
-            set { _filler4 = value; }
-        }
-
-        public double filler5
-        {
-            get { return _filler5; }
-            set { _filler5 = value; }
-        }
-
-        public double filler6
-        {
-            get { return _filler6; }
-            set { _filler6 = value; }
+            get { return _wRAA; }
+            set { _wRAA = value; }
         }
 
         public Hitters(double hits, double atBats)
@@ -296,6 +272,22 @@ namespace OOD_Final_Project
             _filler9 = filler9;
         }
 
+        public Hitters(double wRAA, double pa, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7, double filler8, double filler9, double filler10)
+        {
+            _wRAA = wRAA;
+            _pa = pa;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+            _filler6 = filler6;
+            _filler7 = filler7;
+            _filler8 = filler8;
+            _filler9 = filler9;
+            _filler10 = filler10;
+        }
+
         public double CalculateBA()
         {
             return (hits / atBats);
@@ -310,7 +302,6 @@ namespace OOD_Final_Project
 
         public double CalculateOPS()
         {
-            filler1 = 0;
             return obp + slg;
         }
 
@@ -357,6 +348,13 @@ namespace OOD_Final_Project
         public double CalculatewRAA()
         {
             return (((wOBA - leaguewOBA) / (wOBAScale)) * pa);
+        }
+
+        public double CalculatewRCPlus()
+        {
+           return (((wRAA / pa) + leagueRperPA) + (leagueRperPA - (parkFactor * leagueRperPA))) / (leagueWRC / leaguePA) * 100;
+            //(((wRAA per PA + league runs per PA) + (league runs per PA - ballpark factor x
+            //league runs per PA) / league wRC per plate appearance, not including pitchers)) x 100.
         }
     }
 }

@@ -13,6 +13,42 @@ namespace OOD_Final_Project
 {
     public partial class Form1 : Form
     {
+        string[] firstName = new string[0];
+        string[] lastName = new string[0];
+        string[] team = new string[0];
+        double[] plateAppearaces = new double[0];
+        double[] atBats = new double[0];
+        double[] runs = new double[0];
+        double[] hits = new double[0];
+        double[] doubles = new double[0];
+        double[] triples = new double[0];
+        double[] homeRuns = new double[0];
+        double[] runsBattedIn = new double[0];
+        double[] steals = new double[0];
+        double[] caughtStealing = new double[0];
+        double[] walks = new double[0];
+        double[] strikeOuts = new double[0];
+        double[] battingAverage = new double[0];
+        double[] onBasePercentage = new double[0];
+        double[] slugging = new double[0];
+        double[] onBasePlusSlugging = new double[0];
+        double[] totalBases = new double[0];
+        double[] sacrificeFlies = new double[0];
+        double[] hitByPitch = new double[0];
+        double[] intentionalWalks = new double[0];
+        double[] battingAverageOnBallsInPlay = new double[0];
+        double[] isolatedPower = new double[0];
+        double[] OPSPlus = new double[0];
+        double[] plateAppearancesPerStrikeOut = new double[0];
+        double[] runsCreated = new double[0];
+        double[] weightedOnBaseAverage = new double[0];
+        double[] weightRunsCretedPlus = new double[0];
+        double[] weightRunsAboveAverage = new double[0];
+        string[] division = new string[0];
+        string[] league = new string[0];
+        string[] position = new string[0];
+        int num = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,38 +63,6 @@ namespace OOD_Final_Project
             {
                 rtbLabels.AppendText("Team Player              ");
 
-                int num = 0;
-                string[] firstName = new string[0];
-                string[] lastName = new string[0];
-                string[] team = new string[0];
-                double[] plateAppearaces = new double[0];
-                double[] atBats = new double[0];
-                double[] runs = new double[0];
-                double[] hits = new double[0];
-                double[] doubles = new double[0];
-                double[] triples = new double[0];
-                double[] homeRuns = new double[0];
-                double[] runsBattedIn = new double[0];
-                double[] steals = new double[0];
-                double[] caughtStealing = new double[0];
-                double[] walks = new double[0];
-                double[] strikeOuts = new double[0];
-                double[] battingAverage = new double[0];
-                double[] onBasePercentage = new double[0];
-                double[] slugging = new double[0];
-                double[] onBasePlusSlugging = new double[0];
-                double[] totalBases = new double[0];
-                double[] sacrificeFlies = new double[0];
-                double[] hitByPitch = new double[0];
-                double[] intentionalWalks = new double[0];
-                double[] battingAverageOnBallsInPlay = new double[0];
-                double[] isolatedPower = new double[0];
-                double[] OPSPlus = new double[0];
-                double[] plateAppearancesPerStrikeOut = new double[0];
-                double[] runsCreated = new double[0];
-                double[] weightedOnBaseAverage = new double[0];
-                double[] weightRunsCretedPlus = new double[0];
-                double[] weightRunsAboveAverage = new double[0];
 
                 double h = 0;
                 double ab = 0;
@@ -78,6 +82,7 @@ namespace OOD_Final_Project
                 double bb = 0;
                 double rc = 0;
                 double wOBA = 0;
+                double wRAA = 0;
 
                 string path = @"Hitters.csv";
                 StreamReader textIn = new StreamReader(
@@ -145,12 +150,19 @@ namespace OOD_Final_Project
                     Array.Resize<string>(ref team, team.Length + 1);
                     Array.Resize<string>(ref firstName, firstName.Length + 1);
                     Array.Resize<string>(ref lastName, lastName.Length + 1);
+                    Array.Resize<string>(ref division, division.Length + 1);
+                    Array.Resize<string>(ref league, league.Length + 1);
+                    Array.Resize<string>(ref position, league.Length + 1);
 
                     string row = textIn.ReadLine();
                     string[] record = row.Split(',');
                     team[num] = Convert.ToString(record[2]).ToUpper();
-                    firstName[num] = Convert.ToString(record[3]);
-                    lastName[num] = Convert.ToString(record[4]);
+                    firstName[num] = Convert.ToString(record[3]).ToUpper();
+                    lastName[num] = Convert.ToString(record[4]).ToUpper();
+                    division[num] = Convert.ToString(record[1]).ToUpper();
+                    league[num] = Convert.ToString(record[0]).ToUpper();
+                    position[num] = Convert.ToString(record[5]).ToUpper();
+
 
                     Array.Resize<double>(ref plateAppearaces, plateAppearaces.Length + 1);
                     plateAppearaces[num] = Convert.ToDouble(record[18]);
@@ -265,109 +277,14817 @@ namespace OOD_Final_Project
                     Array.Resize<double>(ref weightRunsAboveAverage, weightRunsAboveAverage.Length + 1);
                     var WRAA = new Hitters(wOBA, pa, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                     weightRunsAboveAverage[num] = WRAA.CalculatewRAA();
+                    wRAA = weightRunsAboveAverage[num];
 
-                    /*                    Array.Resize<double>(ref weightRunsCretedPlus, weightRunsCretedPlus.Length + 1);
-                                        var WRC = new Hitters(tb, h, bb, hbp, ibb, ab, 0, 0, 0);
-                                        weightRunsCretedPlus[num] = WRC.CalculatewRCPlus();*/
+                    Array.Resize<double>(ref weightRunsCretedPlus, weightRunsCretedPlus.Length + 1);
+                    var WRC = new Hitters(wRAA, pa, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    weightRunsCretedPlus[num] = WRC.CalculatewRCPlus();
 
-                    if (radMLB.Checked)
-                    {
-                        if (radAllDivisions.Checked && radMLB.Checked)
+                    if (radAllDivisions.Checked && radMLB.Checked)
                         {
-                            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(20));
-
-                            if (cbPA.Checked)
-                                rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
-
-                            if (cbAB.Checked)
-                                rtbOut.AppendText(atBats[num].ToString("n0").PadLeft(4));
-
-                            if (cbR.Checked)
-                                rtbOut.AppendText(runs[num].ToString("n0").PadLeft(4));
-
-                            if (cbH.Checked)
-                                rtbOut.AppendText(hits[num].ToString("n0").PadLeft(4));
-
-                            if (cb2B.Checked)
-                                rtbOut.AppendText(doubles[num].ToString("n0").PadLeft(4));
-
-                            if (cb3B.Checked)
-                                rtbOut.AppendText(triples[num].ToString("n0").PadLeft(4));
-
-                            if (cbHR.Checked)
-                                rtbOut.AppendText(homeRuns[num].ToString("n0").PadLeft(4));
-
-                            if (cbRBI.Checked)
-                                rtbOut.AppendText(runsBattedIn[num].ToString("n0").PadLeft(4));
-
-                            if (cbSB.Checked)
-                                rtbOut.AppendText(steals[num].ToString("n0").PadLeft(4));
-
-                            if (cbCS.Checked)
-                                rtbOut.AppendText(caughtStealing[num].ToString("n0").PadLeft(4));
-
-                            if (cbBB.Checked)
-                                rtbOut.AppendText(walks[num].ToString("n0").PadLeft(4));
-
-                            if (cbSO.Checked)
-                                rtbOut.AppendText(strikeOuts[num].ToString("n0").PadLeft(4));
-
-                            if (cbAVG.Checked)
-                                rtbOut.AppendText(battingAverage[num].ToString("n3").PadLeft(6));
-
-                            if (cbOBP.Checked)
-                                rtbOut.AppendText(onBasePercentage[num].ToString("n3").PadLeft(6));
-
-                            if (cbSLG.Checked)
-                                rtbOut.AppendText(slugging[num].ToString("n3").PadLeft(6));
-
-                            if (cbOPS.Checked)
-                                rtbOut.AppendText(onBasePlusSlugging[num].ToString("n3").PadLeft(6));
-
-                            if (cbTB.Checked)
-                                rtbOut.AppendText(totalBases[num].ToString("n0").PadLeft(4));
-
-                            if (cbHBP.Checked)
-                                rtbOut.AppendText(hitByPitch[num].ToString("n0").PadLeft(4));
-
-                            if (cbSF.Checked)
-                                rtbOut.AppendText(sacrificeFlies[num].ToString("n0").PadLeft(4));
-
-                            if (cbIBB.Checked)
-                                rtbOut.AppendText(intentionalWalks[num].ToString("n0").PadLeft(4));
-
-                            if (cbBABIP.Checked)
-                                rtbOut.AppendText(battingAverageOnBallsInPlay[num].ToString("n3").PadLeft(6));
-
-                            if (cbISO.Checked)
-                                rtbOut.AppendText(isolatedPower[num].ToString("n3").PadLeft(6));
-
-                            if (cbOPSPlus.Checked)
-                                rtbOut.AppendText(OPSPlus[num].ToString("n0").PadLeft(5));
-
-                            if (cbPASO.Checked)
-                                rtbOut.AppendText(plateAppearancesPerStrikeOut[num].ToString("n3").PadLeft(6));
-
-                            if (cbRC.Checked)
-                                rtbOut.AppendText(runsCreated[num].ToString("n1").PadLeft(6));
-
-                            if (cbwRCPlus.Checked)
-                                rtbOut.AppendText(weightRunsCretedPlus[num].ToString("n1").PadLeft(6));
-
-                            if (cbwOBA.Checked)
-                                rtbOut.AppendText(weightedOnBaseAverage[num].ToString("n3").PadLeft(6));
-
-                            if (cbwRAA.Checked)
-                                rtbOut.AppendText(weightRunsAboveAverage[num].ToString("n1").PadLeft(6));
-
-                            rtbOut.AppendText("\n");
-                            num++;
+                        if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
+                        }
+                        else
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                printHitters();
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                printHitters();
+                            }
                         }
                     }
+                    else if (radAllDivisions.Checked && radAL.Checked)
+                    {
+                        if (league[num] == "AL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radAllDivisions.Checked && radNL.Checked)
+                    {
+                        if (league[num] == "NL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radEast.Checked && radMLB.Checked)
+                        {
+                            if (division[num] == "E")
+                            {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                        }
+                    else if (radWest.Checked && radMLB.Checked)
+                        {
+                            if (division[num] == "W")
+                            {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                        }
+                    else if (radCentral.Checked && radMLB.Checked)
+                        {
+                            if (division[num] == "C")
+                            {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                        }
+                    else if (radEast.Checked && radAL.Checked)
+                    {
+                        if (division[num] == "E" && league[num] == "AL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radWest.Checked && radAL.Checked)
+                    {
+                        if (division[num] == "W" && league[num] == "AL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radCentral.Checked && radAL.Checked)
+                    {
+                        if (division[num] == "C" && league[num] == "AL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radEast.Checked && radNL.Checked)
+                    {
+                        if (division[num] == "E" && league[num] == "NL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radWest.Checked && radNL.Checked)
+                    {
+                        if (division[num] == "W" && league[num] == "NL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+                    else if (radCentral.Checked && radNL.Checked)
+                    {
+                        if (division[num] == "C" && league[num] == "NL")
+                        {
+                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            else
+                            {
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Philidelphia Phillies" && team[num] == "PHI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    printHitters();
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    printHitters();
+                                }
+                            }
+                        }
+                    }
+
+                    num++;
                 }
             }
         }
 
+        private void printHitters()
+        {
+            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(20));
+
+            if (cbPA.Checked)
+                rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
+
+            if (cbAB.Checked)
+                rtbOut.AppendText(atBats[num].ToString("n0").PadLeft(4));
+
+            if (cbR.Checked)
+                rtbOut.AppendText(runs[num].ToString("n0").PadLeft(4));
+
+            if (cbH.Checked)
+                rtbOut.AppendText(hits[num].ToString("n0").PadLeft(4));
+
+            if (cb2B.Checked)
+                rtbOut.AppendText(doubles[num].ToString("n0").PadLeft(4));
+
+            if (cb3B.Checked)
+                rtbOut.AppendText(triples[num].ToString("n0").PadLeft(4));
+
+            if (cbHR.Checked)
+                rtbOut.AppendText(homeRuns[num].ToString("n0").PadLeft(4));
+
+            if (cbRBI.Checked)
+                rtbOut.AppendText(runsBattedIn[num].ToString("n0").PadLeft(4));
+
+            if (cbSB.Checked)
+                rtbOut.AppendText(steals[num].ToString("n0").PadLeft(4));
+
+            if (cbCS.Checked)
+                rtbOut.AppendText(caughtStealing[num].ToString("n0").PadLeft(4));
+
+            if (cbBB.Checked)
+                rtbOut.AppendText(walks[num].ToString("n0").PadLeft(4));
+
+            if (cbSO.Checked)
+                rtbOut.AppendText(strikeOuts[num].ToString("n0").PadLeft(4));
+
+            if (cbAVG.Checked)
+                rtbOut.AppendText(battingAverage[num].ToString("n3").PadLeft(6));
+
+            if (cbOBP.Checked)
+                rtbOut.AppendText(onBasePercentage[num].ToString("n3").PadLeft(6));
+
+            if (cbSLG.Checked)
+                rtbOut.AppendText(slugging[num].ToString("n3").PadLeft(6));
+
+            if (cbOPS.Checked)
+                rtbOut.AppendText(onBasePlusSlugging[num].ToString("n3").PadLeft(6));
+
+            if (cbTB.Checked)
+                rtbOut.AppendText(totalBases[num].ToString("n0").PadLeft(4));
+
+            if (cbHBP.Checked)
+                rtbOut.AppendText(hitByPitch[num].ToString("n0").PadLeft(4));
+
+            if (cbSF.Checked)
+                rtbOut.AppendText(sacrificeFlies[num].ToString("n0").PadLeft(4));
+
+            if (cbIBB.Checked)
+                rtbOut.AppendText(intentionalWalks[num].ToString("n0").PadLeft(4));
+
+            if (cbBABIP.Checked)
+                rtbOut.AppendText(battingAverageOnBallsInPlay[num].ToString("n3").PadLeft(6));
+
+            if (cbISO.Checked)
+                rtbOut.AppendText(isolatedPower[num].ToString("n3").PadLeft(6));
+
+            if (cbOPSPlus.Checked)
+                rtbOut.AppendText(OPSPlus[num].ToString("n0").PadLeft(5));
+
+            if (cbPASO.Checked)
+                rtbOut.AppendText(plateAppearancesPerStrikeOut[num].ToString("n3").PadLeft(6));
+
+            if (cbRC.Checked)
+                rtbOut.AppendText(runsCreated[num].ToString("n1").PadLeft(6));
+
+            if (cbwRCPlus.Checked)
+                rtbOut.AppendText(weightRunsCretedPlus[num].ToString("n0").PadLeft(6));
+
+            if (cbwOBA.Checked)
+                rtbOut.AppendText(weightedOnBaseAverage[num].ToString("n3").PadLeft(6));
+
+            if (cbwRAA.Checked)
+                rtbOut.AppendText(weightRunsAboveAverage[num].ToString("n1").PadLeft(6));
+
+            rtbOut.AppendText("\n");
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();

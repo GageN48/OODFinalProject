@@ -59,6 +59,7 @@
             this.cbAB = new System.Windows.Forms.CheckBox();
             this.cbPA = new System.Windows.Forms.CheckBox();
             this.gbAdvanced = new System.Windows.Forms.GroupBox();
+            this.cbSF = new System.Windows.Forms.CheckBox();
             this.cbIBB = new System.Windows.Forms.CheckBox();
             this.cbHBP = new System.Windows.Forms.CheckBox();
             this.cbTB = new System.Windows.Forms.CheckBox();
@@ -79,7 +80,6 @@
             this.radCentral = new System.Windows.Forms.RadioButton();
             this.radEast = new System.Windows.Forms.RadioButton();
             this.rtbLabels = new System.Windows.Forms.RichTextBox();
-            this.cbSF = new System.Windows.Forms.CheckBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
             this.gbHittersBasic.SuspendLayout();
@@ -183,7 +183,7 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(105, 31);
             this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Text = "&Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -478,6 +478,16 @@
             this.gbAdvanced.Text = "Advanced Statistics";
             this.gbAdvanced.Visible = false;
             // 
+            // cbSF
+            // 
+            this.cbSF.AutoSize = true;
+            this.cbSF.Location = new System.Drawing.Point(217, 134);
+            this.cbSF.Name = "cbSF";
+            this.cbSF.Size = new System.Drawing.Size(60, 29);
+            this.cbSF.TabIndex = 12;
+            this.cbSF.Text = "SF";
+            this.cbSF.UseVisualStyleBackColor = true;
+            // 
             // cbIBB
             // 
             this.cbIBB.AutoSize = true;
@@ -735,16 +745,6 @@
             this.rtbLabels.Size = new System.Drawing.Size(1384, 30);
             this.rtbLabels.TabIndex = 15;
             this.rtbLabels.Text = "";
-            // 
-            // cbSF
-            // 
-            this.cbSF.AutoSize = true;
-            this.cbSF.Location = new System.Drawing.Point(217, 134);
-            this.cbSF.Name = "cbSF";
-            this.cbSF.Size = new System.Drawing.Size(60, 29);
-            this.cbSF.TabIndex = 12;
-            this.cbSF.Text = "SF";
-            this.cbSF.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
