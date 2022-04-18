@@ -34,7 +34,7 @@
             this.radWNBA = new System.Windows.Forms.RadioButton();
             this.radNBA = new System.Windows.Forms.RadioButton();
             this.radPitchers = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.gbNLorAL = new System.Windows.Forms.GroupBox();
@@ -157,13 +157,13 @@
             this.radPitchers.UseVisualStyleBackColor = true;
             this.radPitchers.CheckedChanged += new System.EventHandler(this.radPitchers_CheckedChanged);
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(12, 235);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1129, 30);
-            this.textBox1.TabIndex = 3;
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearch.Location = new System.Drawing.Point(12, 235);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(1129, 30);
+            this.txtSearch.TabIndex = 3;
             // 
             // btnExit
             // 
@@ -761,7 +761,7 @@
             this.Controls.Add(this.gbNLorAL);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.gbLeague);
             this.Controls.Add(this.rtbOut);
             this.Name = "Form1";
@@ -789,7 +789,7 @@
         private System.Windows.Forms.RadioButton radWNBA;
         private System.Windows.Forms.RadioButton radNBA;
         private System.Windows.Forms.RadioButton radPitchers;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox gbNLorAL;

@@ -63,7 +63,6 @@ namespace OOD_Final_Project
             {
                 rtbLabels.AppendText("Team Player              ");
 
-
                 double h = 0;
                 double ab = 0;
                 double d = 0;
@@ -284,7 +283,7 @@ namespace OOD_Final_Project
                     weightRunsCretedPlus[num] = WRC.CalculatewRCPlus();
 
                     if (radAllDivisions.Checked && radMLB.Checked)
-                        {
+                    {
                         if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
                         {
                             if (lbMLBTeams.Text == "All Teams")
