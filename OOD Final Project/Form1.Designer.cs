@@ -268,8 +268,6 @@
             // cbOPS
             // 
             this.cbOPS.AutoSize = true;
-            this.cbOPS.Checked = true;
-            this.cbOPS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbOPS.Location = new System.Drawing.Point(210, 134);
             this.cbOPS.Name = "cbOPS";
             this.cbOPS.Size = new System.Drawing.Size(77, 29);
@@ -290,8 +288,6 @@
             // cbOBP
             // 
             this.cbOBP.AutoSize = true;
-            this.cbOBP.Checked = true;
-            this.cbOBP.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbOBP.Location = new System.Drawing.Point(210, 64);
             this.cbOBP.Name = "cbOBP";
             this.cbOBP.Size = new System.Drawing.Size(76, 29);
@@ -302,8 +298,6 @@
             // cbAVG
             // 
             this.cbAVG.AutoSize = true;
-            this.cbAVG.Checked = true;
-            this.cbAVG.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAVG.Location = new System.Drawing.Point(210, 30);
             this.cbAVG.Name = "cbAVG";
             this.cbAVG.Size = new System.Drawing.Size(77, 29);
@@ -314,8 +308,6 @@
             // cbSO
             // 
             this.cbSO.AutoSize = true;
-            this.cbSO.Checked = true;
-            this.cbSO.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSO.Location = new System.Drawing.Point(142, 134);
             this.cbSO.Name = "cbSO";
             this.cbSO.Size = new System.Drawing.Size(64, 29);
@@ -326,8 +318,6 @@
             // cbBB
             // 
             this.cbBB.AutoSize = true;
-            this.cbBB.Checked = true;
-            this.cbBB.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbBB.Location = new System.Drawing.Point(142, 100);
             this.cbBB.Name = "cbBB";
             this.cbBB.Size = new System.Drawing.Size(60, 29);
@@ -338,8 +328,6 @@
             // cbCS
             // 
             this.cbCS.AutoSize = true;
-            this.cbCS.Checked = true;
-            this.cbCS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbCS.Location = new System.Drawing.Point(142, 64);
             this.cbCS.Name = "cbCS";
             this.cbCS.Size = new System.Drawing.Size(63, 29);
@@ -350,8 +338,6 @@
             // cbSB
             // 
             this.cbSB.AutoSize = true;
-            this.cbSB.Checked = true;
-            this.cbSB.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbSB.Location = new System.Drawing.Point(142, 30);
             this.cbSB.Name = "cbSB";
             this.cbSB.Size = new System.Drawing.Size(61, 29);
@@ -362,8 +348,6 @@
             // cbRBI
             // 
             this.cbRBI.AutoSize = true;
-            this.cbRBI.Checked = true;
-            this.cbRBI.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbRBI.Location = new System.Drawing.Point(74, 134);
             this.cbRBI.Name = "cbRBI";
             this.cbRBI.Size = new System.Drawing.Size(65, 29);
@@ -374,8 +358,6 @@
             // cbHR
             // 
             this.cbHR.AutoSize = true;
-            this.cbHR.Checked = true;
-            this.cbHR.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbHR.Location = new System.Drawing.Point(74, 99);
             this.cbHR.Name = "cbHR";
             this.cbHR.Size = new System.Drawing.Size(61, 29);
@@ -386,8 +368,6 @@
             // cb3B
             // 
             this.cb3B.AutoSize = true;
-            this.cb3B.Checked = true;
-            this.cb3B.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb3B.Location = new System.Drawing.Point(74, 64);
             this.cb3B.Name = "cb3B";
             this.cb3B.Size = new System.Drawing.Size(58, 29);
@@ -398,8 +378,6 @@
             // cb2B
             // 
             this.cb2B.AutoSize = true;
-            this.cb2B.Checked = true;
-            this.cb2B.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb2B.Location = new System.Drawing.Point(74, 29);
             this.cb2B.Name = "cb2B";
             this.cb2B.Size = new System.Drawing.Size(58, 29);
@@ -410,8 +388,6 @@
             // cbH
             // 
             this.cbH.AutoSize = true;
-            this.cbH.Checked = true;
-            this.cbH.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbH.Location = new System.Drawing.Point(7, 135);
             this.cbH.Name = "cbH";
             this.cbH.Size = new System.Drawing.Size(48, 29);
@@ -422,8 +398,6 @@
             // cbR
             // 
             this.cbR.AutoSize = true;
-            this.cbR.Checked = true;
-            this.cbR.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbR.Location = new System.Drawing.Point(7, 100);
             this.cbR.Name = "cbR";
             this.cbR.Size = new System.Drawing.Size(47, 29);
@@ -434,8 +408,6 @@
             // cbAB
             // 
             this.cbAB.AutoSize = true;
-            this.cbAB.Checked = true;
-            this.cbAB.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAB.Location = new System.Drawing.Point(7, 64);
             this.cbAB.Name = "cbAB";
             this.cbAB.Size = new System.Drawing.Size(61, 29);
@@ -446,8 +418,6 @@
             // cbPA
             // 
             this.cbPA.AutoSize = true;
-            this.cbPA.Checked = true;
-            this.cbPA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbPA.Location = new System.Drawing.Point(7, 30);
             this.cbPA.Name = "cbPA";
             this.cbPA.Size = new System.Drawing.Size(61, 29);
@@ -625,7 +595,7 @@
             "New York Mets",
             "New York Yankees",
             "Oakland Athletics",
-            "Philidelphia Phillies",
+            "Philadelphia Phillies",
             "Pittsburgh Pirates",
             "San Francisco Giants",
             "San Diego Padres",
