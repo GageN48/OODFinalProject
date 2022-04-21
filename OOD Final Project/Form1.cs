@@ -13,8 +13,7 @@ namespace OOD_Final_Project
 {
     public partial class Form1 : Form
     {
-        string[] firstName = new string[0];
-        string[] lastName = new string[0];
+        string[] name = new string[0];
         string[] team = new string[0];
         double[] plateAppearaces = new double[0];
         double[] atBats = new double[0];
@@ -54,7 +53,7 @@ namespace OOD_Final_Project
             InitializeComponent();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnGo_Click(object sender, EventArgs e)
         {
             rtbOut.Clear();
             rtbLabels.Clear();
@@ -87,68 +86,12 @@ namespace OOD_Final_Project
                 StreamReader textIn = new StreamReader(
                 new FileStream(path, FileMode.Open, FileAccess.Read));
 
-                if (cbPA.Checked)
-                    rtbLabels.AppendText("  PA");
-                if (cbAB.Checked)
-                    rtbLabels.AppendText("  AB");
-                if (cbR.Checked)
-                    rtbLabels.AppendText("   R");
-                if (cbH.Checked)
-                    rtbLabels.AppendText("   H");
-                if (cb2B.Checked)
-                    rtbLabels.AppendText("  2B");
-                if (cb3B.Checked)
-                    rtbLabels.AppendText("  3B");
-                if (cbHR.Checked)
-                    rtbLabels.AppendText("  HR");
-                if (cbRBI.Checked)
-                    rtbLabels.AppendText(" RBI");
-                if (cbSB.Checked)
-                    rtbLabels.AppendText("  SB");
-                if (cbCS.Checked)
-                    rtbLabels.AppendText("  CS");
-                if (cbBB.Checked)
-                    rtbLabels.AppendText("  BB");
-                if (cbSO.Checked)
-                    rtbLabels.AppendText("  SO");
-                if (cbAVG.Checked)
-                    rtbLabels.AppendText("   AVG");
-                if (cbOBP.Checked)
-                    rtbLabels.AppendText("   OBP");
-                if (cbSLG.Checked)
-                    rtbLabels.AppendText("   SLG");
-                if (cbOPS.Checked)
-                    rtbLabels.AppendText("   OPS");
-                if (cbTB.Checked)
-                    rtbLabels.AppendText("  TB");
-                if (cbSF.Checked)
-                    rtbLabels.AppendText(" HBP");
-                if (cbHBP.Checked)
-                    rtbLabels.AppendText("  SF");
-                if (cbIBB.Checked)
-                    rtbLabels.AppendText(" IBB");
-                if (cbBABIP.Checked)
-                    rtbLabels.AppendText(" BABIP");
-                if (cbISO.Checked)
-                    rtbLabels.AppendText("   ISO");
-                if (cbOPSPlus.Checked)
-                    rtbLabels.AppendText(" OPS+");
-                if (cbPASO.Checked)
-                    rtbLabels.AppendText(" PA/SO");
-                if (cbRC.Checked)
-                    rtbLabels.AppendText("    RC");
-                if (cbwOBA.Checked)
-                    rtbLabels.AppendText("  wOBA");
-                if (cbwRCPlus.Checked)
-                    rtbLabels.AppendText("  wRC+");
-                if (cbwRAA.Checked)
-                    rtbLabels.AppendText("  wRAA");
+                labelCheck();
 
                 while (textIn.Peek() != -1)
                 {
                     Array.Resize<string>(ref team, team.Length + 1);
-                    Array.Resize<string>(ref firstName, firstName.Length + 1);
-                    Array.Resize<string>(ref lastName, lastName.Length + 1);
+                    Array.Resize<string>(ref name, name.Length + 1);
                     Array.Resize<string>(ref division, division.Length + 1);
                     Array.Resize<string>(ref league, league.Length + 1);
                     Array.Resize<string>(ref position, league.Length + 1);
@@ -156,8 +99,7 @@ namespace OOD_Final_Project
                     string row = textIn.ReadLine();
                     string[] record = row.Split(',');
                     team[num] = Convert.ToString(record[2]).ToUpper();
-                    firstName[num] = Convert.ToString(record[3]).ToUpper();
-                    lastName[num] = Convert.ToString(record[4]).ToUpper();
+                    name[num] = Convert.ToString(record[3] + " " + record[4]).ToUpper();
                     division[num] = Convert.ToString(record[1]).ToUpper();
                     league[num] = Convert.ToString(record[0]).ToUpper();
                     position[num] = Convert.ToString(record[5]).ToUpper();
@@ -283,5750 +225,5750 @@ namespace OOD_Final_Project
                     weightRunsCretedPlus[num] = WRC.CalculatewRCPlus();
 
                     if (radAllDivisions.Checked && radMLB.Checked)
-                    {
-                        if (lbMLBTeams.Text == "All Teams")
                         {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            if (lbMLBTeams.Text == "All Teams")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
-                            else if (lbHitterPosition.Text == "All Positions")
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
                             {
-                                printHitters();
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
                             }
                         }
-                        if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                        if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                    }
                     else if (radAllDivisions.Checked && radAL.Checked)
-                    {
-                        if (league[num] == "AL")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            if (league[num] == "AL")
                             {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
                             }
                         }
-                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                        }
-                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
-                            }
-                            }
-                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                        }
-                    }
                     else if (radAllDivisions.Checked && radNL.Checked)
-                    {
-                        if (league[num] == "NL")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (league[num] == "NL")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "St. Louis" && team[num] == "STL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "St. Louis" && team[num] == "STL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radEast.Checked && radMLB.Checked)
-                    {
-                        if (division[num] == "E")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (division[num] == "E")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radCentral.Checked && radMLB.Checked)
-                    {
-                        if (division[num] == "C")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (division[num] == "C")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "St. Louis" && team[num] == "STL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "St. Louis" && team[num] == "STL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radWest.Checked && radMLB.Checked)
-                    {
-                        if (division[num] == "W")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
-                        {
-                            if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                            if (division[num] == "W")
                             {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                            {
-                                printHitters();
-                            }
-                            else if (lbHitterPosition.Text == "All Positions")
-                            {
-                                printHitters();
+                                if (lbMLBTeams.Text == "All Teams")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                                {
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
+                                }
                             }
                         }
-                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                        }
-                    }
                     else if (radEast.Checked && radAL.Checked)
-                    {
-                        if (league[num] == "AL" && division[num] == "E")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (league[num] == "AL" && division[num] == "E")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                if (lbMLBTeams.Text == "All Teams")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
                                 {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radCentral.Checked && radAL.Checked)
-                    {
-                        if (league[num] == "AL" && division[num] == "C")
                         {
-                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            if (league[num] == "AL" && division[num] == "C")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                if (lbMLBTeams.Text == "All Teams")
                                 {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "All Teams")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radWest.Checked && radAL.Checked)
-                    {
-                        if (league[num] == "AL" && division[num] == "W")
                         {
-                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            if (league[num] == "AL" && division[num] == "W")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                if (lbMLBTeams.Text == "All Teams")
                                 {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "All Teams")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radEast.Checked && radNL.Checked)
-                    {
-                        if (league[num] == "NL" && division[num] == "E")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (league[num] == "NL" && division[num] == "E")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                if (lbMLBTeams.Text == "All Teams")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
                                 {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radWest.Checked && radNL.Checked)
-                    {
-                        if (league[num] == "NL" && division[num] == "W")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (league[num] == "NL" && division[num] == "W")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                if (lbMLBTeams.Text == "All Teams")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
                                 {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
                         }
-                    }
                     else if (radCentral.Checked && radNL.Checked)
-                    {
-                        if (league[num] == "NL" && division[num] == "C")
                         {
-                            if (lbMLBTeams.Text == "All Teams")
+                            if (league[num] == "NL" && division[num] == "C")
                             {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                if (lbMLBTeams.Text == "All Teams")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
                                 {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                if (lbMLBTeams.Text == "St. Louis" && team[num] == "STL")
                                 {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
+                                    if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                    {
+                                        printHitters();
+                                    }
+                                    else if (lbHitterPosition.Text == "All Positions")
+                                    {
+                                        printHitters();
+                                    }
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                            if (lbMLBTeams.Text == "St. Louis" && team[num] == "STL")
-                            {
-                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
-                                {
-                                    printHitters();
-                                }
-                                else if (lbHitterPosition.Text == "All Positions")
-                                {
-                                    printHitters();
-                                }
-                            }
-                        }
-                    }
+                        }                   
                 }
                 num++;
             }
@@ -6034,7 +5976,7 @@ namespace OOD_Final_Project
 
         private void printHitters()
         {
-            rtbOut.AppendText(team[num].PadRight(5) + (firstName[num] + " " + lastName[num]).PadRight(20));
+            rtbOut.AppendText(team[num].PadRight(5) + (name[num]).PadRight(20));
 
             if (cbPA.Checked)
                 rtbOut.AppendText(plateAppearaces[num].ToString("n0").PadLeft(4));
@@ -6189,5 +6131,70 @@ namespace OOD_Final_Project
 
             }
         }
+
+        private void labelCheck()
+        {
+            if(radHitters.Checked)
+            {
+                if (cbPA.Checked)
+                    rtbLabels.AppendText("  PA");
+                if (cbAB.Checked)
+                    rtbLabels.AppendText("  AB");
+                if (cbR.Checked)
+                    rtbLabels.AppendText("   R");
+                if (cbH.Checked)
+                    rtbLabels.AppendText("   H");
+                if (cb2B.Checked)
+                    rtbLabels.AppendText("  2B");
+                if (cb3B.Checked)
+                    rtbLabels.AppendText("  3B");
+                if (cbHR.Checked)
+                    rtbLabels.AppendText("  HR");
+                if (cbRBI.Checked)
+                    rtbLabels.AppendText(" RBI");
+                if (cbSB.Checked)
+                    rtbLabels.AppendText("  SB");
+                if (cbCS.Checked)
+                    rtbLabels.AppendText("  CS");
+                if (cbBB.Checked)
+                    rtbLabels.AppendText("  BB");
+                if (cbSO.Checked)
+                    rtbLabels.AppendText("  SO");
+                if (cbAVG.Checked)
+                    rtbLabels.AppendText("   AVG");
+                if (cbOBP.Checked)
+                    rtbLabels.AppendText("   OBP");
+                if (cbSLG.Checked)
+                    rtbLabels.AppendText("   SLG");
+                if (cbOPS.Checked)
+                    rtbLabels.AppendText("   OPS");
+                if (cbTB.Checked)
+                    rtbLabels.AppendText("  TB");
+                if (cbSF.Checked)
+                    rtbLabels.AppendText(" HBP");
+                if (cbHBP.Checked)
+                    rtbLabels.AppendText("  SF");
+                if (cbIBB.Checked)
+                    rtbLabels.AppendText(" IBB");
+                if (cbBABIP.Checked)
+                    rtbLabels.AppendText(" BABIP");
+                if (cbISO.Checked)
+                    rtbLabels.AppendText("   ISO");
+                if (cbOPSPlus.Checked)
+                    rtbLabels.AppendText(" OPS+");
+                if (cbPASO.Checked)
+                    rtbLabels.AppendText(" PA/SO");
+                if (cbRC.Checked)
+                    rtbLabels.AppendText("    RC");
+                if (cbwOBA.Checked)
+                    rtbLabels.AppendText("  wOBA");
+                if (cbwRCPlus.Checked)
+                    rtbLabels.AppendText("  wRC+");
+                if (cbwRAA.Checked)
+                    rtbLabels.AppendText("  wRAA");
+            }
+        }
+
+
     }
 }
