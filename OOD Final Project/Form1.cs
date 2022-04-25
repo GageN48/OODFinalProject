@@ -67,6 +67,10 @@ namespace OOD_Final_Project
         double[] pStrikeOuts = new double[0];
         double[] pHitbyPitches = new double[0];
         double[] battersFaced = new double[0];
+        double[] ERA = new double[0];
+        double[] ERAPlus = new double[0];
+        double[] WinPercentage = new double[0];
+        double[] WalksPlusHitsPerInningsPitched = new double[0];
 
         int num = 0;
 
@@ -5998,6 +6002,14 @@ namespace OOD_Final_Project
             {
                 rtbLabels.AppendText("Team Player              ");
 
+                double er = 0;
+                double ip = 0;
+                double earnedRunAverage = 0;
+                double w = 0;
+                double l = 0;
+                double bb = 0;
+                double ph = 0;
+
                 string path = @"Pitchers.csv";
                 StreamReader textIn = new StreamReader(
                 new FileStream(path, FileMode.Open, FileAccess.Read));
@@ -6022,9 +6034,11 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref Wins, Wins.Length + 1);
                     Wins[num] = Convert.ToDouble(record[5]);
+                    w = Convert.ToDouble(record[5]);
 
                     Array.Resize<double>(ref Losses, Losses.Length + 1);
-                    Losses[num] = Convert.ToDouble(record[6]);
+                    Losses[num] = Convert.ToDouble(record[6]); 
+                    l = Convert.ToDouble(record[6]);
 
                     Array.Resize<double>(ref Games, Games.Length + 1);
                     Games[num] = Convert.ToDouble(record[7]);
@@ -6037,21 +6051,25 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref InningsPitched, InningsPitched.Length + 1);
                     InningsPitched[num] = Convert.ToDouble(record[10]);
+                    ip = Convert.ToDouble(record[10]);
 
                     Array.Resize<double>(ref pHits, pHits.Length + 1);
                     pHits[num] = Convert.ToDouble(record[11]);
+                    ph = Convert.ToDouble(record[11]);
 
                     Array.Resize<double>(ref pRuns, pRuns.Length + 1);
                     pRuns[num] = Convert.ToDouble(record[12]);
 
                     Array.Resize<double>(ref EarnedRuns, EarnedRuns.Length + 1);
                     EarnedRuns[num] = Convert.ToDouble(record[13]);
+                    er = Convert.ToDouble(record[13]);
 
                     Array.Resize<double>(ref pHomeruns, pHomeruns.Length + 1);
                     pHomeruns[num] = Convert.ToDouble(record[14]);
 
                     Array.Resize<double>(ref pWalks, pWalks.Length + 1);
                     pWalks[num] = Convert.ToDouble(record[15]);
+                    bb = Convert.ToDouble(record[15]);
 
                     Array.Resize<double>(ref pIntentionalWalks, pIntentionalWalks.Length + 1);
                     pIntentionalWalks[num] = Convert.ToDouble(record[16]);
@@ -6064,6 +6082,23 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref battersFaced, battersFaced.Length + 1);
                     battersFaced[num] = Convert.ToDouble(record[19]);
+
+                    Array.Resize<double>(ref ERA, ERA.Length + 1);
+                    var era = new Pitchers(er, ip);
+                    ERA[num] = era.CalculateERA();
+                    earnedRunAverage = ERA[num];
+
+                    Array.Resize<double>(ref ERAPlus, ERAPlus.Length + 1);
+                    var erap = new Pitchers(earnedRunAverage);
+                    ERAPlus[num] = erap.CalculateERAPlus();
+
+                    Array.Resize<double>(ref WinPercentage, WinPercentage.Length + 1);
+                    var WPCT = new Pitchers(w, l, 0);
+                    WinPercentage[num] = WPCT.CalculateWPCT();
+
+                    Array.Resize<double>(ref WalksPlusHitsPerInningsPitched, WalksPlusHitsPerInningsPitched.Length + 1);
+                    var WHIP = new Pitchers(ph, bb, ip, 0);
+                    WalksPlusHitsPerInningsPitched[num] = WHIP.CalculateWHIP();
 
                     if (radAllDivisions.Checked && radMLB.Checked)
                     {
@@ -8811,6 +8846,18 @@ namespace OOD_Final_Project
             if (cbBF.Checked)
                 rtbOut.AppendText(battersFaced[num].ToString("n0").PadLeft(4));
 
+            if (cbERA.Checked)
+                rtbOut.AppendText(ERA[num].ToString("n2").PadLeft(6));
+
+            if (cbERAPlus.Checked)
+                rtbOut.AppendText(ERAPlus[num].ToString("n0").PadLeft(5));
+
+            if (cbWPCT.Checked)
+                rtbOut.AppendText(WinPercentage[num].ToString("n3").PadLeft(6));
+
+            if (cbWHIP.Checked)
+                rtbOut.AppendText(WalksPlusHitsPerInningsPitched[num].ToString("n3").PadLeft(6));
+
             rtbOut.AppendText("\n");
         }
 
@@ -8843,6 +8890,18 @@ namespace OOD_Final_Project
             lbMLBTeams.Visible = true;
             lbHitterPosition.Visible = true;
             gbDivisions.Visible = true;
+            cbBABIP.Visible = true;
+            cbISO.Visible = true;
+            cbOPSPlus.Visible = true;
+            cbPASO.Visible = true;
+            cbRC.Visible = true;
+            cbwRCPlus.Visible = true;
+            cbwOBA.Visible = true;
+            cbwRAA.Visible = true;
+            cbTB.Visible = true;
+            cbHBP.Visible   = true;
+            cbIBB.Visible = true;
+            cbSF.Visible = true;
         }
 
         private void radPitchers_CheckedChanged(object sender, EventArgs e)
@@ -8867,6 +8926,11 @@ namespace OOD_Final_Project
             cbBF.Visible = true;
             lbStaff.Visible = true;
             gbDivisions.Visible = true;
+            gbAdvanced.Visible = true;
+            cbERA.Visible = true;
+            cbERAPlus.Visible = true;
+            cbWPCT.Visible = true;
+            cbWHIP.Visible = true;
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
@@ -9024,6 +9088,14 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText(" HBP");
                 if (cbBF.Checked)
                     rtbLabels.AppendText("  BF");
+                if (cbERA.Checked)
+                    rtbLabels.AppendText("   ERA");
+                if (cbERAPlus.Checked)
+                    rtbLabels.AppendText(" ERA+");
+                if (cbWPCT.Checked)
+                    rtbLabels.AppendText("  WPCT");
+                if (cbWHIP.Checked)
+                    rtbLabels.AppendText("  WHIP");
             }
         }
 

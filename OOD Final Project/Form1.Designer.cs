@@ -97,6 +97,10 @@
             this.rtbLabels = new System.Windows.Forms.RichTextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lbStaff = new System.Windows.Forms.ListBox();
+            this.cbERA = new System.Windows.Forms.CheckBox();
+            this.cbERAPlus = new System.Windows.Forms.CheckBox();
+            this.cbWPCT = new System.Windows.Forms.CheckBox();
+            this.cbWHIP = new System.Windows.Forms.CheckBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
             this.gbBasicStats.SuspendLayout();
@@ -689,6 +693,10 @@
             // 
             // gbAdvanced
             // 
+            this.gbAdvanced.Controls.Add(this.cbWHIP);
+            this.gbAdvanced.Controls.Add(this.cbWPCT);
+            this.gbAdvanced.Controls.Add(this.cbERAPlus);
+            this.gbAdvanced.Controls.Add(this.cbERA);
             this.gbAdvanced.Controls.Add(this.cbSF);
             this.gbAdvanced.Controls.Add(this.cbIBB);
             this.gbAdvanced.Controls.Add(this.cbHBP);
@@ -722,6 +730,7 @@
             this.cbSF.TabIndex = 12;
             this.cbSF.Text = "SF";
             this.cbSF.UseVisualStyleBackColor = true;
+            this.cbSF.Visible = false;
             // 
             // cbIBB
             // 
@@ -733,6 +742,7 @@
             this.cbIBB.TabIndex = 11;
             this.cbIBB.Text = "IBB";
             this.cbIBB.UseVisualStyleBackColor = true;
+            this.cbIBB.Visible = false;
             // 
             // cbHBP
             // 
@@ -744,6 +754,7 @@
             this.cbHBP.TabIndex = 10;
             this.cbHBP.Text = "HBP";
             this.cbHBP.UseVisualStyleBackColor = true;
+            this.cbHBP.Visible = false;
             // 
             // cbTB
             // 
@@ -755,6 +766,7 @@
             this.cbTB.TabIndex = 9;
             this.cbTB.Text = "TB";
             this.cbTB.UseVisualStyleBackColor = true;
+            this.cbTB.Visible = false;
             // 
             // cbwRCPlus
             // 
@@ -766,6 +778,7 @@
             this.cbwRCPlus.TabIndex = 7;
             this.cbwRCPlus.Text = "wRC+";
             this.cbwRCPlus.UseVisualStyleBackColor = true;
+            this.cbwRCPlus.Visible = false;
             // 
             // cbwOBA
             // 
@@ -777,6 +790,7 @@
             this.cbwOBA.TabIndex = 6;
             this.cbwOBA.Text = "wOBA";
             this.cbwOBA.UseVisualStyleBackColor = true;
+            this.cbwOBA.Visible = false;
             // 
             // cbwRAA
             // 
@@ -788,6 +802,7 @@
             this.cbwRAA.TabIndex = 5;
             this.cbwRAA.Text = "wRAA";
             this.cbwRAA.UseVisualStyleBackColor = true;
+            this.cbwRAA.Visible = false;
             // 
             // cbRC
             // 
@@ -799,6 +814,7 @@
             this.cbRC.TabIndex = 4;
             this.cbRC.Text = "RC";
             this.cbRC.UseVisualStyleBackColor = true;
+            this.cbRC.Visible = false;
             // 
             // cbPASO
             // 
@@ -810,6 +826,7 @@
             this.cbPASO.TabIndex = 3;
             this.cbPASO.Text = "PA/SO";
             this.cbPASO.UseVisualStyleBackColor = true;
+            this.cbPASO.Visible = false;
             // 
             // cbOPSPlus
             // 
@@ -821,6 +838,7 @@
             this.cbOPSPlus.TabIndex = 2;
             this.cbOPSPlus.Text = "OPS+";
             this.cbOPSPlus.UseVisualStyleBackColor = true;
+            this.cbOPSPlus.Visible = false;
             // 
             // cbISO
             // 
@@ -832,6 +850,7 @@
             this.cbISO.TabIndex = 1;
             this.cbISO.Text = "ISO";
             this.cbISO.UseVisualStyleBackColor = true;
+            this.cbISO.Visible = false;
             // 
             // cbBABIP
             // 
@@ -843,6 +862,7 @@
             this.cbBABIP.TabIndex = 0;
             this.cbBABIP.Text = "BABIP";
             this.cbBABIP.UseVisualStyleBackColor = true;
+            this.cbBABIP.Visible = false;
             // 
             // lbMLBTeams
             // 
@@ -1025,6 +1045,54 @@
             this.lbStaff.TabIndex = 17;
             this.lbStaff.Visible = false;
             // 
+            // cbERA
+            // 
+            this.cbERA.AutoSize = true;
+            this.cbERA.Location = new System.Drawing.Point(8, 38);
+            this.cbERA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbERA.Name = "cbERA";
+            this.cbERA.Size = new System.Drawing.Size(74, 29);
+            this.cbERA.TabIndex = 18;
+            this.cbERA.Text = "ERA";
+            this.cbERA.UseVisualStyleBackColor = true;
+            this.cbERA.Visible = false;
+            // 
+            // cbERAPlus
+            // 
+            this.cbERAPlus.AutoSize = true;
+            this.cbERAPlus.Location = new System.Drawing.Point(8, 80);
+            this.cbERAPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbERAPlus.Name = "cbERAPlus";
+            this.cbERAPlus.Size = new System.Drawing.Size(86, 29);
+            this.cbERAPlus.TabIndex = 19;
+            this.cbERAPlus.Text = "ERA+";
+            this.cbERAPlus.UseVisualStyleBackColor = true;
+            this.cbERAPlus.Visible = false;
+            // 
+            // cbWPCT
+            // 
+            this.cbWPCT.AutoSize = true;
+            this.cbWPCT.Location = new System.Drawing.Point(8, 124);
+            this.cbWPCT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbWPCT.Name = "cbWPCT";
+            this.cbWPCT.Size = new System.Drawing.Size(95, 29);
+            this.cbWPCT.TabIndex = 20;
+            this.cbWPCT.Text = "WPCT";
+            this.cbWPCT.UseVisualStyleBackColor = true;
+            this.cbWPCT.Visible = false;
+            // 
+            // cbWHIP
+            // 
+            this.cbWHIP.AutoSize = true;
+            this.cbWHIP.Location = new System.Drawing.Point(8, 168);
+            this.cbWHIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbWHIP.Name = "cbWHIP";
+            this.cbWHIP.Size = new System.Drawing.Size(86, 29);
+            this.cbWHIP.TabIndex = 21;
+            this.cbWHIP.Text = "WHIP";
+            this.cbWHIP.UseVisualStyleBackColor = true;
+            this.cbWHIP.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1134,6 +1202,10 @@
         private System.Windows.Forms.CheckBox cbLosses;
         private System.Windows.Forms.CheckBox cbWins;
         private System.Windows.Forms.ListBox lbStaff;
+        private System.Windows.Forms.CheckBox cbERA;
+        private System.Windows.Forms.CheckBox cbERAPlus;
+        private System.Windows.Forms.CheckBox cbWPCT;
+        private System.Windows.Forms.CheckBox cbWHIP;
     }
 }
 

@@ -59,103 +59,86 @@ namespace OOD_Final_Project
             get { return _hits; }
             set { _hits = value; }
         }
-
         public double atBats
         {
             get { return _atBats; }
             set { _atBats = value; }
         }
-
         public double doubles
         {
             get { return _doubles; }
             set { _doubles = value; }
         }
-
         public double triples
         {
             get { return _triples; }
             set { _triples = value; }
         }
-
         public double homeRuns
         {
             get { return _homeRuns; }
             set { _homeRuns = value; }
         }
-
         public double obp
         {
             get { return _obp; }
             set { _obp = value; }
         }
-
         public double slg
         {
             get { return _slg; }
             set { _slg = value; }
         }
-
         public double sf
         {
             get { return _sf; }
             set { _sf = value; }
         }
-
         public double k
         {
             get { return _k; }
             set { _k = value; }
         }
-
         public double avg
         {
             get { return _avg; }
             set { _avg = value; }
         }
-
         public double ops
         {
             get { return _ops; }
             set { _ops = value; }
         }
-
         public double pa
         {
             get { return _pa; }
             set { _pa = value; }
         }
-
         public double tb
         {
             get { return _tb; }
             set { _tb = value; }
         }
-
         public double bb
         {
             get { return _bb; }
             set { _bb = value; }
         }
-
         public double hbp
         {
             get { return _hbp; }
             set { _hbp = value; }
         }
-
         public double ibb
         {
             get { return _ibb; }
             set { _ibb = value; }
         }
-
         public double wOBA
         {
             get { return _wOBA; }
             set { _wOBA = value; }
         }
-
         public double wRAA
         {
             get { return _wRAA; }
