@@ -6169,7 +6169,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                        if (lbMLBTeams.Text == "Baltimore Orioles" && pTeam[num] == "BAL")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6188,7 +6188,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                        if (lbMLBTeams.Text == "Boston Red Sox" && pTeam[num] == "BOS")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6207,7 +6207,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                        if (lbMLBTeams.Text == "New York Yankees" && pTeam[num] == "NYY")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6226,7 +6226,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                        if (lbMLBTeams.Text == "Tampa Bay Rays" && pTeam[num] == "TBR")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6245,7 +6245,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                        if (lbMLBTeams.Text == "Toronto Blue Jays" && pTeam[num] == "TOR")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6264,7 +6264,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                        if (lbMLBTeams.Text == "Chicago White Sox" && pTeam[num] == "CWS")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6283,7 +6283,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                        if (lbMLBTeams.Text == "Cleveland Guardians" && pTeam[num] == "CLE")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6302,7 +6302,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                        if (lbMLBTeams.Text == "Detroit Tigers" && pTeam[num] == "DET")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6321,7 +6321,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                        if (lbMLBTeams.Text == "Kansas City Royals" && pTeam[num] == "KCR")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6340,7 +6340,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                        if (lbMLBTeams.Text == "Minnesota Twins" && pTeam[num] == "MIN")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6359,7 +6359,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                        if (lbMLBTeams.Text == "Houston Astros" && pTeam[num] == "HOU")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6378,7 +6378,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                        if (lbMLBTeams.Text == "Los Angeles Angels" && pTeam[num] == "LAA")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6397,7 +6397,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                        if (lbMLBTeams.Text == "Oakland Athletics" && pTeam[num] == "OAK")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6416,7 +6416,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                        if (lbMLBTeams.Text == "Seattle Mariners" && pTeam[num] == "SEA")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6435,7 +6435,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                        if (lbMLBTeams.Text == "Texas Rangers" && pTeam[num] == "TEX")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6454,7 +6454,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                        if (lbMLBTeams.Text == "Atlanta Braves" && pTeam[num] == "ATL")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6473,7 +6473,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                        if (lbMLBTeams.Text == "Miami Marlins" && pTeam[num] == "MIA")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6492,7 +6492,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                        if (lbMLBTeams.Text == "New York Mets" && pTeam[num] == "NYM")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6511,7 +6511,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                        if (lbMLBTeams.Text == "Philadelphia Phillies" && pTeam[num] == "PHI")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6530,7 +6530,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                        if (lbMLBTeams.Text == "Washington Nationals" && pTeam[num] == "WSN")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6549,7 +6549,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                        if (lbMLBTeams.Text == "Cincinnati Reds" && pTeam[num] == "CIN")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6568,7 +6568,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                        if (lbMLBTeams.Text == "Chicago Cubs" && pTeam[num] == "CHC")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6587,7 +6587,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                        if (lbMLBTeams.Text == "Milwaukee Brewers" && pTeam[num] == "MIL")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6606,7 +6606,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                        if (lbMLBTeams.Text == "Pittsburgh Pirates" && pTeam[num] == "PIT")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6625,7 +6625,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                        if (lbMLBTeams.Text == "St. Louis Cardinals" && pTeam[num] == "STL")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6644,7 +6644,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                        if (lbMLBTeams.Text == "Arizona Diamondbacks" && pTeam[num] == "ARI")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6663,7 +6663,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                        if (lbMLBTeams.Text == "Colorado Rockies" && pTeam[num] == "COL")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6682,7 +6682,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                        if (lbMLBTeams.Text == "Los Angeles Dodgers" && pTeam[num] == "LAD")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6701,7 +6701,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                        if (lbMLBTeams.Text == "San Francisco Giants" && pTeam[num] == "SFG")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6720,7 +6720,7 @@ namespace OOD_Final_Project
                                 printPitchers();
                             }
                         }
-                        if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                        if (lbMLBTeams.Text == "San Diego Padres" && pTeam[num] == "SDP")
                         {
                             if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                             {
@@ -6742,7 +6742,7 @@ namespace OOD_Final_Project
                     }
                     else if (radAllDivisions.Checked && radAL.Checked)
                     {
-                        if (league[num] == "AL")
+                        if (pLeague[num] == "AL")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -6787,7 +6787,7 @@ namespace OOD_Final_Project
                                     printHitters();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && pTeam[num] == "BAL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6806,7 +6806,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            if (lbMLBTeams.Text == "Boston Red Sox" && pTeam[num] == "BOS")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6825,7 +6825,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            if (lbMLBTeams.Text == "New York Yankees" && pTeam[num] == "NYY")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6844,7 +6844,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && pTeam[num] == "TBR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6863,7 +6863,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && pTeam[num] == "TOR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6882,7 +6882,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            if (lbMLBTeams.Text == "Chicago White Sox" && pTeam[num] == "CWS")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6901,7 +6901,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && pTeam[num] == "CLE")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6920,7 +6920,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            if (lbMLBTeams.Text == "Detroit Tigers" && pTeam[num] == "DET")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6939,7 +6939,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            if (lbMLBTeams.Text == "Kansas City Royals" && pTeam[num] == "KCR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6958,7 +6958,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            if (lbMLBTeams.Text == "Minnesota Twins" && pTeam[num] == "MIN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6977,7 +6977,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            if (lbMLBTeams.Text == "Houston Astros" && pTeam[num] == "HOU")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -6996,7 +6996,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && pTeam[num] == "LAA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7015,7 +7015,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            if (lbMLBTeams.Text == "Oakland Athletics" && pTeam[num] == "OAK")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7034,7 +7034,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            if (lbMLBTeams.Text == "Seattle Mariners" && pTeam[num] == "SEA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7053,7 +7053,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            if (lbMLBTeams.Text == "Texas Rangers" && pTeam[num] == "TEX")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7076,7 +7076,7 @@ namespace OOD_Final_Project
                     }
                     else if (radAllDivisions.Checked && radNL.Checked)
                     {
-                        if (league[num] == "NL")
+                        if (pLeague[num] == "NL")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -7097,8 +7097,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-
-                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            if (lbMLBTeams.Text == "Atlanta Braves" && pTeam[num] == "ATL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7117,7 +7116,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            if (lbMLBTeams.Text == "Miami Marlins" && pTeam[num] == "MIA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7136,7 +7135,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            if (lbMLBTeams.Text == "New York Mets" && pTeam[num] == "NYM")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7155,7 +7154,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && pTeam[num] == "PHI")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7174,7 +7173,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            if (lbMLBTeams.Text == "Washington Nationals" && pTeam[num] == "WSN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7193,7 +7192,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && pTeam[num] == "CIN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7212,7 +7211,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            if (lbMLBTeams.Text == "Chicago Cubs" && pTeam[num] == "CHC")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7231,7 +7230,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && pTeam[num] == "MIL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7250,7 +7249,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && pTeam[num] == "PIT")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7269,7 +7268,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && pTeam[num] == "STL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7288,7 +7287,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && pTeam[num] == "ARI")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7307,7 +7306,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            if (lbMLBTeams.Text == "Colorado Rockies" && pTeam[num] == "COL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7326,7 +7325,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && pTeam[num] == "LAD")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7345,7 +7344,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            if (lbMLBTeams.Text == "San Francisco Giants" && pTeam[num] == "SFG")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7364,7 +7363,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            if (lbMLBTeams.Text == "San Diego Padres" && pTeam[num] == "SDP")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7387,7 +7386,7 @@ namespace OOD_Final_Project
                     }
                     else if (radEast.Checked && radMLB.Checked)
                     {
-                        if (division[num] == "E")
+                        if (pDivisions[num] == "E")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -7408,7 +7407,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && pTeam[num] == "BAL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7427,7 +7426,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            if (lbMLBTeams.Text == "Boston Red Sox" && pTeam[num] == "BOS")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7446,7 +7445,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            if (lbMLBTeams.Text == "New York Yankees" && pTeam[num] == "NYY")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7465,7 +7464,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && pTeam[num] == "TBR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7484,7 +7483,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && pTeam[num] == "TOR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7503,7 +7502,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            if (lbMLBTeams.Text == "Atlanta Braves" && pTeam[num] == "ATL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7522,7 +7521,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            if (lbMLBTeams.Text == "Miami Marlins" && pTeam[num] == "MIA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7541,7 +7540,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            if (lbMLBTeams.Text == "New York Mets" && pTeam[num] == "NYM")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7560,7 +7559,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && pTeam[num] == "PHI")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7579,7 +7578,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            if (lbMLBTeams.Text == "Washington Nationals" && pTeam[num] == "WSN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7602,7 +7601,7 @@ namespace OOD_Final_Project
                     }
                     else if (radCentral.Checked && radMLB.Checked)
                     {
-                        if (division[num] == "C")
+                        if (pDivisions[num] == "C")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -7623,7 +7622,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            if (lbMLBTeams.Text == "Chicago White Sox" && pTeam[num] == "CWS")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7642,7 +7641,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && pTeam[num] == "CLE")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7661,7 +7660,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            if (lbMLBTeams.Text == "Detroit Tigers" && pTeam[num] == "DET")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7680,7 +7679,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            if (lbMLBTeams.Text == "Kansas City Royals" && pTeam[num] == "KCR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7699,7 +7698,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            if (lbMLBTeams.Text == "Minnesota Twins" && pTeam[num] == "MIN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7718,7 +7717,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && pTeam[num] == "CIN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7737,7 +7736,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            if (lbMLBTeams.Text == "Chicago Cubs" && pTeam[num] == "CHC")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7756,7 +7755,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && pTeam[num] == "MIL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7775,7 +7774,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && pTeam[num] == "PIT")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7794,7 +7793,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && pTeam[num] == "STL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7817,7 +7816,7 @@ namespace OOD_Final_Project
                     }
                     else if (radWest.Checked && radMLB.Checked)
                     {
-                        if (division[num] == "W")
+                        if (pDivisions[num] == "W")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -7838,7 +7837,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            if (lbMLBTeams.Text == "Houston Astros" && pTeam[num] == "HOU")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7857,7 +7856,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && pTeam[num] == "LAA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7876,7 +7875,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            if (lbMLBTeams.Text == "Oakland Athletics" && pTeam[num] == "OAK")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7895,7 +7894,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            if (lbMLBTeams.Text == "Seattle Mariners" && pTeam[num] == "SEA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7914,7 +7913,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            if (lbMLBTeams.Text == "Texas Rangers" && pTeam[num] == "TEX")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7933,7 +7932,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && pTeam[num] == "ARI")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7952,7 +7951,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            if (lbMLBTeams.Text == "Colorado Rockies" && pTeam[num] == "COL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7971,7 +7970,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && pTeam[num] == "LAD")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -7990,7 +7989,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            if (lbMLBTeams.Text == "San Francisco Giants" && pTeam[num] == "SFG")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8009,7 +8008,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            if (lbMLBTeams.Text == "San Diego Padres" && pTeam[num] == "SDP")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8032,7 +8031,7 @@ namespace OOD_Final_Project
                     }
                     else if (radEast.Checked && radAL.Checked)
                     {
-                        if (league[num] == "AL" && division[num] == "E")
+                        if (pLeague[num] == "AL" && pDivisions[num] == "E")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -8053,7 +8052,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && pTeam[num] == "BAL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8072,7 +8071,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            if (lbMLBTeams.Text == "Boston Red Sox" && pTeam[num] == "BOS")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8091,7 +8090,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            if (lbMLBTeams.Text == "New York Yankees" && pTeam[num] == "NYY")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8110,7 +8109,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && pTeam[num] == "TBR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8129,7 +8128,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && pTeam[num] == "TOR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8152,7 +8151,7 @@ namespace OOD_Final_Project
                     }
                     else if (radCentral.Checked && radAL.Checked)
                     {
-                        if (league[num] == "AL" && division[num] == "C")
+                        if (pLeague[num] == "AL" && pDivisions[num] == "C")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -8173,7 +8172,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            if (lbMLBTeams.Text == "Chicago White Sox" && pTeam[num] == "CWS")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8192,7 +8191,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && pTeam[num] == "CLE")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8211,7 +8210,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            if (lbMLBTeams.Text == "Detroit Tigers" && pTeam[num] == "DET")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8230,7 +8229,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            if (lbMLBTeams.Text == "Kansas City Royals" && pTeam[num] == "KCR")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8249,7 +8248,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            if (lbMLBTeams.Text == "Minnesota Twins" && pTeam[num] == "MIN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8272,7 +8271,7 @@ namespace OOD_Final_Project
                     }
                     else if (radWest.Checked && radAL.Checked)
                     {
-                        if (league[num] == "AL" && division[num] == "W")
+                        if (pLeague[num] == "AL" && pDivisions[num] == "W")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -8293,7 +8292,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            if (lbMLBTeams.Text == "Houston Astros" && pTeam[num] == "HOU")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8312,7 +8311,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && pTeam[num] == "LAA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8331,7 +8330,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            if (lbMLBTeams.Text == "Oakland Athletics" && pTeam[num] == "OAK")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8350,7 +8349,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            if (lbMLBTeams.Text == "Seattle Mariners" && pTeam[num] == "SEA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8369,7 +8368,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            if (lbMLBTeams.Text == "Texas Rangers" && pTeam[num] == "TEX")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8392,7 +8391,7 @@ namespace OOD_Final_Project
                     }
                     else if (radEast.Checked && radNL.Checked)
                     {
-                        if (league[num] == "NL" && division[num] == "E")
+                        if (pLeague[num] == "NL" && pDivisions[num] == "E")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -8413,7 +8412,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            if (lbMLBTeams.Text == "Atlanta Braves" && pTeam[num] == "ATL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8432,7 +8431,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            if (lbMLBTeams.Text == "Miami Marlins" && pTeam[num] == "MIA")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8451,7 +8450,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            if (lbMLBTeams.Text == "New York Mets" && pTeam[num] == "NYM")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8470,7 +8469,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && pTeam[num] == "PHI")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8489,7 +8488,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            if (lbMLBTeams.Text == "Washington Nationals" && pTeam[num] == "WSN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8512,7 +8511,7 @@ namespace OOD_Final_Project
                     }
                     else if (radWest.Checked && radNL.Checked)
                     {
-                        if (league[num] == "NL" && division[num] == "W")
+                        if (pLeague[num] == "NL" && pDivisions[num] == "W")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -8533,7 +8532,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && pTeam[num] == "ARI")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8552,7 +8551,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            if (lbMLBTeams.Text == "Colorado Rockies" && pTeam[num] == "COL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8571,7 +8570,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && pTeam[num] == "LAD")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8590,7 +8589,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            if (lbMLBTeams.Text == "San Francisco Giants" && pTeam[num] == "SFG")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8609,7 +8608,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            if (lbMLBTeams.Text == "San Diego Padres" && pTeam[num] == "SDP")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8632,7 +8631,7 @@ namespace OOD_Final_Project
                     }
                     else if (radCentral.Checked && radNL.Checked)
                     {
-                        if (league[num] == "NL" && division[num] == "C")
+                        if (pLeague[num] == "NL" && pDivisions[num] == "C")
                         {
                             if (lbMLBTeams.Text == "All Teams")
                             {
@@ -8653,7 +8652,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && pTeam[num] == "CIN")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8672,7 +8671,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            if (lbMLBTeams.Text == "Chicago Cubs" && pTeam[num] == "CHC")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8691,7 +8690,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && pTeam[num] == "MIL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8710,7 +8709,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && pTeam[num] == "PIT")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {
@@ -8729,7 +8728,7 @@ namespace OOD_Final_Project
                                     printPitchers();
                                 }
                             }
-                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && pTeam[num] == "STL")
                             {
                                 if (lbStaff.Text == "Starter" && pStaff[num] == "S")
                                 {

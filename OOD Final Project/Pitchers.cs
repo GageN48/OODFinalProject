@@ -204,7 +204,6 @@ namespace OOD_Final_Project
             _filler7 = filler7;
         }
 
-
         public double CalculateERA()
         {
             return (9 * ER) / IP;

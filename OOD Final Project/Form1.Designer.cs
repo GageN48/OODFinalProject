@@ -238,7 +238,7 @@
             this.gbNLorAL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbNLorAL.Name = "gbNLorAL";
             this.gbNLorAL.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbNLorAL.Size = new System.Drawing.Size(235, 100);
+            this.gbNLorAL.Size = new System.Drawing.Size(214, 100);
             this.gbNLorAL.TabIndex = 7;
             this.gbNLorAL.TabStop = false;
             this.gbNLorAL.Text = "Leagues";
@@ -315,11 +315,11 @@
             this.gbBasicStats.Controls.Add(this.cbAB);
             this.gbBasicStats.Controls.Add(this.cbPA);
             this.gbBasicStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbBasicStats.Location = new System.Drawing.Point(479, 16);
+            this.gbBasicStats.Location = new System.Drawing.Point(455, 16);
             this.gbBasicStats.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gbBasicStats.Name = "gbBasicStats";
             this.gbBasicStats.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbBasicStats.Size = new System.Drawing.Size(328, 270);
+            this.gbBasicStats.Size = new System.Drawing.Size(353, 270);
             this.gbBasicStats.TabIndex = 8;
             this.gbBasicStats.TabStop = false;
             this.gbBasicStats.Text = "Basic Statistics";
@@ -496,7 +496,7 @@
             // cbTotalRuns
             // 
             this.cbTotalRuns.AutoSize = true;
-            this.cbTotalRuns.Location = new System.Drawing.Point(82, 169);
+            this.cbTotalRuns.Location = new System.Drawing.Point(87, 168);
             this.cbTotalRuns.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbTotalRuns.Name = "cbTotalRuns";
             this.cbTotalRuns.Size = new System.Drawing.Size(47, 29);
@@ -520,7 +520,7 @@
             // cbPitcherH
             // 
             this.cbPitcherH.AutoSize = true;
-            this.cbPitcherH.Location = new System.Drawing.Point(82, 125);
+            this.cbPitcherH.Location = new System.Drawing.Point(87, 125);
             this.cbPitcherH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbPitcherH.Name = "cbPitcherH";
             this.cbPitcherH.Size = new System.Drawing.Size(48, 29);
@@ -544,7 +544,7 @@
             // cbIP
             // 
             this.cbIP.AutoSize = true;
-            this.cbIP.Location = new System.Drawing.Point(82, 80);
+            this.cbIP.Location = new System.Drawing.Point(87, 80);
             this.cbIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbIP.Name = "cbIP";
             this.cbIP.Size = new System.Drawing.Size(52, 29);
@@ -568,7 +568,7 @@
             // cbSV
             // 
             this.cbSV.AutoSize = true;
-            this.cbSV.Location = new System.Drawing.Point(82, 38);
+            this.cbSV.Location = new System.Drawing.Point(87, 38);
             this.cbSV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSV.Name = "cbSV";
             this.cbSV.Size = new System.Drawing.Size(62, 29);
@@ -1018,7 +1018,7 @@
             this.gbDivisions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbDivisions.Name = "gbDivisions";
             this.gbDivisions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbDivisions.Size = new System.Drawing.Size(234, 164);
+            this.gbDivisions.Size = new System.Drawing.Size(213, 164);
             this.gbDivisions.TabIndex = 14;
             this.gbDivisions.TabStop = false;
             this.gbDivisions.Text = "Divisions";
