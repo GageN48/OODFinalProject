@@ -105,6 +105,10 @@
             this.cbHitsPer9 = new System.Windows.Forms.CheckBox();
             this.cbBBper9 = new System.Windows.Forms.CheckBox();
             this.cbSOper9 = new System.Windows.Forms.CheckBox();
+            this.cbSOBB = new System.Windows.Forms.CheckBox();
+            this.cbBBRate = new System.Windows.Forms.CheckBox();
+            this.cbSORate = new System.Windows.Forms.CheckBox();
+            this.cbFIP = new System.Windows.Forms.CheckBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
             this.gbBasicStats.SuspendLayout();
@@ -697,6 +701,10 @@
             // 
             // gbAdvanced
             // 
+            this.gbAdvanced.Controls.Add(this.cbFIP);
+            this.gbAdvanced.Controls.Add(this.cbSORate);
+            this.gbAdvanced.Controls.Add(this.cbBBRate);
+            this.gbAdvanced.Controls.Add(this.cbSOBB);
             this.gbAdvanced.Controls.Add(this.cbSOper9);
             this.gbAdvanced.Controls.Add(this.cbBBper9);
             this.gbAdvanced.Controls.Add(this.cbHitsPer9);
@@ -1149,6 +1157,54 @@
             this.cbSOper9.UseVisualStyleBackColor = true;
             this.cbSOper9.Visible = false;
             // 
+            // cbSOBB
+            // 
+            this.cbSOBB.AutoSize = true;
+            this.cbSOBB.Location = new System.Drawing.Point(244, 38);
+            this.cbSOBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSOBB.Name = "cbSOBB";
+            this.cbSOBB.Size = new System.Drawing.Size(96, 29);
+            this.cbSOBB.TabIndex = 25;
+            this.cbSOBB.Text = "SO/BB";
+            this.cbSOBB.UseVisualStyleBackColor = true;
+            this.cbSOBB.Visible = false;
+            // 
+            // cbBBRate
+            // 
+            this.cbBBRate.AutoSize = true;
+            this.cbBBRate.Location = new System.Drawing.Point(244, 80);
+            this.cbBBRate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBBRate.Name = "cbBBRate";
+            this.cbBBRate.Size = new System.Drawing.Size(78, 29);
+            this.cbBBRate.TabIndex = 25;
+            this.cbBBRate.Text = "BB%";
+            this.cbBBRate.UseVisualStyleBackColor = true;
+            this.cbBBRate.Visible = false;
+            // 
+            // cbSORate
+            // 
+            this.cbSORate.AutoSize = true;
+            this.cbSORate.Location = new System.Drawing.Point(244, 125);
+            this.cbSORate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSORate.Name = "cbSORate";
+            this.cbSORate.Size = new System.Drawing.Size(82, 29);
+            this.cbSORate.TabIndex = 25;
+            this.cbSORate.Text = "SO%";
+            this.cbSORate.UseVisualStyleBackColor = true;
+            this.cbSORate.Visible = false;
+            // 
+            // cbFIP
+            // 
+            this.cbFIP.AutoSize = true;
+            this.cbFIP.Location = new System.Drawing.Point(244, 169);
+            this.cbFIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbFIP.Name = "cbFIP";
+            this.cbFIP.Size = new System.Drawing.Size(64, 29);
+            this.cbFIP.TabIndex = 25;
+            this.cbFIP.Text = "FIP";
+            this.cbFIP.UseVisualStyleBackColor = true;
+            this.cbFIP.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1266,6 +1322,10 @@
         private System.Windows.Forms.CheckBox cbHitsPer9;
         private System.Windows.Forms.CheckBox cbBBper9;
         private System.Windows.Forms.CheckBox cbSOper9;
+        private System.Windows.Forms.CheckBox cbFIP;
+        private System.Windows.Forms.CheckBox cbSORate;
+        private System.Windows.Forms.CheckBox cbBBRate;
+        private System.Windows.Forms.CheckBox cbSOBB;
     }
 }
 

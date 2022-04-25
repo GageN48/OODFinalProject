@@ -9,6 +9,7 @@ namespace OOD_Final_Project
     internal class Pitchers
     {
         private double leagueERA = 4.44;
+        private double leagueFIP = 3.15;
 
         private double _ER;
         private double _IP;
@@ -19,6 +20,8 @@ namespace OOD_Final_Project
         private double _BB;
         private double _HR;
         private double _K;
+        private double _BF;
+        private double _HBP;
 
         private double _filler1;
         private double _filler2;
@@ -29,7 +32,6 @@ namespace OOD_Final_Project
         private double _filler7;
         private double _filler8;
         private double _filler9;
-        private double _filler10;
 
         public double ER
         {
@@ -76,8 +78,16 @@ namespace OOD_Final_Project
             get { return _K; }
             set { _K = value; }
         }
-
-
+        public double BF
+        {
+            get { return _BF; }
+            set { _BF = value; }
+        }
+        public double HBP
+        {
+            get { return _HBP; }
+            set { _HBP = value; }
+        }
 
         public Pitchers(double ER, double IP)
         {
@@ -139,6 +149,60 @@ namespace OOD_Final_Project
             _filler5 = filler5;
             _filler6 = filler6;
         }
+        public Pitchers(double K, double BB, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7)
+        {
+            _K = K;
+            _BB = BB;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+            _filler6 = filler6;
+            _filler7 = filler7;
+        }
+        public Pitchers(double BF, double BB, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7, double filler8)
+        {
+            _BF = BF;
+            _BB = BB;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+            _filler6 = filler6;
+            _filler7 = filler7;
+            _filler8 = filler8;
+        }
+        public Pitchers(double BF, double K, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7, double filler8, double filler9)
+        {
+            _BF = BF;
+            _K = K;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+            _filler6 = filler6;
+            _filler7 = filler7;
+            _filler8 = filler8;
+            _filler9 = filler9;
+        }
+        public Pitchers(double IP, double K, double HR, double BB, double HBP, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7)
+        {
+            _IP = IP;
+            _K = K;
+            _HR = HR;
+            _BB = BB;
+            _HBP = HBP;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+            _filler6 = filler6;
+            _filler7 = filler7;
+        }
 
 
         public double CalculateERA()
@@ -172,6 +236,22 @@ namespace OOD_Final_Project
         public double CalculateKper9()
         {
             return (K * 9) / IP;
+        }
+        public double CalculateSOBB()
+        {
+            return K / BB;
+        }
+        public double CalculateWR()
+        {
+            return BB / BF;
+        }
+        public double CalculateSR()
+        {
+            return K / BF;
+        }
+        public double CalculateFIP()
+        {
+            return ((HR * 13) + (3 * (BB + HBP)) - (2 * K))/(IP) + leagueFIP;
         }
     }
 }

@@ -75,6 +75,10 @@ namespace OOD_Final_Project
         double[] HitsPer9 = new double[0];
         double[] WalksPer9 = new double[0];
         double[] StrikeoutsPer9 = new double[0];
+        double[] StrikeOutToWalk = new double[0];
+        double[] WalkRate = new double[0];
+        double[] StrikeOutRate = new double[0];
+        double[] FieldingIndependentPitching = new double[0];
 
         int num = 0;
 
@@ -6015,6 +6019,8 @@ namespace OOD_Final_Project
                 double ph = 0;
                 double homeruns;
                 double k = 0;
+                double bf = 0;
+                double phbp = 0;
 
                 string path = @"Pitchers.csv";
                 StreamReader textIn = new StreamReader(
@@ -6087,9 +6093,11 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref pHitbyPitches, pHitbyPitches.Length + 1);
                     pHitbyPitches[num] = Convert.ToDouble(record[18]);
+                    phbp = Convert.ToDouble(record[18]);
 
                     Array.Resize<double>(ref battersFaced, battersFaced.Length + 1);
                     battersFaced[num] = Convert.ToDouble(record[19]);
+                    bf = Convert.ToDouble(record[19]);
 
                     Array.Resize<double>(ref ERA, ERA.Length + 1);
                     var era = new Pitchers(er, ip);
@@ -6123,6 +6131,22 @@ namespace OOD_Final_Project
                     Array.Resize<double>(ref StrikeoutsPer9, StrikeoutsPer9.Length + 1);
                     var kper9 = new Pitchers(k, ip, 0, 0, 0, 0, 0, 0);
                     StrikeoutsPer9[num] = kper9.CalculateKper9();
+
+                    Array.Resize<double>(ref StrikeOutToWalk, StrikeOutToWalk.Length + 1);
+                    var sobb = new Pitchers(k, bb, 0, 0, 0, 0, 0, 0, 0);
+                    StrikeOutToWalk[num] = sobb.CalculateSOBB();
+
+                    Array.Resize<double>(ref WalkRate, WalkRate.Length + 1);
+                    var wr = new Pitchers(bf, bb, 0, 0, 0, 0, 0, 0, 0, 0);
+                    WalkRate[num] = wr.CalculateWR();
+
+                    Array.Resize<double>(ref StrikeOutRate, StrikeOutRate.Length + 1);
+                    var sr = new Pitchers(bf, k, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                    StrikeOutRate[num] = sr.CalculateSR();
+
+                    Array.Resize<double>(ref FieldingIndependentPitching, FieldingIndependentPitching.Length + 1);
+                    var fip = new Pitchers(ip, k, homeruns, bb, phbp, 0, 0, 0, 0, 0, 0, 0);
+                    FieldingIndependentPitching[num] = fip.CalculateFIP();
 
                     if (radAllDivisions.Checked && radMLB.Checked)
                     {
@@ -8894,6 +8918,18 @@ namespace OOD_Final_Project
             if (cbSOper9.Checked)
                 rtbOut.AppendText(StrikeoutsPer9[num].ToString("n1").PadLeft(5));
 
+            if (cbSOBB.Checked)
+                rtbOut.AppendText(StrikeOutToWalk[num].ToString("n1").PadLeft(6));
+
+            if (cbBBRate.Checked)
+                rtbOut.AppendText(WalkRate[num].ToString("p1").PadLeft(6));
+
+            if (cbSORate.Checked)
+                rtbOut.AppendText(StrikeOutRate[num].ToString("p1").PadLeft(6));
+
+            if (cbFIP.Checked)
+                rtbOut.AppendText(FieldingIndependentPitching[num].ToString("n2").PadLeft(5));
+
             rtbOut.AppendText("\n");
         }
 
@@ -8971,6 +9007,10 @@ namespace OOD_Final_Project
             cbHitsPer9.Visible = true;
             cbBBper9.Visible = true;
             cbSOper9.Visible = true;
+            cbSOBB.Visible = true;
+            cbBBRate.Visible = true;
+            cbSORate.Visible = true;
+            cbFIP.Visible = true;
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
@@ -9144,6 +9184,14 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText(" BB/9");
                 if (cbSOper9.Checked)
                     rtbLabels.AppendText(" SO/9");
+                if (cbSOBB.Checked)
+                    rtbLabels.AppendText(" SO/BB");
+                if (cbBBRate.Checked)
+                    rtbLabels.AppendText("   BB%");
+                if (cbBBRate.Checked)
+                    rtbLabels.AppendText("    K%");
+                if (cbFIP.Checked)
+                    rtbLabels.AppendText("  FIP");
             }
         }
 
