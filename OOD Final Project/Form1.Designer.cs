@@ -41,21 +41,36 @@
             this.radNL = new System.Windows.Forms.RadioButton();
             this.radAL = new System.Windows.Forms.RadioButton();
             this.radMLB = new System.Windows.Forms.RadioButton();
-            this.gbHittersBasic = new System.Windows.Forms.GroupBox();
+            this.gbBasicStats = new System.Windows.Forms.GroupBox();
+            this.cbBF = new System.Windows.Forms.CheckBox();
             this.cbOPS = new System.Windows.Forms.CheckBox();
+            this.cbPHBP = new System.Windows.Forms.CheckBox();
             this.cbSLG = new System.Windows.Forms.CheckBox();
+            this.cbPSO = new System.Windows.Forms.CheckBox();
             this.cbOBP = new System.Windows.Forms.CheckBox();
+            this.cbPIBB = new System.Windows.Forms.CheckBox();
             this.cbAVG = new System.Windows.Forms.CheckBox();
+            this.cbPBB = new System.Windows.Forms.CheckBox();
             this.cbSO = new System.Windows.Forms.CheckBox();
+            this.cbHRGivenUp = new System.Windows.Forms.CheckBox();
             this.cbBB = new System.Windows.Forms.CheckBox();
+            this.cbER = new System.Windows.Forms.CheckBox();
             this.cbCS = new System.Windows.Forms.CheckBox();
+            this.cbTotalRuns = new System.Windows.Forms.CheckBox();
             this.cbSB = new System.Windows.Forms.CheckBox();
+            this.cbPitcherH = new System.Windows.Forms.CheckBox();
             this.cbRBI = new System.Windows.Forms.CheckBox();
+            this.cbIP = new System.Windows.Forms.CheckBox();
             this.cbHR = new System.Windows.Forms.CheckBox();
+            this.cbSV = new System.Windows.Forms.CheckBox();
             this.cb3B = new System.Windows.Forms.CheckBox();
+            this.cbGS = new System.Windows.Forms.CheckBox();
             this.cb2B = new System.Windows.Forms.CheckBox();
+            this.cbGames = new System.Windows.Forms.CheckBox();
             this.cbH = new System.Windows.Forms.CheckBox();
+            this.cbLosses = new System.Windows.Forms.CheckBox();
             this.cbR = new System.Windows.Forms.CheckBox();
+            this.cbWins = new System.Windows.Forms.CheckBox();
             this.cbAB = new System.Windows.Forms.CheckBox();
             this.cbPA = new System.Windows.Forms.CheckBox();
             this.gbAdvanced = new System.Windows.Forms.GroupBox();
@@ -80,9 +95,11 @@
             this.radCentral = new System.Windows.Forms.RadioButton();
             this.radEast = new System.Windows.Forms.RadioButton();
             this.rtbLabels = new System.Windows.Forms.RichTextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lbStaff = new System.Windows.Forms.ListBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
-            this.gbHittersBasic.SuspendLayout();
+            this.gbBasicStats.SuspendLayout();
             this.gbAdvanced.SuspendLayout();
             this.gbDivisions.SuspendLayout();
             this.SuspendLayout();
@@ -171,7 +188,7 @@
             this.txtSearch.Location = new System.Drawing.Point(15, 298);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(1270, 30);
+            this.txtSearch.Size = new System.Drawing.Size(1151, 30);
             this.txtSearch.TabIndex = 3;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -252,166 +269,349 @@
             this.radMLB.Text = "All Leagues";
             this.radMLB.UseVisualStyleBackColor = true;
             // 
-            // gbHittersBasic
+            // gbBasicStats
             // 
-            this.gbHittersBasic.Controls.Add(this.cbOPS);
-            this.gbHittersBasic.Controls.Add(this.cbSLG);
-            this.gbHittersBasic.Controls.Add(this.cbOBP);
-            this.gbHittersBasic.Controls.Add(this.cbAVG);
-            this.gbHittersBasic.Controls.Add(this.cbSO);
-            this.gbHittersBasic.Controls.Add(this.cbBB);
-            this.gbHittersBasic.Controls.Add(this.cbCS);
-            this.gbHittersBasic.Controls.Add(this.cbSB);
-            this.gbHittersBasic.Controls.Add(this.cbRBI);
-            this.gbHittersBasic.Controls.Add(this.cbHR);
-            this.gbHittersBasic.Controls.Add(this.cb3B);
-            this.gbHittersBasic.Controls.Add(this.cb2B);
-            this.gbHittersBasic.Controls.Add(this.cbH);
-            this.gbHittersBasic.Controls.Add(this.cbR);
-            this.gbHittersBasic.Controls.Add(this.cbAB);
-            this.gbHittersBasic.Controls.Add(this.cbPA);
-            this.gbHittersBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbHittersBasic.Location = new System.Drawing.Point(479, 16);
-            this.gbHittersBasic.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbHittersBasic.Name = "gbHittersBasic";
-            this.gbHittersBasic.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbHittersBasic.Size = new System.Drawing.Size(328, 270);
-            this.gbHittersBasic.TabIndex = 8;
-            this.gbHittersBasic.TabStop = false;
-            this.gbHittersBasic.Text = "Basic Statistics";
-            this.gbHittersBasic.Visible = false;
+            this.gbBasicStats.Controls.Add(this.cbBF);
+            this.gbBasicStats.Controls.Add(this.cbOPS);
+            this.gbBasicStats.Controls.Add(this.cbPHBP);
+            this.gbBasicStats.Controls.Add(this.cbSLG);
+            this.gbBasicStats.Controls.Add(this.cbPSO);
+            this.gbBasicStats.Controls.Add(this.cbOBP);
+            this.gbBasicStats.Controls.Add(this.cbPIBB);
+            this.gbBasicStats.Controls.Add(this.cbAVG);
+            this.gbBasicStats.Controls.Add(this.cbPBB);
+            this.gbBasicStats.Controls.Add(this.cbSO);
+            this.gbBasicStats.Controls.Add(this.cbHRGivenUp);
+            this.gbBasicStats.Controls.Add(this.cbBB);
+            this.gbBasicStats.Controls.Add(this.cbER);
+            this.gbBasicStats.Controls.Add(this.cbCS);
+            this.gbBasicStats.Controls.Add(this.cbTotalRuns);
+            this.gbBasicStats.Controls.Add(this.cbSB);
+            this.gbBasicStats.Controls.Add(this.cbPitcherH);
+            this.gbBasicStats.Controls.Add(this.cbRBI);
+            this.gbBasicStats.Controls.Add(this.cbIP);
+            this.gbBasicStats.Controls.Add(this.cbHR);
+            this.gbBasicStats.Controls.Add(this.cbSV);
+            this.gbBasicStats.Controls.Add(this.cb3B);
+            this.gbBasicStats.Controls.Add(this.cbGS);
+            this.gbBasicStats.Controls.Add(this.cb2B);
+            this.gbBasicStats.Controls.Add(this.cbGames);
+            this.gbBasicStats.Controls.Add(this.cbH);
+            this.gbBasicStats.Controls.Add(this.cbLosses);
+            this.gbBasicStats.Controls.Add(this.cbR);
+            this.gbBasicStats.Controls.Add(this.cbWins);
+            this.gbBasicStats.Controls.Add(this.cbAB);
+            this.gbBasicStats.Controls.Add(this.cbPA);
+            this.gbBasicStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gbBasicStats.Location = new System.Drawing.Point(479, 16);
+            this.gbBasicStats.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbBasicStats.Name = "gbBasicStats";
+            this.gbBasicStats.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbBasicStats.Size = new System.Drawing.Size(328, 270);
+            this.gbBasicStats.TabIndex = 8;
+            this.gbBasicStats.TabStop = false;
+            this.gbBasicStats.Text = "Basic Statistics";
+            this.gbBasicStats.Visible = false;
+            // 
+            // cbBF
+            // 
+            this.cbBF.AutoSize = true;
+            this.cbBF.Location = new System.Drawing.Point(245, 125);
+            this.cbBF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBF.Name = "cbBF";
+            this.cbBF.Size = new System.Drawing.Size(59, 29);
+            this.cbBF.TabIndex = 14;
+            this.cbBF.Text = "BF";
+            this.cbBF.UseVisualStyleBackColor = true;
+            this.cbBF.Visible = false;
             // 
             // cbOPS
             // 
             this.cbOPS.AutoSize = true;
-            this.cbOPS.Location = new System.Drawing.Point(236, 168);
+            this.cbOPS.Location = new System.Drawing.Point(245, 168);
             this.cbOPS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbOPS.Name = "cbOPS";
             this.cbOPS.Size = new System.Drawing.Size(77, 29);
             this.cbOPS.TabIndex = 15;
             this.cbOPS.Text = "OPS";
             this.cbOPS.UseVisualStyleBackColor = true;
+            this.cbOPS.Visible = false;
+            // 
+            // cbPHBP
+            // 
+            this.cbPHBP.AutoSize = true;
+            this.cbPHBP.Location = new System.Drawing.Point(245, 81);
+            this.cbPHBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPHBP.Name = "cbPHBP";
+            this.cbPHBP.Size = new System.Drawing.Size(74, 29);
+            this.cbPHBP.TabIndex = 13;
+            this.cbPHBP.Text = "HBP";
+            this.cbPHBP.UseVisualStyleBackColor = true;
+            this.cbPHBP.Visible = false;
             // 
             // cbSLG
             // 
             this.cbSLG.AutoSize = true;
-            this.cbSLG.Location = new System.Drawing.Point(236, 125);
+            this.cbSLG.Location = new System.Drawing.Point(245, 125);
             this.cbSLG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSLG.Name = "cbSLG";
             this.cbSLG.Size = new System.Drawing.Size(74, 29);
             this.cbSLG.TabIndex = 14;
             this.cbSLG.Text = "SLG";
             this.cbSLG.UseVisualStyleBackColor = true;
+            this.cbSLG.Visible = false;
+            // 
+            // cbPSO
+            // 
+            this.cbPSO.AutoSize = true;
+            this.cbPSO.Location = new System.Drawing.Point(245, 38);
+            this.cbPSO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPSO.Name = "cbPSO";
+            this.cbPSO.Size = new System.Drawing.Size(64, 29);
+            this.cbPSO.TabIndex = 12;
+            this.cbPSO.Text = "SO";
+            this.cbPSO.UseVisualStyleBackColor = true;
+            this.cbPSO.Visible = false;
             // 
             // cbOBP
             // 
             this.cbOBP.AutoSize = true;
-            this.cbOBP.Location = new System.Drawing.Point(236, 80);
+            this.cbOBP.Location = new System.Drawing.Point(245, 81);
             this.cbOBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbOBP.Name = "cbOBP";
             this.cbOBP.Size = new System.Drawing.Size(76, 29);
             this.cbOBP.TabIndex = 13;
             this.cbOBP.Text = "OBP";
             this.cbOBP.UseVisualStyleBackColor = true;
+            this.cbOBP.Visible = false;
+            // 
+            // cbPIBB
+            // 
+            this.cbPIBB.AutoSize = true;
+            this.cbPIBB.Location = new System.Drawing.Point(166, 168);
+            this.cbPIBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPIBB.Name = "cbPIBB";
+            this.cbPIBB.Size = new System.Drawing.Size(65, 29);
+            this.cbPIBB.TabIndex = 11;
+            this.cbPIBB.Text = "IBB";
+            this.cbPIBB.UseVisualStyleBackColor = true;
+            this.cbPIBB.Visible = false;
             // 
             // cbAVG
             // 
             this.cbAVG.AutoSize = true;
-            this.cbAVG.Location = new System.Drawing.Point(236, 38);
+            this.cbAVG.Location = new System.Drawing.Point(245, 38);
             this.cbAVG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbAVG.Name = "cbAVG";
             this.cbAVG.Size = new System.Drawing.Size(77, 29);
             this.cbAVG.TabIndex = 12;
             this.cbAVG.Text = "AVG";
             this.cbAVG.UseVisualStyleBackColor = true;
+            this.cbAVG.Visible = false;
+            // 
+            // cbPBB
+            // 
+            this.cbPBB.AutoSize = true;
+            this.cbPBB.Location = new System.Drawing.Point(166, 125);
+            this.cbPBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPBB.Name = "cbPBB";
+            this.cbPBB.Size = new System.Drawing.Size(60, 29);
+            this.cbPBB.TabIndex = 10;
+            this.cbPBB.Text = "BB";
+            this.cbPBB.UseVisualStyleBackColor = true;
+            this.cbPBB.Visible = false;
             // 
             // cbSO
             // 
             this.cbSO.AutoSize = true;
-            this.cbSO.Location = new System.Drawing.Point(160, 168);
+            this.cbSO.Location = new System.Drawing.Point(166, 168);
             this.cbSO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSO.Name = "cbSO";
             this.cbSO.Size = new System.Drawing.Size(64, 29);
             this.cbSO.TabIndex = 11;
             this.cbSO.Text = "SO";
             this.cbSO.UseVisualStyleBackColor = true;
+            this.cbSO.Visible = false;
+            // 
+            // cbHRGivenUp
+            // 
+            this.cbHRGivenUp.AutoSize = true;
+            this.cbHRGivenUp.Location = new System.Drawing.Point(165, 80);
+            this.cbHRGivenUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHRGivenUp.Name = "cbHRGivenUp";
+            this.cbHRGivenUp.Size = new System.Drawing.Size(61, 29);
+            this.cbHRGivenUp.TabIndex = 9;
+            this.cbHRGivenUp.Text = "HR";
+            this.cbHRGivenUp.UseVisualStyleBackColor = true;
+            this.cbHRGivenUp.Visible = false;
             // 
             // cbBB
             // 
             this.cbBB.AutoSize = true;
-            this.cbBB.Location = new System.Drawing.Point(160, 125);
+            this.cbBB.Location = new System.Drawing.Point(166, 125);
             this.cbBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbBB.Name = "cbBB";
             this.cbBB.Size = new System.Drawing.Size(60, 29);
             this.cbBB.TabIndex = 10;
             this.cbBB.Text = "BB";
             this.cbBB.UseVisualStyleBackColor = true;
+            this.cbBB.Visible = false;
+            // 
+            // cbER
+            // 
+            this.cbER.AutoSize = true;
+            this.cbER.Location = new System.Drawing.Point(166, 38);
+            this.cbER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbER.Name = "cbER";
+            this.cbER.Size = new System.Drawing.Size(60, 29);
+            this.cbER.TabIndex = 8;
+            this.cbER.Text = "ER";
+            this.cbER.UseVisualStyleBackColor = true;
+            this.cbER.Visible = false;
             // 
             // cbCS
             // 
             this.cbCS.AutoSize = true;
-            this.cbCS.Location = new System.Drawing.Point(160, 80);
+            this.cbCS.Location = new System.Drawing.Point(166, 80);
             this.cbCS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbCS.Name = "cbCS";
             this.cbCS.Size = new System.Drawing.Size(63, 29);
             this.cbCS.TabIndex = 9;
             this.cbCS.Text = "CS";
             this.cbCS.UseVisualStyleBackColor = true;
+            this.cbCS.Visible = false;
+            // 
+            // cbTotalRuns
+            // 
+            this.cbTotalRuns.AutoSize = true;
+            this.cbTotalRuns.Location = new System.Drawing.Point(82, 169);
+            this.cbTotalRuns.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTotalRuns.Name = "cbTotalRuns";
+            this.cbTotalRuns.Size = new System.Drawing.Size(47, 29);
+            this.cbTotalRuns.TabIndex = 7;
+            this.cbTotalRuns.Text = "R";
+            this.cbTotalRuns.UseVisualStyleBackColor = true;
+            this.cbTotalRuns.Visible = false;
             // 
             // cbSB
             // 
             this.cbSB.AutoSize = true;
-            this.cbSB.Location = new System.Drawing.Point(160, 38);
+            this.cbSB.Location = new System.Drawing.Point(166, 37);
             this.cbSB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbSB.Name = "cbSB";
             this.cbSB.Size = new System.Drawing.Size(61, 29);
             this.cbSB.TabIndex = 8;
             this.cbSB.Text = "SB";
             this.cbSB.UseVisualStyleBackColor = true;
+            this.cbSB.Visible = false;
+            // 
+            // cbPitcherH
+            // 
+            this.cbPitcherH.AutoSize = true;
+            this.cbPitcherH.Location = new System.Drawing.Point(82, 125);
+            this.cbPitcherH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPitcherH.Name = "cbPitcherH";
+            this.cbPitcherH.Size = new System.Drawing.Size(48, 29);
+            this.cbPitcherH.TabIndex = 6;
+            this.cbPitcherH.Text = "H";
+            this.cbPitcherH.UseVisualStyleBackColor = true;
+            this.cbPitcherH.Visible = false;
             // 
             // cbRBI
             // 
             this.cbRBI.AutoSize = true;
-            this.cbRBI.Location = new System.Drawing.Point(83, 168);
+            this.cbRBI.Location = new System.Drawing.Point(82, 168);
             this.cbRBI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbRBI.Name = "cbRBI";
             this.cbRBI.Size = new System.Drawing.Size(65, 29);
             this.cbRBI.TabIndex = 7;
             this.cbRBI.Text = "RBI";
             this.cbRBI.UseVisualStyleBackColor = true;
+            this.cbRBI.Visible = false;
+            // 
+            // cbIP
+            // 
+            this.cbIP.AutoSize = true;
+            this.cbIP.Location = new System.Drawing.Point(82, 80);
+            this.cbIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbIP.Name = "cbIP";
+            this.cbIP.Size = new System.Drawing.Size(52, 29);
+            this.cbIP.TabIndex = 5;
+            this.cbIP.Text = "IP";
+            this.cbIP.UseVisualStyleBackColor = true;
+            this.cbIP.Visible = false;
             // 
             // cbHR
             // 
             this.cbHR.AutoSize = true;
-            this.cbHR.Location = new System.Drawing.Point(83, 124);
+            this.cbHR.Location = new System.Drawing.Point(82, 125);
             this.cbHR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbHR.Name = "cbHR";
             this.cbHR.Size = new System.Drawing.Size(61, 29);
             this.cbHR.TabIndex = 6;
             this.cbHR.Text = "HR";
             this.cbHR.UseVisualStyleBackColor = true;
+            this.cbHR.Visible = false;
+            // 
+            // cbSV
+            // 
+            this.cbSV.AutoSize = true;
+            this.cbSV.Location = new System.Drawing.Point(82, 38);
+            this.cbSV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSV.Name = "cbSV";
+            this.cbSV.Size = new System.Drawing.Size(62, 29);
+            this.cbSV.TabIndex = 4;
+            this.cbSV.Text = "SV";
+            this.cbSV.UseVisualStyleBackColor = true;
+            this.cbSV.Visible = false;
             // 
             // cb3B
             // 
             this.cb3B.AutoSize = true;
-            this.cb3B.Location = new System.Drawing.Point(83, 80);
+            this.cb3B.Location = new System.Drawing.Point(82, 80);
             this.cb3B.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cb3B.Name = "cb3B";
             this.cb3B.Size = new System.Drawing.Size(58, 29);
             this.cb3B.TabIndex = 5;
             this.cb3B.Text = "3B";
             this.cb3B.UseVisualStyleBackColor = true;
+            this.cb3B.Visible = false;
+            // 
+            // cbGS
+            // 
+            this.cbGS.AutoSize = true;
+            this.cbGS.Location = new System.Drawing.Point(8, 168);
+            this.cbGS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbGS.Name = "cbGS";
+            this.cbGS.Size = new System.Drawing.Size(63, 29);
+            this.cbGS.TabIndex = 3;
+            this.cbGS.Text = "GS";
+            this.cbGS.UseVisualStyleBackColor = true;
+            this.cbGS.Visible = false;
             // 
             // cb2B
             // 
             this.cb2B.AutoSize = true;
-            this.cb2B.Location = new System.Drawing.Point(83, 36);
+            this.cb2B.Location = new System.Drawing.Point(82, 38);
             this.cb2B.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cb2B.Name = "cb2B";
             this.cb2B.Size = new System.Drawing.Size(58, 29);
             this.cb2B.TabIndex = 4;
             this.cb2B.Text = "2B";
             this.cb2B.UseVisualStyleBackColor = true;
+            this.cb2B.Visible = false;
+            // 
+            // cbGames
+            // 
+            this.cbGames.AutoSize = true;
+            this.cbGames.Location = new System.Drawing.Point(8, 125);
+            this.cbGames.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbGames.Name = "cbGames";
+            this.cbGames.Size = new System.Drawing.Size(49, 29);
+            this.cbGames.TabIndex = 2;
+            this.cbGames.Text = "G";
+            this.cbGames.UseVisualStyleBackColor = true;
+            this.cbGames.Visible = false;
             // 
             // cbH
             // 
@@ -423,6 +623,19 @@
             this.cbH.TabIndex = 3;
             this.cbH.Text = "H";
             this.cbH.UseVisualStyleBackColor = true;
+            this.cbH.Visible = false;
+            // 
+            // cbLosses
+            // 
+            this.cbLosses.AutoSize = true;
+            this.cbLosses.Location = new System.Drawing.Point(8, 80);
+            this.cbLosses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbLosses.Name = "cbLosses";
+            this.cbLosses.Size = new System.Drawing.Size(45, 29);
+            this.cbLosses.TabIndex = 1;
+            this.cbLosses.Text = "L";
+            this.cbLosses.UseVisualStyleBackColor = true;
+            this.cbLosses.Visible = false;
             // 
             // cbR
             // 
@@ -434,6 +647,20 @@
             this.cbR.TabIndex = 2;
             this.cbR.Text = "R";
             this.cbR.UseVisualStyleBackColor = true;
+            this.cbR.Visible = false;
+            // 
+            // cbWins
+            // 
+            this.cbWins.AutoSize = true;
+            this.cbWins.BackColor = System.Drawing.SystemColors.Control;
+            this.cbWins.Location = new System.Drawing.Point(8, 38);
+            this.cbWins.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbWins.Name = "cbWins";
+            this.cbWins.Size = new System.Drawing.Size(54, 29);
+            this.cbWins.TabIndex = 0;
+            this.cbWins.Text = "W";
+            this.cbWins.UseVisualStyleBackColor = false;
+            this.cbWins.Visible = false;
             // 
             // cbAB
             // 
@@ -445,6 +672,7 @@
             this.cbAB.TabIndex = 1;
             this.cbAB.Text = "AB";
             this.cbAB.UseVisualStyleBackColor = true;
+            this.cbAB.Visible = false;
             // 
             // cbPA
             // 
@@ -457,6 +685,7 @@
             this.cbPA.TabIndex = 0;
             this.cbPA.Text = "PA";
             this.cbPA.UseVisualStyleBackColor = false;
+            this.cbPA.Visible = false;
             // 
             // gbAdvanced
             // 
@@ -768,18 +997,48 @@
             this.rtbLabels.TabIndex = 15;
             this.rtbLabels.Text = "";
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(1173, 294);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(112, 39);
+            this.btnSearch.TabIndex = 16;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lbStaff
+            // 
+            this.lbStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbStaff.FormattingEnabled = true;
+            this.lbStaff.ItemHeight = 25;
+            this.lbStaff.Items.AddRange(new object[] {
+            "All Positions",
+            "Starter",
+            "Reliever",
+            "Closer"});
+            this.lbStaff.Location = new System.Drawing.Point(1173, 154);
+            this.lbStaff.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbStaff.Name = "lbStaff";
+            this.lbStaff.Size = new System.Drawing.Size(352, 129);
+            this.lbStaff.TabIndex = 17;
+            this.lbStaff.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1557, 912);
+            this.Controls.Add(this.lbStaff);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.rtbLabels);
             this.Controls.Add(this.gbDivisions);
             this.Controls.Add(this.btnDictionary);
             this.Controls.Add(this.lbHitterPosition);
             this.Controls.Add(this.lbMLBTeams);
             this.Controls.Add(this.gbAdvanced);
-            this.Controls.Add(this.gbHittersBasic);
+            this.Controls.Add(this.gbBasicStats);
             this.Controls.Add(this.gbNLorAL);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.btnExit);
@@ -793,8 +1052,8 @@
             this.gbLeague.PerformLayout();
             this.gbNLorAL.ResumeLayout(false);
             this.gbNLorAL.PerformLayout();
-            this.gbHittersBasic.ResumeLayout(false);
-            this.gbHittersBasic.PerformLayout();
+            this.gbBasicStats.ResumeLayout(false);
+            this.gbBasicStats.PerformLayout();
             this.gbAdvanced.ResumeLayout(false);
             this.gbAdvanced.PerformLayout();
             this.gbDivisions.ResumeLayout(false);
@@ -816,7 +1075,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.GroupBox gbNLorAL;
-        private System.Windows.Forms.GroupBox gbHittersBasic;
+        private System.Windows.Forms.GroupBox gbBasicStats;
         private System.Windows.Forms.CheckBox cbOPS;
         private System.Windows.Forms.CheckBox cbSLG;
         private System.Windows.Forms.CheckBox cbOBP;
@@ -858,6 +1117,23 @@
         private System.Windows.Forms.RadioButton radAllDivisions;
         private System.Windows.Forms.RichTextBox rtbLabels;
         private System.Windows.Forms.CheckBox cbSF;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox cbBF;
+        private System.Windows.Forms.CheckBox cbPHBP;
+        private System.Windows.Forms.CheckBox cbPSO;
+        private System.Windows.Forms.CheckBox cbPIBB;
+        private System.Windows.Forms.CheckBox cbPBB;
+        private System.Windows.Forms.CheckBox cbHRGivenUp;
+        private System.Windows.Forms.CheckBox cbER;
+        private System.Windows.Forms.CheckBox cbTotalRuns;
+        private System.Windows.Forms.CheckBox cbPitcherH;
+        private System.Windows.Forms.CheckBox cbIP;
+        private System.Windows.Forms.CheckBox cbSV;
+        private System.Windows.Forms.CheckBox cbGS;
+        private System.Windows.Forms.CheckBox cbGames;
+        private System.Windows.Forms.CheckBox cbLosses;
+        private System.Windows.Forms.CheckBox cbWins;
+        private System.Windows.Forms.ListBox lbStaff;
     }
 }
 

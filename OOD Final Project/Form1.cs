@@ -46,6 +46,28 @@ namespace OOD_Final_Project
         string[] division = new string[0];
         string[] league = new string[0];
         string[] position = new string[0];
+
+        string[] pName = new string[0];
+        string[] pTeam = new string[0];
+        string[] pDivisions = new string[0];
+        string[] pLeague = new string[0];
+        string[] pStaff = new string[0];
+        double[] Wins = new double[0];
+        double[] Losses = new double[0];
+        double[] Games = new double[0];
+        double[] GamesStarted = new double[0];
+        double[] Saves = new double[0];
+        double[] InningsPitched = new double[0];
+        double[] pHits = new double[0];
+        double[] pRuns = new double[0];
+        double[] EarnedRuns = new double[0];
+        double[] pHomeruns = new double[0];
+        double[] pWalks = new double[0];
+        double[] pIntentionalWalks = new double[0];
+        double[] pStrikeOuts = new double[0];
+        double[] pHitbyPitches = new double[0];
+        double[] battersFaced = new double[0];
+
         int num = 0;
 
         public Form1()
@@ -94,7 +116,7 @@ namespace OOD_Final_Project
                     Array.Resize<string>(ref name, name.Length + 1);
                     Array.Resize<string>(ref division, division.Length + 1);
                     Array.Resize<string>(ref league, league.Length + 1);
-                    Array.Resize<string>(ref position, league.Length + 1);
+                    Array.Resize<string>(ref position, position.Length + 1);
 
                     string row = textIn.ReadLine();
                     string[] record = row.Split(',');
@@ -5972,6 +5994,2681 @@ namespace OOD_Final_Project
                 }
                 num++;
             }
+            else if (radPitchers.Checked)
+            {
+                rtbLabels.AppendText("Team Player              ");
+
+                string path = @"Pitchers.csv";
+                StreamReader textIn = new StreamReader(
+                new FileStream(path, FileMode.Open, FileAccess.Read));
+
+                labelCheck();
+
+                while (textIn.Peek() != -1)
+                {
+                    Array.Resize<string>(ref pTeam, pTeam.Length + 1);
+                    Array.Resize<string>(ref pName, pName.Length + 1);
+                    Array.Resize<string>(ref pDivisions, pDivisions.Length + 1);
+                    Array.Resize<string>(ref pLeague, pLeague.Length + 1);
+                    Array.Resize<string>(ref pStaff, pStaff.Length + 1);
+
+                    string row = textIn.ReadLine();
+                    string[] record = row.Split(',');
+                    pTeam[num] = Convert.ToString(record[2]).ToUpper();
+                    pName[num] = Convert.ToString(record[3]).ToUpper();
+                    pDivisions[num] = Convert.ToString(record[1]).ToUpper();
+                    pLeague[num] = Convert.ToString(record[0]).ToUpper();
+                    pStaff[num] = Convert.ToString(record[4]).ToUpper();
+
+                    Array.Resize<double>(ref Wins, Wins.Length + 1);
+                    Wins[num] = Convert.ToDouble(record[5]);
+
+                    Array.Resize<double>(ref Losses, Losses.Length + 1);
+                    Losses[num] = Convert.ToDouble(record[6]);
+
+                    Array.Resize<double>(ref Games, Games.Length + 1);
+                    Games[num] = Convert.ToDouble(record[7]);
+
+                    Array.Resize<double>(ref GamesStarted, GamesStarted.Length + 1);
+                    GamesStarted[num] = Convert.ToDouble(record[8]);
+
+                    Array.Resize<double>(ref Saves, Saves.Length + 1);
+                    Saves[num] = Convert.ToDouble(record[9]);
+
+                    Array.Resize<double>(ref InningsPitched, InningsPitched.Length + 1);
+                    InningsPitched[num] = Convert.ToDouble(record[10]);
+
+                    Array.Resize<double>(ref pHits, pHits.Length + 1);
+                    pHits[num] = Convert.ToDouble(record[11]);
+
+                    Array.Resize<double>(ref pRuns, pRuns.Length + 1);
+                    pRuns[num] = Convert.ToDouble(record[12]);
+
+                    Array.Resize<double>(ref EarnedRuns, EarnedRuns.Length + 1);
+                    EarnedRuns[num] = Convert.ToDouble(record[13]);
+
+                    Array.Resize<double>(ref pHomeruns, pHomeruns.Length + 1);
+                    pHomeruns[num] = Convert.ToDouble(record[14]);
+
+                    Array.Resize<double>(ref pWalks, pWalks.Length + 1);
+                    pWalks[num] = Convert.ToDouble(record[15]);
+
+                    Array.Resize<double>(ref pIntentionalWalks, pIntentionalWalks.Length + 1);
+                    pIntentionalWalks[num] = Convert.ToDouble(record[16]);
+
+                    Array.Resize<double>(ref pStrikeOuts, pStrikeOuts.Length + 1);
+                    pStrikeOuts[num] = Convert.ToDouble(record[17]);
+
+                    Array.Resize<double>(ref pHitbyPitches, pHitbyPitches.Length + 1);
+                    pHitbyPitches[num] = Convert.ToDouble(record[18]);
+
+                    Array.Resize<double>(ref battersFaced, battersFaced.Length + 1);
+                    battersFaced[num] = Convert.ToDouble(record[19]);
+
+                    if (radAllDivisions.Checked && radMLB.Checked)
+                    {
+                        if (lbMLBTeams.Text == "All Teams")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                        if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                        {
+                            if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                            {
+                                printPitchers();
+                            }
+                            else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                            {
+                                printPitchers();
+                            }
+                            if (lbStaff.Text == "All Positions")
+                            {
+                                printPitchers();
+                            }
+                        }
+                    }
+                    else if (radAllDivisions.Checked && radAL.Checked)
+                    {
+                        if (league[num] == "AL")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbHitterPosition.Text == "Catcher" && position[num] == "C")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "1st Base" && position[num] == "1B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "2nd Base" && position[num] == "2B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Short Stop" && position[num] == "SS")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "3rd Base" && position[num] == "3B")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Left Field" && position[num] == "LF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Center Field" && position[num] == "CF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Right Field" && position[num] == "RF")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "Designated Hitter" && position[num] == "DH")
+                                {
+                                    printHitters();
+                                }
+                                else if (lbHitterPosition.Text == "All Positions")
+                                {
+                                    printHitters();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radAllDivisions.Checked && radNL.Checked)
+                    {
+                        if (league[num] == "NL")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radEast.Checked && radMLB.Checked)
+                    {
+                        if (division[num] == "E")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radCentral.Checked && radMLB.Checked)
+                    {
+                        if (division[num] == "C")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radWest.Checked && radMLB.Checked)
+                    {
+                        if (division[num] == "W")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radEast.Checked && radAL.Checked)
+                    {
+                        if (league[num] == "AL" && division[num] == "E")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Baltimore Orioles" && team[num] == "BAL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Boston Red Sox" && team[num] == "BOS")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Yankees" && team[num] == "NYY")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Tampa Bay Rays" && team[num] == "TBR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Toronto Blue Jays" && team[num] == "TOR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radCentral.Checked && radAL.Checked)
+                    {
+                        if (league[num] == "AL" && division[num] == "C")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago White Sox" && team[num] == "CWS")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cleveland Guardians" && team[num] == "CLE")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Detroit Tigers" && team[num] == "DET")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Kansas City Royals" && team[num] == "KCR")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Minnesota Twins" && team[num] == "MIN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radWest.Checked && radAL.Checked)
+                    {
+                        if (league[num] == "AL" && division[num] == "W")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Houston Astros" && team[num] == "HOU")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Angels" && team[num] == "LAA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Oakland Athletics" && team[num] == "OAK")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Seattle Mariners" && team[num] == "SEA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Texas Rangers" && team[num] == "TEX")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radEast.Checked && radNL.Checked)
+                    {
+                        if (league[num] == "NL" && division[num] == "E")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Atlanta Braves" && team[num] == "ATL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Miami Marlins" && team[num] == "MIA")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "New York Mets" && team[num] == "NYM")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Philadelphia Phillies" && team[num] == "PHI")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Washington Nationals" && team[num] == "WSN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radWest.Checked && radNL.Checked)
+                    {
+                        if (league[num] == "NL" && division[num] == "W")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Arizona Diamondbacks" && team[num] == "ARI")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Colorado Rockies" && team[num] == "COL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Los Angeles Dodgers" && team[num] == "LAD")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Francisco Giants" && team[num] == "SFG")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "San Diego Padres" && team[num] == "SDP")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                    else if (radCentral.Checked && radNL.Checked)
+                    {
+                        if (league[num] == "NL" && division[num] == "C")
+                        {
+                            if (lbMLBTeams.Text == "All Teams")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Cincinnati Reds" && team[num] == "CIN")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Chicago Cubs" && team[num] == "CHC")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Milwaukee Brewers" && team[num] == "MIL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "Pittsburgh Pirates" && team[num] == "PIT")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                            if (lbMLBTeams.Text == "St. Louis Cardinals" && team[num] == "STL")
+                            {
+                                if (lbStaff.Text == "Starter" && pStaff[num] == "S")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Reliever" && pStaff[num] == "R")
+                                {
+                                    printPitchers();
+                                }
+                                else if (lbStaff.Text == "Closer" && pStaff[num] == "C")
+                                {
+                                    printPitchers();
+                                }
+                                if (lbStaff.Text == "All Positions")
+                                {
+                                    printPitchers();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void printHitters()
@@ -6064,6 +8761,59 @@ namespace OOD_Final_Project
 
             rtbOut.AppendText("\n");
         }
+
+        private void printPitchers()
+        {
+            rtbOut.AppendText(pTeam[num].PadRight(5) + (pName[num]).PadRight(20));
+
+            if (cbWins.Checked)
+                rtbOut.AppendText(Wins[num].ToString("n0").PadLeft(4));
+
+            if (cbLosses.Checked)
+                rtbOut.AppendText(Losses[num].ToString("n0").PadLeft(4));
+
+            if (cbGames.Checked)
+                rtbOut.AppendText(Games[num].ToString("n0").PadLeft(4));
+
+            if (cbGS.Checked)
+                rtbOut.AppendText(GamesStarted[num].ToString("n0").PadLeft(4));
+
+            if (cbSV.Checked)
+                rtbOut.AppendText(Saves[num].ToString("n0").PadLeft(4));
+
+            if (cbIP.Checked)
+                rtbOut.AppendText(InningsPitched[num].ToString("n1").PadLeft(6));
+
+            if (cbPitcherH.Checked)
+                rtbOut.AppendText(pHits[num].ToString("n0").PadLeft(4));
+
+            if (cbTotalRuns.Checked)
+                rtbOut.AppendText(pRuns[num].ToString("n0").PadLeft(4));
+
+            if (cbER.Checked)
+                rtbOut.AppendText(EarnedRuns[num].ToString("n0").PadLeft(4));
+
+            if (cbHRGivenUp.Checked)
+                rtbOut.AppendText(pHomeruns[num].ToString("n0").PadLeft(4));
+
+            if (cbPBB.Checked)
+                rtbOut.AppendText(pWalks[num].ToString("n0").PadLeft(4));
+
+            if (cbPIBB.Checked)
+                rtbOut.AppendText(pIntentionalWalks[num].ToString("n0").PadLeft(4));
+
+            if (cbPSO.Checked)
+                rtbOut.AppendText(pStrikeOuts[num].ToString("n0").PadLeft(4));
+
+            if (cbPHBP.Checked)
+                rtbOut.AppendText(pHitbyPitches[num].ToString("n0").PadLeft(4));
+
+            if (cbBF.Checked)
+                rtbOut.AppendText(battersFaced[num].ToString("n0").PadLeft(4));
+
+            rtbOut.AppendText("\n");
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -6072,7 +8822,23 @@ namespace OOD_Final_Project
         private void radHitters_CheckedChanged(object sender, EventArgs e)
         {
             gbNLorAL.Visible = true;
-            gbHittersBasic.Visible = true;
+            gbBasicStats.Visible = true;
+            cbPA.Visible = true;
+            cbAB.Visible = true;
+            cbR.Visible = true;
+            cbH.Visible = true;
+            cb2B.Visible = true;
+            cb3B.Visible = true;
+            cbHR.Visible = true;
+            cbRBI.Visible = true;
+            cbSB.Visible = true;
+            cbCS.Visible = true;
+            cbBB.Visible = true;
+            cbSO.Visible = true;
+            cbAVG.Visible = true;
+            cbOBP.Visible = true;
+            cbSLG.Visible = true;
+            cbOPS.Visible = true;
             gbAdvanced.Visible = true;
             lbMLBTeams.Visible = true;
             lbHitterPosition.Visible = true;
@@ -6083,6 +8849,24 @@ namespace OOD_Final_Project
         {
             gbNLorAL.Visible = true;
             lbMLBTeams.Visible = true;
+            gbBasicStats.Visible = true;
+            cbWins.Visible = true;
+            cbLosses.Visible = true;
+            cbGames.Visible = true;
+            cbGS.Visible = true;
+            cbSV.Visible = true;
+            cbIP.Visible = true;
+            cbPitcherH.Visible = true;
+            cbTotalRuns.Visible = true;
+            cbER.Visible = true;
+            cbHRGivenUp.Visible = true;
+            cbPBB.Visible = true;
+            cbPIBB.Visible  = true;
+            cbPSO.Visible = true;
+            cbPHBP.Visible = true;
+            cbBF.Visible = true;
+            lbStaff.Visible = true;
+            gbDivisions.Visible = true;
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
@@ -6120,7 +8904,22 @@ namespace OOD_Final_Project
             }
             else if (radPitchers.Checked)
             {
-
+                rtbOut.AppendText("Pitchers Stats:\n\n" +
+                "W     - Wins\n" +
+                "L     - Losses\n" +
+                "G     - Games\n" +
+                "GS    - Games Started\n" +
+                "SV    - Saves\n" +
+                "IP    - Innings Pitched\n" +
+                "H     - Hits\n" +
+                "R     - Runs\n" +
+                "ER    - Earned Runs\n" +
+                "HR    - Home Runs\n" +
+                "BB    - Walks\n" +
+                "IBB   - Intentional Walks\n" +
+                "SO    - Strikeouts\n" +
+                "HBP   - Hit by Pitches\n" +
+                "BF    - Batters Faces\n");
             }
             else if (radNBA.Checked)
             {
@@ -6193,8 +8992,56 @@ namespace OOD_Final_Project
                 if (cbwRAA.Checked)
                     rtbLabels.AppendText("  wRAA");
             }
+            else if (radPitchers.Checked)
+            {
+                if (cbWins.Checked)
+                    rtbLabels.AppendText("   W");
+                if (cbLosses.Checked)
+                    rtbLabels.AppendText("   L");
+                if (cbGames.Checked)
+                    rtbLabels.AppendText("   G");
+                if (cbGS.Checked)
+                    rtbLabels.AppendText("  GS");
+                if (cbSV.Checked)
+                    rtbLabels.AppendText("  SV");
+                if (cbIP.Checked)
+                    rtbLabels.AppendText("    IP");
+                if (cbPitcherH.Checked)
+                    rtbLabels.AppendText("   H");
+                if (cbTotalRuns.Checked)
+                    rtbLabels.AppendText("   R");
+                if (cbER.Checked)
+                    rtbLabels.AppendText("  ER");
+                if (cbHRGivenUp.Checked)
+                    rtbLabels.AppendText("  HR");
+                if (cbPBB.Checked)
+                    rtbLabels.AppendText("  BB");
+                if (cbPIBB.Checked)
+                    rtbLabels.AppendText(" IBB");
+                if (cbPSO.Checked)
+                    rtbLabels.AppendText("  SO");
+                if (cbPHBP.Checked)
+                    rtbLabels.AppendText(" HBP");
+                if (cbBF.Checked)
+                    rtbLabels.AppendText("  BF");
+            }
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string t = txtSearch.Text.ToUpper();
 
+            for (int i = 0; i <= t.Length-1; i++)
+            {
+                if(t == name[i])
+                {
+                    rtbOut.Clear();
+                    rtbLabels.Clear();
+                    rtbLabels.AppendText("Team Player              ");
+                    labelCheck();
+                    printHitters();
+                }
+            }
+        }
     }
 }
