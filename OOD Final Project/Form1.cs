@@ -71,6 +71,10 @@ namespace OOD_Final_Project
         double[] ERAPlus = new double[0];
         double[] WinPercentage = new double[0];
         double[] WalksPlusHitsPerInningsPitched = new double[0];
+        double[] HomeRunsPer9 = new double[0];
+        double[] HitsPer9 = new double[0];
+        double[] WalksPer9 = new double[0];
+        double[] StrikeoutsPer9 = new double[0];
 
         int num = 0;
 
@@ -6009,6 +6013,8 @@ namespace OOD_Final_Project
                 double l = 0;
                 double bb = 0;
                 double ph = 0;
+                double homeruns;
+                double k = 0;
 
                 string path = @"Pitchers.csv";
                 StreamReader textIn = new StreamReader(
@@ -6066,6 +6072,7 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref pHomeruns, pHomeruns.Length + 1);
                     pHomeruns[num] = Convert.ToDouble(record[14]);
+                    homeruns = Convert.ToDouble(record[14]);
 
                     Array.Resize<double>(ref pWalks, pWalks.Length + 1);
                     pWalks[num] = Convert.ToDouble(record[15]);
@@ -6076,6 +6083,7 @@ namespace OOD_Final_Project
 
                     Array.Resize<double>(ref pStrikeOuts, pStrikeOuts.Length + 1);
                     pStrikeOuts[num] = Convert.ToDouble(record[17]);
+                    k = Convert.ToDouble(record[17]);
 
                     Array.Resize<double>(ref pHitbyPitches, pHitbyPitches.Length + 1);
                     pHitbyPitches[num] = Convert.ToDouble(record[18]);
@@ -6099,6 +6107,22 @@ namespace OOD_Final_Project
                     Array.Resize<double>(ref WalksPlusHitsPerInningsPitched, WalksPlusHitsPerInningsPitched.Length + 1);
                     var WHIP = new Pitchers(ph, bb, ip, 0);
                     WalksPlusHitsPerInningsPitched[num] = WHIP.CalculateWHIP();
+
+                    Array.Resize<double>(ref HomeRunsPer9, HomeRunsPer9.Length + 1);
+                    var hrper9 = new Pitchers(homeruns, ph, 0, 0, 0);
+                    HomeRunsPer9[num] = hrper9.CalculateHRper9();
+
+                    Array.Resize<double>(ref HitsPer9, HitsPer9.Length + 1);
+                    var hper9 = new Pitchers(ph, ip, 0, 0, 0, 0);
+                    HitsPer9[num] = hper9.CalculateHper9();
+
+                    Array.Resize<double>(ref WalksPer9, WalksPer9.Length + 1);
+                    var bbper9 = new Pitchers(bb, ip, 0, 0, 0, 0, 0);
+                    WalksPer9[num] = bbper9.CalculateBBper9();
+
+                    Array.Resize<double>(ref StrikeoutsPer9, StrikeoutsPer9.Length + 1);
+                    var kper9 = new Pitchers(k, ip, 0, 0, 0, 0, 0, 0);
+                    StrikeoutsPer9[num] = kper9.CalculateKper9();
 
                     if (radAllDivisions.Checked && radMLB.Checked)
                     {
@@ -8858,6 +8882,18 @@ namespace OOD_Final_Project
             if (cbWHIP.Checked)
                 rtbOut.AppendText(WalksPlusHitsPerInningsPitched[num].ToString("n3").PadLeft(6));
 
+            if (cbHRper9.Checked)
+                rtbOut.AppendText(HomeRunsPer9[num].ToString("n1").PadLeft(5));
+
+            if (cbHitsPer9.Checked)
+                rtbOut.AppendText(HitsPer9[num].ToString("n1").PadLeft(5));
+
+            if (cbBBper9.Checked)
+                rtbOut.AppendText(WalksPer9[num].ToString("n1").PadLeft(5));
+
+            if (cbSOper9.Checked)
+                rtbOut.AppendText(StrikeoutsPer9[num].ToString("n1").PadLeft(5));
+
             rtbOut.AppendText("\n");
         }
 
@@ -8931,6 +8967,10 @@ namespace OOD_Final_Project
             cbERAPlus.Visible = true;
             cbWPCT.Visible = true;
             cbWHIP.Visible = true;
+            cbHRper9.Visible = true;
+            cbHitsPer9.Visible = true;
+            cbBBper9.Visible = true;
+            cbSOper9.Visible = true;
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
@@ -9096,6 +9136,14 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText("  WPCT");
                 if (cbWHIP.Checked)
                     rtbLabels.AppendText("  WHIP");
+                if (cbHRper9.Checked)
+                    rtbLabels.AppendText(" HR/9");
+                if (cbHitsPer9.Checked)
+                    rtbLabels.AppendText("  H/9");
+                if (cbBBper9.Checked)
+                    rtbLabels.AppendText(" BB/9");
+                if (cbSOper9.Checked)
+                    rtbLabels.AppendText(" SO/9");
             }
         }
 

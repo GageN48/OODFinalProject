@@ -17,6 +17,8 @@ namespace OOD_Final_Project
         private double _L;
         private double _H;
         private double _BB;
+        private double _HR;
+        private double _K;
 
         private double _filler1;
         private double _filler2;
@@ -64,6 +66,18 @@ namespace OOD_Final_Project
             get { return _BB; }
             set { _BB = value; }
         }
+        public double HR
+        {
+            get { return _HR; }
+            set { _HR = value; }
+        }
+        public double K
+        {
+            get { return _K; }
+            set { _K = value; }
+        }
+
+
 
         public Pitchers(double ER, double IP)
         {
@@ -87,6 +101,45 @@ namespace OOD_Final_Project
             _IP = IP;
             _filler1 = filler1;
         }
+        public Pitchers(double HR, double IP, double filler1, double filler2, double filler3)
+        {
+            _HR = HR;
+            _IP = IP;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+        }
+        public Pitchers(double H, double IP, double filler1, double filler2, double filler3, double filler4)
+        {
+            _H = H;
+            _IP = IP;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+        }
+        public Pitchers(double BB, double IP, double filler1, double filler2, double filler3, double filler4, double filler5)
+        {
+            _BB = BB;
+            _IP = IP;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+        }
+        public Pitchers(double K, double IP, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6)
+        {
+            _K = K;
+            _IP = IP;
+            _filler1 = filler1;
+            _filler2 = filler2;
+            _filler3 = filler3;
+            _filler4 = filler4;
+            _filler5 = filler5;
+            _filler6 = filler6;
+        }
+
 
         public double CalculateERA()
         {
@@ -104,6 +157,21 @@ namespace OOD_Final_Project
         {
             return (BB + H) / IP;
         }
-
+        public double CalculateHRper9()
+        {
+            return (HR * 9) / IP;
+        }
+        public double CalculateHper9()
+        {
+            return (H * 9) / IP;
+        }
+        public double CalculateBBper9()
+        {
+            return (BB * 9) / IP;
+        }
+        public double CalculateKper9()
+        {
+            return (K * 9) / IP;
+        }
     }
 }
