@@ -150,7 +150,6 @@ namespace OOD_Final_Project
             _hits = hits;
             _atBats = atBats;
         }
-
         public Hitters(double hits, double atBats, double doubles, double triples, double homeRuns)
         {
             _hits = hits;
@@ -159,14 +158,12 @@ namespace OOD_Final_Project
             _triples = triples;
             _homeRuns = homeRuns;
         }
-
         public Hitters(double obp, double slg, double filler1)
         {
             _obp = obp;
             _slg = slg;
             _filler1 = filler1;
         }
-
         public Hitters(double hits, double doubles, double triples, double homeRuns)
         {
             _hits = hits;
@@ -174,7 +171,6 @@ namespace OOD_Final_Project
             _triples = triples;
             _homeRuns = homeRuns;
         }
-
         public Hitters(double hits, double atBats, double homeRuns, double sf, double k, double filler1)
         {
             _hits = hits;
@@ -184,7 +180,6 @@ namespace OOD_Final_Project
             _k = k;
             _filler1 = filler1;
         }
-
         public Hitters(double doubles, double triples, double homeRuns, double atBats, double filler1, double filler2, double filler3)
         {
             _doubles = doubles;
@@ -195,7 +190,6 @@ namespace OOD_Final_Project
             _filler2 = filler2;
             _filler3 = filler3;
         }
-
         public Hitters(double pa, double k, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6)
         {
             _pa = pa;
@@ -207,7 +201,6 @@ namespace OOD_Final_Project
             _filler5 = filler5;
             _filler6 = filler6;
         }
-
         public Hitters(double tb, double hits, double bb, double hbp, double ibb, double atBats, double filler1, double filler2, double filler3)
         {
             _tb = tb;
@@ -220,12 +213,10 @@ namespace OOD_Final_Project
             _filler2 = filler2;
             _filler3 = filler3;
         }
-
         public Hitters(double ops)
         {
             _ops = ops;
         }
-
         public Hitters(double bb, double hbp, double hits, double doubles, double triples, double homeRuns, double atBats, double ibb, double sf, double filler1)
         {
             _bb = bb;
@@ -239,7 +230,6 @@ namespace OOD_Final_Project
             _sf = sf ;
             _filler1 = filler1 ;
         }
-
         public Hitters(double wOBA, double pa, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7, double filler8, double filler9)
         {
             _wOBA = wOBA;
@@ -254,7 +244,6 @@ namespace OOD_Final_Project
             _filler8 = filler8;
             _filler9 = filler9;
         }
-
         public Hitters(double wRAA, double pa, double filler1, double filler2, double filler3, double filler4, double filler5, double filler6, double filler7, double filler8, double filler9, double filler10)
         {
             _wRAA = wRAA;
@@ -275,51 +264,42 @@ namespace OOD_Final_Project
         {
             return (hits / atBats);
         }
-
         public double CalculateSLG()
         {
             singles = hits - doubles - triples - homeRuns;
 
             return (singles + (doubles * 2) + (triples * 3) + (homeRuns * 4)) / atBats;
         }
-
         public double CalculateOPS()
         {
             return obp + slg;
         }
-
         public double CalculateTB()
         {
             singles = hits - doubles - triples - homeRuns;
             return (singles + (doubles * 2) + (triples * 3) + (homeRuns * 4));
         }
-
         public double CalculateBABIP()
         {
             return ((hits - homeRuns) / (atBats - k - homeRuns + sf));
         }
-
         public double CalculateISO()
         {
             return ((doubles + (triples * 2) + (homeRuns * 3))/(atBats));
         }
-
         public double CalculateOPSPlus()
         {
             return (ops / leagueOPS) * 100;
         }
-
         public double CalculatePASO()
         {
             return pa / k;
         }
-
         public double CalculateRC()
         {
             return (tb * (hits + bb + hbp + ibb) / (atBats + bb + hbp + ibb));
             //return (tb * (hits + bb) / (atBats + bb));
         }
-
         public double CalculateWOBA()
         {
             singles = hits - doubles - triples - homeRuns;
@@ -327,12 +307,10 @@ namespace OOD_Final_Project
             return (((NIBBFactor * bb) + (HBPFactor * hbp) + (singleFactor * singles) + (doubleFactor * doubles) + (tripleFactor * triples) + (homeRunFactor * homeRuns))
                 / (atBats + bb - ibb + sf + hbp));
         }
-
         public double CalculatewRAA()
         {
             return (((wOBA - leaguewOBA) / (wOBAScale)) * pa);
         }
-
         public double CalculatewRCPlus()
         {
            return (((wRAA / pa) + leagueRperPA) + (leagueRperPA - (parkFactor * leagueRperPA))) / (leagueWRC / leaguePA) * 100;

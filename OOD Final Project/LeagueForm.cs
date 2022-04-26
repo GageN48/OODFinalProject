@@ -11,7 +11,7 @@ using System.IO;
 
 namespace OOD_Final_Project
 {
-    public partial class Form1 : Form
+    public partial class LeagueForm : Form
     {
         string[] name = new string[0];
         string[] team = new string[0];
@@ -82,7 +82,7 @@ namespace OOD_Final_Project
 
         int num = 0;
 
-        public Form1()
+        public LeagueForm()
         {
             InitializeComponent();
         }
@@ -8939,77 +8939,156 @@ namespace OOD_Final_Project
 
         private void radHitters_CheckedChanged(object sender, EventArgs e)
         {
-            gbNLorAL.Visible = true;
-            gbBasicStats.Visible = true;
-            cbPA.Visible = true;
-            cbAB.Visible = true;
-            cbR.Visible = true;
-            cbH.Visible = true;
-            cb2B.Visible = true;
-            cb3B.Visible = true;
-            cbHR.Visible = true;
-            cbRBI.Visible = true;
-            cbSB.Visible = true;
-            cbCS.Visible = true;
-            cbBB.Visible = true;
-            cbSO.Visible = true;
-            cbAVG.Visible = true;
-            cbOBP.Visible = true;
-            cbSLG.Visible = true;
-            cbOPS.Visible = true;
-            gbAdvanced.Visible = true;
-            lbMLBTeams.Visible = true;
-            lbHitterPosition.Visible = true;
-            gbDivisions.Visible = true;
-            cbBABIP.Visible = true;
-            cbISO.Visible = true;
-            cbOPSPlus.Visible = true;
-            cbPASO.Visible = true;
-            cbRC.Visible = true;
-            cbwRCPlus.Visible = true;
-            cbwOBA.Visible = true;
-            cbwRAA.Visible = true;
-            cbTB.Visible = true;
-            cbHBP.Visible   = true;
-            cbIBB.Visible = true;
-            cbSF.Visible = true;
+            if (radHitters.Checked)
+            {
+                gbNLorAL.Visible = true;
+                gbBasicStats.Visible = true;
+                cbPA.Visible = true;
+                cbAB.Visible = true;
+                cbR.Visible = true;
+                cbH.Visible = true;
+                cb2B.Visible = true;
+                cb3B.Visible = true;
+                cbHR.Visible = true;
+                cbRBI.Visible = true;
+                cbSB.Visible = true;
+                cbCS.Visible = true;
+                cbBB.Visible = true;
+                cbSO.Visible = true;
+                cbAVG.Visible = true;
+                cbOBP.Visible = true;
+                cbSLG.Visible = true;
+                cbOPS.Visible = true;
+                gbAdvanced.Visible = true;
+                lbMLBTeams.Visible = true;
+                lbHitterPosition.Visible = true;
+                gbDivisions.Visible = true;
+                cbBABIP.Visible = true;
+                cbISO.Visible = true;
+                cbOPSPlus.Visible = true;
+                cbPASO.Visible = true;
+                cbRC.Visible = true;
+                cbwRCPlus.Visible = true;
+                cbwOBA.Visible = true;
+                cbwRAA.Visible = true;
+                cbTB.Visible = true;
+                cbHBP.Visible = true;
+                cbIBB.Visible = true;
+                cbSF.Visible = true;
+            }
+            else
+            {
+                gbNLorAL.Visible = false;
+                gbBasicStats.Visible = false;
+                cbPA.Visible = false;
+                cbAB.Visible = false;
+                cbR.Visible = false;
+                cbH.Visible = false;
+                cb2B.Visible = false;
+                cb3B.Visible = false;
+                cbHR.Visible = false;
+                cbRBI.Visible = false;
+                cbSB.Visible = false;
+                cbCS.Visible = false;
+                cbBB.Visible = false;
+                cbSO.Visible = false;
+                cbAVG.Visible = false;
+                cbOBP.Visible = false;
+                cbSLG.Visible = false;
+                cbOPS.Visible = false;
+                gbAdvanced.Visible = false;
+                lbMLBTeams.Visible = false;
+                lbHitterPosition.Visible = false;
+                gbDivisions.Visible = false;
+                cbBABIP.Visible = false;
+                cbISO.Visible = false;
+                cbOPSPlus.Visible = false;
+                cbPASO.Visible = false;
+                cbRC.Visible = false;
+                cbwRCPlus.Visible = false;
+                cbwOBA.Visible = false;
+                cbwRAA.Visible = false;
+                cbTB.Visible = false;
+                cbHBP.Visible = false;
+                cbIBB.Visible = false;
+                cbSF.Visible = false;
+            }
         }
 
         private void radPitchers_CheckedChanged(object sender, EventArgs e)
         {
-            gbNLorAL.Visible = true;
-            lbMLBTeams.Visible = true;
-            gbBasicStats.Visible = true;
-            cbWins.Visible = true;
-            cbLosses.Visible = true;
-            cbGames.Visible = true;
-            cbGS.Visible = true;
-            cbSV.Visible = true;
-            cbIP.Visible = true;
-            cbPitcherH.Visible = true;
-            cbTotalRuns.Visible = true;
-            cbER.Visible = true;
-            cbHRGivenUp.Visible = true;
-            cbPBB.Visible = true;
-            cbPIBB.Visible  = true;
-            cbPSO.Visible = true;
-            cbPHBP.Visible = true;
-            cbBF.Visible = true;
-            lbStaff.Visible = true;
-            gbDivisions.Visible = true;
-            gbAdvanced.Visible = true;
-            cbERA.Visible = true;
-            cbERAPlus.Visible = true;
-            cbWPCT.Visible = true;
-            cbWHIP.Visible = true;
-            cbHRper9.Visible = true;
-            cbHitsPer9.Visible = true;
-            cbBBper9.Visible = true;
-            cbSOper9.Visible = true;
-            cbSOBB.Visible = true;
-            cbBBRate.Visible = true;
-            cbSORate.Visible = true;
-            cbFIP.Visible = true;
+            if (radPitchers.Checked)
+            {
+                gbNLorAL.Visible = true;
+                lbMLBTeams.Visible = true;
+                gbBasicStats.Visible = true;
+                cbWins.Visible = true;
+                cbLosses.Visible = true;
+                cbGames.Visible = true;
+                cbGS.Visible = true;
+                cbSV.Visible = true;
+                cbIP.Visible = true;
+                cbPitcherH.Visible = true;
+                cbTotalRuns.Visible = true;
+                cbER.Visible = true;
+                cbHRGivenUp.Visible = true;
+                cbPBB.Visible = true;
+                cbPIBB.Visible = true;
+                cbPSO.Visible = true;
+                cbPHBP.Visible = true;
+                cbBF.Visible = true;
+                lbStaff.Visible = true;
+                gbDivisions.Visible = true;
+                gbAdvanced.Visible = true;
+                cbERA.Visible = true;
+                cbERAPlus.Visible = true;
+                cbWPCT.Visible = true;
+                cbWHIP.Visible = true;
+                cbHRper9.Visible = true;
+                cbHitsPer9.Visible = true;
+                cbBBper9.Visible = true;
+                cbSOper9.Visible = true;
+                cbSOBB.Visible = true;
+                cbBBRate.Visible = true;
+                cbSORate.Visible = true;
+                cbFIP.Visible = true;
+            }
+            else
+            {
+                gbNLorAL.Visible = false;
+                lbMLBTeams.Visible = false;
+                gbBasicStats.Visible = false;
+                cbWins.Visible = false;
+                cbLosses.Visible = false;
+                cbGames.Visible = false;
+                cbGS.Visible = false;
+                cbSV.Visible = false;
+                cbIP.Visible = false;
+                cbPitcherH.Visible = false;
+                cbTotalRuns.Visible = false;
+                cbER.Visible = false;
+                cbHRGivenUp.Visible = false;
+                cbPBB.Visible = false;
+                cbPIBB.Visible = false;
+                cbPSO.Visible = false;
+                cbPHBP.Visible = false;
+                cbBF.Visible = false;
+                lbStaff.Visible = false;
+                gbDivisions.Visible = false;
+                gbAdvanced.Visible = false;
+                cbERA.Visible = false;
+                cbERAPlus.Visible = false;
+                cbWPCT.Visible = false;
+                cbWHIP.Visible = false;
+                cbHRper9.Visible = false;
+                cbHitsPer9.Visible = false;
+                cbBBper9.Visible = false;
+                cbSOper9.Visible = false;
+                cbSOBB.Visible = false;
+                cbBBRate.Visible = false;
+                cbSORate.Visible = false;
+                cbFIP.Visible = false;
+            }
         }
 
         private void btnDictionary_Click(object sender, EventArgs e)
@@ -9191,23 +9270,6 @@ namespace OOD_Final_Project
                     rtbLabels.AppendText("    K%");
                 if (cbFIP.Checked)
                     rtbLabels.AppendText("  FIP");
-            }
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            string t = txtSearch.Text.ToUpper();
-
-            for (int i = 0; i <= t.Length-1; i++)
-            {
-                if(t == name[i])
-                {
-                    rtbOut.Clear();
-                    rtbLabels.Clear();
-                    rtbLabels.AppendText("Team Player              ");
-                    labelCheck();
-                    printHitters();
-                }
             }
         }
     }
