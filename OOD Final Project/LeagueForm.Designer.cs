@@ -34,14 +34,30 @@
             this.radWNBA = new System.Windows.Forms.RadioButton();
             this.radNBA = new System.Windows.Forms.RadioButton();
             this.radPitchers = new System.Windows.Forms.RadioButton();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnGo = new System.Windows.Forms.Button();
             this.gbNLorAL = new System.Windows.Forms.GroupBox();
+            this.radWestNBA = new System.Windows.Forms.RadioButton();
+            this.radEastNBA = new System.Windows.Forms.RadioButton();
             this.radNL = new System.Windows.Forms.RadioButton();
             this.radAL = new System.Windows.Forms.RadioButton();
             this.radMLB = new System.Windows.Forms.RadioButton();
             this.gbBasicStats = new System.Windows.Forms.GroupBox();
+            this.cbPoints = new System.Windows.Forms.CheckBox();
+            this.cbTO = new System.Windows.Forms.CheckBox();
+            this.cbSteals = new System.Windows.Forms.CheckBox();
+            this.cbBlocks = new System.Windows.Forms.CheckBox();
+            this.cbAssists = new System.Windows.Forms.CheckBox();
+            this.cbDB = new System.Windows.Forms.CheckBox();
+            this.cbOB = new System.Windows.Forms.CheckBox();
+            this.cbFTA = new System.Windows.Forms.CheckBox();
+            this.cbFTM = new System.Windows.Forms.CheckBox();
+            this.cb3PA = new System.Windows.Forms.CheckBox();
+            this.cb3PM = new System.Windows.Forms.CheckBox();
+            this.cbFGattempts = new System.Windows.Forms.CheckBox();
+            this.cbFGmakes = new System.Windows.Forms.CheckBox();
+            this.cbMinutes = new System.Windows.Forms.CheckBox();
+            this.cbGamesPlayed = new System.Windows.Forms.CheckBox();
             this.cbBF = new System.Windows.Forms.CheckBox();
             this.cbOPS = new System.Windows.Forms.CheckBox();
             this.cbPHBP = new System.Windows.Forms.CheckBox();
@@ -74,6 +90,20 @@
             this.cbAB = new System.Windows.Forms.CheckBox();
             this.cbPA = new System.Windows.Forms.CheckBox();
             this.gbAdvanced = new System.Windows.Forms.GroupBox();
+            this.cbREBPG = new System.Windows.Forms.CheckBox();
+            this.cbASTTO = new System.Windows.Forms.CheckBox();
+            this.cbBLKPG = new System.Windows.Forms.CheckBox();
+            this.cbASTSPG = new System.Windows.Forms.CheckBox();
+            this.cbTOPG = new System.Windows.Forms.CheckBox();
+            this.cbSTLPG = new System.Windows.Forms.CheckBox();
+            this.cbSHEFF = new System.Windows.Forms.CheckBox();
+            this.cbSCEFF = new System.Windows.Forms.CheckBox();
+            this.cbTS = new System.Windows.Forms.CheckBox();
+            this.cbTSA = new System.Windows.Forms.CheckBox();
+            this.cbFTP = new System.Windows.Forms.CheckBox();
+            this.cbTPP = new System.Windows.Forms.CheckBox();
+            this.cbFGP = new System.Windows.Forms.CheckBox();
+            this.cbMPG = new System.Windows.Forms.CheckBox();
             this.cbFIP = new System.Windows.Forms.CheckBox();
             this.cbSORate = new System.Windows.Forms.CheckBox();
             this.cbBBRate = new System.Windows.Forms.CheckBox();
@@ -102,12 +132,22 @@
             this.lbHitterPosition = new System.Windows.Forms.ListBox();
             this.btnDictionary = new System.Windows.Forms.Button();
             this.gbDivisions = new System.Windows.Forms.GroupBox();
+            this.radSouthwest = new System.Windows.Forms.RadioButton();
+            this.radPacific = new System.Windows.Forms.RadioButton();
+            this.radSoutheast = new System.Windows.Forms.RadioButton();
+            this.radNorthwest = new System.Windows.Forms.RadioButton();
+            this.radAtlantic = new System.Windows.Forms.RadioButton();
+            this.radCentralNBA = new System.Windows.Forms.RadioButton();
             this.radAllDivisions = new System.Windows.Forms.RadioButton();
             this.radWest = new System.Windows.Forms.RadioButton();
             this.radCentral = new System.Windows.Forms.RadioButton();
             this.radEast = new System.Windows.Forms.RadioButton();
             this.rtbLabels = new System.Windows.Forms.RichTextBox();
             this.lbStaff = new System.Windows.Forms.ListBox();
+            this.lbNBATeams = new System.Windows.Forms.ListBox();
+            this.lbNBApositions = new System.Windows.Forms.ListBox();
+            this.lbWNBATeams = new System.Windows.Forms.ListBox();
+            this.lbWNBApositions = new System.Windows.Forms.ListBox();
             this.gbLeague.SuspendLayout();
             this.gbNLorAL.SuspendLayout();
             this.gbBasicStats.SuspendLayout();
@@ -119,11 +159,10 @@
             // 
             this.rtbOut.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rtbOut.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbOut.Location = new System.Drawing.Point(0, 445);
-            this.rtbOut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rtbOut.Location = new System.Drawing.Point(0, 336);
             this.rtbOut.Name = "rtbOut";
             this.rtbOut.ReadOnly = true;
-            this.rtbOut.Size = new System.Drawing.Size(1557, 467);
+            this.rtbOut.Size = new System.Drawing.Size(1384, 394);
             this.rtbOut.TabIndex = 0;
             this.rtbOut.Text = "";
             // 
@@ -131,8 +170,7 @@
             // 
             this.radHitters.AutoSize = true;
             this.radHitters.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radHitters.Location = new System.Drawing.Point(7, 36);
-            this.radHitters.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radHitters.Location = new System.Drawing.Point(6, 29);
             this.radHitters.Name = "radHitters";
             this.radHitters.Size = new System.Drawing.Size(148, 29);
             this.radHitters.TabIndex = 1;
@@ -147,11 +185,9 @@
             this.gbLeague.Controls.Add(this.radPitchers);
             this.gbLeague.Controls.Add(this.radHitters);
             this.gbLeague.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbLeague.Location = new System.Drawing.Point(15, 16);
-            this.gbLeague.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbLeague.Location = new System.Drawing.Point(13, 13);
             this.gbLeague.Name = "gbLeague";
-            this.gbLeague.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbLeague.Size = new System.Drawing.Size(215, 214);
+            this.gbLeague.Size = new System.Drawing.Size(191, 171);
             this.gbLeague.TabIndex = 2;
             this.gbLeague.TabStop = false;
             this.gbLeague.Text = "League";
@@ -160,32 +196,31 @@
             // 
             this.radWNBA.AutoSize = true;
             this.radWNBA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radWNBA.Location = new System.Drawing.Point(7, 168);
-            this.radWNBA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radWNBA.Location = new System.Drawing.Point(6, 134);
             this.radWNBA.Name = "radWNBA";
             this.radWNBA.Size = new System.Drawing.Size(94, 29);
             this.radWNBA.TabIndex = 4;
             this.radWNBA.Text = "WNBA";
             this.radWNBA.UseVisualStyleBackColor = true;
+            this.radWNBA.CheckedChanged += new System.EventHandler(this.radWNBA_CheckedChanged);
             // 
             // radNBA
             // 
             this.radNBA.AutoSize = true;
             this.radNBA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radNBA.Location = new System.Drawing.Point(7, 124);
-            this.radNBA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radNBA.Location = new System.Drawing.Point(6, 99);
             this.radNBA.Name = "radNBA";
             this.radNBA.Size = new System.Drawing.Size(74, 29);
             this.radNBA.TabIndex = 3;
             this.radNBA.Text = "NBA";
             this.radNBA.UseVisualStyleBackColor = true;
+            this.radNBA.CheckedChanged += new System.EventHandler(this.radNBA_CheckedChanged);
             // 
             // radPitchers
             // 
             this.radPitchers.AutoSize = true;
             this.radPitchers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.radPitchers.Location = new System.Drawing.Point(7, 80);
-            this.radPitchers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radPitchers.Location = new System.Drawing.Point(6, 64);
             this.radPitchers.Name = "radPitchers";
             this.radPitchers.Size = new System.Drawing.Size(163, 29);
             this.radPitchers.TabIndex = 2;
@@ -193,23 +228,12 @@
             this.radPitchers.UseVisualStyleBackColor = true;
             this.radPitchers.CheckedChanged += new System.EventHandler(this.radPitchers_CheckedChanged);
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtSearch.Location = new System.Drawing.Point(15, 298);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(1270, 30);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnExit.Location = new System.Drawing.Point(1415, 294);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnExit.Location = new System.Drawing.Point(1258, 235);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(110, 39);
+            this.btnExit.Size = new System.Drawing.Size(98, 31);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -218,35 +242,60 @@
             // btnGo
             // 
             this.btnGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnGo.Location = new System.Drawing.Point(1291, 294);
-            this.btnGo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnGo.Location = new System.Drawing.Point(1147, 235);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(118, 39);
+            this.btnGo.Size = new System.Drawing.Size(105, 31);
             this.btnGo.TabIndex = 6;
-            this.btnGo.Text = "&Go";
+            this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // gbNLorAL
             // 
+            this.gbNLorAL.Controls.Add(this.radWestNBA);
+            this.gbNLorAL.Controls.Add(this.radEastNBA);
             this.gbNLorAL.Controls.Add(this.radNL);
             this.gbNLorAL.Controls.Add(this.radAL);
             this.gbNLorAL.Controls.Add(this.radMLB);
             this.gbNLorAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbNLorAL.Location = new System.Drawing.Point(235, 16);
-            this.gbNLorAL.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbNLorAL.Location = new System.Drawing.Point(209, 13);
             this.gbNLorAL.Name = "gbNLorAL";
-            this.gbNLorAL.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbNLorAL.Size = new System.Drawing.Size(214, 100);
+            this.gbNLorAL.Size = new System.Drawing.Size(190, 80);
             this.gbNLorAL.TabIndex = 7;
             this.gbNLorAL.TabStop = false;
             this.gbNLorAL.Text = "Leagues";
             this.gbNLorAL.Visible = false;
             // 
+            // radWestNBA
+            // 
+            this.radWestNBA.AutoSize = true;
+            this.radWestNBA.Location = new System.Drawing.Point(84, 51);
+            this.radWestNBA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radWestNBA.Name = "radWestNBA";
+            this.radWestNBA.Size = new System.Drawing.Size(79, 29);
+            this.radWestNBA.TabIndex = 4;
+            this.radWestNBA.TabStop = true;
+            this.radWestNBA.Text = "West";
+            this.radWestNBA.UseVisualStyleBackColor = true;
+            this.radWestNBA.Visible = false;
+            // 
+            // radEastNBA
+            // 
+            this.radEastNBA.AutoSize = true;
+            this.radEastNBA.Location = new System.Drawing.Point(6, 51);
+            this.radEastNBA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radEastNBA.Name = "radEastNBA";
+            this.radEastNBA.Size = new System.Drawing.Size(72, 29);
+            this.radEastNBA.TabIndex = 3;
+            this.radEastNBA.TabStop = true;
+            this.radEastNBA.Text = "East";
+            this.radEastNBA.UseVisualStyleBackColor = true;
+            this.radEastNBA.Visible = false;
+            // 
             // radNL
             // 
             this.radNL.AutoSize = true;
-            this.radNL.Location = new System.Drawing.Point(71, 64);
+            this.radNL.Location = new System.Drawing.Point(63, 51);
             this.radNL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radNL.Name = "radNL";
             this.radNL.Size = new System.Drawing.Size(58, 29);
@@ -258,7 +307,7 @@
             // radAL
             // 
             this.radAL.AutoSize = true;
-            this.radAL.Location = new System.Drawing.Point(7, 65);
+            this.radAL.Location = new System.Drawing.Point(6, 52);
             this.radAL.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radAL.Name = "radAL";
             this.radAL.Size = new System.Drawing.Size(58, 29);
@@ -271,7 +320,7 @@
             // 
             this.radMLB.AutoSize = true;
             this.radMLB.Checked = true;
-            this.radMLB.Location = new System.Drawing.Point(7, 30);
+            this.radMLB.Location = new System.Drawing.Point(6, 24);
             this.radMLB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radMLB.Name = "radMLB";
             this.radMLB.Size = new System.Drawing.Size(136, 29);
@@ -282,6 +331,21 @@
             // 
             // gbBasicStats
             // 
+            this.gbBasicStats.Controls.Add(this.cbPoints);
+            this.gbBasicStats.Controls.Add(this.cbTO);
+            this.gbBasicStats.Controls.Add(this.cbSteals);
+            this.gbBasicStats.Controls.Add(this.cbBlocks);
+            this.gbBasicStats.Controls.Add(this.cbAssists);
+            this.gbBasicStats.Controls.Add(this.cbDB);
+            this.gbBasicStats.Controls.Add(this.cbOB);
+            this.gbBasicStats.Controls.Add(this.cbFTA);
+            this.gbBasicStats.Controls.Add(this.cbFTM);
+            this.gbBasicStats.Controls.Add(this.cb3PA);
+            this.gbBasicStats.Controls.Add(this.cb3PM);
+            this.gbBasicStats.Controls.Add(this.cbFGattempts);
+            this.gbBasicStats.Controls.Add(this.cbFGmakes);
+            this.gbBasicStats.Controls.Add(this.cbMinutes);
+            this.gbBasicStats.Controls.Add(this.cbGamesPlayed);
             this.gbBasicStats.Controls.Add(this.cbBF);
             this.gbBasicStats.Controls.Add(this.cbOPS);
             this.gbBasicStats.Controls.Add(this.cbPHBP);
@@ -314,21 +378,198 @@
             this.gbBasicStats.Controls.Add(this.cbAB);
             this.gbBasicStats.Controls.Add(this.cbPA);
             this.gbBasicStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbBasicStats.Location = new System.Drawing.Point(455, 16);
-            this.gbBasicStats.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbBasicStats.Location = new System.Drawing.Point(404, 13);
             this.gbBasicStats.Name = "gbBasicStats";
-            this.gbBasicStats.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbBasicStats.Size = new System.Drawing.Size(353, 270);
+            this.gbBasicStats.Size = new System.Drawing.Size(314, 216);
             this.gbBasicStats.TabIndex = 8;
             this.gbBasicStats.TabStop = false;
             this.gbBasicStats.Text = "Basic Statistics";
             this.gbBasicStats.Visible = false;
             // 
+            // cbPoints
+            // 
+            this.cbPoints.AutoSize = true;
+            this.cbPoints.BackColor = System.Drawing.SystemColors.Control;
+            this.cbPoints.Location = new System.Drawing.Point(228, 99);
+            this.cbPoints.Name = "cbPoints";
+            this.cbPoints.Size = new System.Drawing.Size(74, 29);
+            this.cbPoints.TabIndex = 30;
+            this.cbPoints.Text = "PTS";
+            this.cbPoints.UseVisualStyleBackColor = false;
+            this.cbPoints.Visible = false;
+            // 
+            // cbTO
+            // 
+            this.cbTO.AutoSize = true;
+            this.cbTO.BackColor = System.Drawing.SystemColors.Control;
+            this.cbTO.Location = new System.Drawing.Point(228, 65);
+            this.cbTO.Name = "cbTO";
+            this.cbTO.Size = new System.Drawing.Size(63, 29);
+            this.cbTO.TabIndex = 29;
+            this.cbTO.Text = "TO";
+            this.cbTO.UseVisualStyleBackColor = false;
+            this.cbTO.Visible = false;
+            // 
+            // cbSteals
+            // 
+            this.cbSteals.AutoSize = true;
+            this.cbSteals.BackColor = System.Drawing.SystemColors.Control;
+            this.cbSteals.Location = new System.Drawing.Point(228, 30);
+            this.cbSteals.Name = "cbSteals";
+            this.cbSteals.Size = new System.Drawing.Size(72, 29);
+            this.cbSteals.TabIndex = 28;
+            this.cbSteals.Text = "STL";
+            this.cbSteals.UseVisualStyleBackColor = false;
+            this.cbSteals.Visible = false;
+            // 
+            // cbBlocks
+            // 
+            this.cbBlocks.AutoSize = true;
+            this.cbBlocks.BackColor = System.Drawing.SystemColors.Control;
+            this.cbBlocks.Location = new System.Drawing.Point(154, 134);
+            this.cbBlocks.Name = "cbBlocks";
+            this.cbBlocks.Size = new System.Drawing.Size(72, 29);
+            this.cbBlocks.TabIndex = 27;
+            this.cbBlocks.Text = "BLK";
+            this.cbBlocks.UseVisualStyleBackColor = false;
+            this.cbBlocks.Visible = false;
+            // 
+            // cbAssists
+            // 
+            this.cbAssists.AutoSize = true;
+            this.cbAssists.BackColor = System.Drawing.SystemColors.Control;
+            this.cbAssists.Location = new System.Drawing.Point(154, 99);
+            this.cbAssists.Name = "cbAssists";
+            this.cbAssists.Size = new System.Drawing.Size(75, 29);
+            this.cbAssists.TabIndex = 26;
+            this.cbAssists.Text = "AST";
+            this.cbAssists.UseVisualStyleBackColor = false;
+            this.cbAssists.Visible = false;
+            // 
+            // cbDB
+            // 
+            this.cbDB.AutoSize = true;
+            this.cbDB.BackColor = System.Drawing.SystemColors.Control;
+            this.cbDB.Location = new System.Drawing.Point(154, 64);
+            this.cbDB.Name = "cbDB";
+            this.cbDB.Size = new System.Drawing.Size(61, 29);
+            this.cbDB.TabIndex = 25;
+            this.cbDB.Text = "DR";
+            this.cbDB.UseVisualStyleBackColor = false;
+            this.cbDB.Visible = false;
+            // 
+            // cbOB
+            // 
+            this.cbOB.AutoSize = true;
+            this.cbOB.BackColor = System.Drawing.SystemColors.Control;
+            this.cbOB.Location = new System.Drawing.Point(154, 30);
+            this.cbOB.Name = "cbOB";
+            this.cbOB.Size = new System.Drawing.Size(63, 29);
+            this.cbOB.TabIndex = 24;
+            this.cbOB.Text = "OR";
+            this.cbOB.UseVisualStyleBackColor = false;
+            this.cbOB.Visible = false;
+            // 
+            // cbFTA
+            // 
+            this.cbFTA.AutoSize = true;
+            this.cbFTA.BackColor = System.Drawing.SystemColors.Control;
+            this.cbFTA.Location = new System.Drawing.Point(80, 135);
+            this.cbFTA.Name = "cbFTA";
+            this.cbFTA.Size = new System.Drawing.Size(73, 29);
+            this.cbFTA.TabIndex = 23;
+            this.cbFTA.Text = "FTA";
+            this.cbFTA.UseVisualStyleBackColor = false;
+            this.cbFTA.Visible = false;
+            // 
+            // cbFTM
+            // 
+            this.cbFTM.AutoSize = true;
+            this.cbFTM.BackColor = System.Drawing.SystemColors.Control;
+            this.cbFTM.Location = new System.Drawing.Point(80, 99);
+            this.cbFTM.Name = "cbFTM";
+            this.cbFTM.Size = new System.Drawing.Size(76, 29);
+            this.cbFTM.TabIndex = 22;
+            this.cbFTM.Text = "FTM";
+            this.cbFTM.UseVisualStyleBackColor = false;
+            this.cbFTM.Visible = false;
+            // 
+            // cb3PA
+            // 
+            this.cb3PA.AutoSize = true;
+            this.cb3PA.BackColor = System.Drawing.SystemColors.Control;
+            this.cb3PA.Location = new System.Drawing.Point(80, 64);
+            this.cb3PA.Name = "cb3PA";
+            this.cb3PA.Size = new System.Drawing.Size(72, 29);
+            this.cb3PA.TabIndex = 21;
+            this.cb3PA.Text = "3PA";
+            this.cb3PA.UseVisualStyleBackColor = false;
+            this.cb3PA.Visible = false;
+            // 
+            // cb3PM
+            // 
+            this.cb3PM.AutoSize = true;
+            this.cb3PM.BackColor = System.Drawing.SystemColors.Control;
+            this.cb3PM.Location = new System.Drawing.Point(80, 30);
+            this.cb3PM.Name = "cb3PM";
+            this.cb3PM.Size = new System.Drawing.Size(75, 29);
+            this.cb3PM.TabIndex = 20;
+            this.cb3PM.Text = "3PM";
+            this.cb3PM.UseVisualStyleBackColor = false;
+            this.cb3PM.Visible = false;
+            // 
+            // cbFGattempts
+            // 
+            this.cbFGattempts.AutoSize = true;
+            this.cbFGattempts.BackColor = System.Drawing.SystemColors.Control;
+            this.cbFGattempts.Location = new System.Drawing.Point(6, 134);
+            this.cbFGattempts.Name = "cbFGattempts";
+            this.cbFGattempts.Size = new System.Drawing.Size(75, 29);
+            this.cbFGattempts.TabIndex = 19;
+            this.cbFGattempts.Text = "FGA";
+            this.cbFGattempts.UseVisualStyleBackColor = false;
+            this.cbFGattempts.Visible = false;
+            // 
+            // cbFGmakes
+            // 
+            this.cbFGmakes.AutoSize = true;
+            this.cbFGmakes.BackColor = System.Drawing.SystemColors.Control;
+            this.cbFGmakes.Location = new System.Drawing.Point(6, 99);
+            this.cbFGmakes.Name = "cbFGmakes";
+            this.cbFGmakes.Size = new System.Drawing.Size(78, 29);
+            this.cbFGmakes.TabIndex = 18;
+            this.cbFGmakes.Text = "FGM";
+            this.cbFGmakes.UseVisualStyleBackColor = false;
+            this.cbFGmakes.Visible = false;
+            // 
+            // cbMinutes
+            // 
+            this.cbMinutes.AutoSize = true;
+            this.cbMinutes.BackColor = System.Drawing.SystemColors.Control;
+            this.cbMinutes.Location = new System.Drawing.Point(6, 64);
+            this.cbMinutes.Name = "cbMinutes";
+            this.cbMinutes.Size = new System.Drawing.Size(70, 29);
+            this.cbMinutes.TabIndex = 17;
+            this.cbMinutes.Text = "MIN";
+            this.cbMinutes.UseVisualStyleBackColor = false;
+            this.cbMinutes.Visible = false;
+            // 
+            // cbGamesPlayed
+            // 
+            this.cbGamesPlayed.AutoSize = true;
+            this.cbGamesPlayed.BackColor = System.Drawing.SystemColors.Control;
+            this.cbGamesPlayed.Location = new System.Drawing.Point(6, 30);
+            this.cbGamesPlayed.Name = "cbGamesPlayed";
+            this.cbGamesPlayed.Size = new System.Drawing.Size(62, 29);
+            this.cbGamesPlayed.TabIndex = 16;
+            this.cbGamesPlayed.Text = "GP";
+            this.cbGamesPlayed.UseVisualStyleBackColor = false;
+            this.cbGamesPlayed.Visible = false;
+            // 
             // cbBF
             // 
             this.cbBF.AutoSize = true;
-            this.cbBF.Location = new System.Drawing.Point(245, 125);
-            this.cbBF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBF.Location = new System.Drawing.Point(218, 100);
             this.cbBF.Name = "cbBF";
             this.cbBF.Size = new System.Drawing.Size(59, 29);
             this.cbBF.TabIndex = 14;
@@ -339,8 +580,7 @@
             // cbOPS
             // 
             this.cbOPS.AutoSize = true;
-            this.cbOPS.Location = new System.Drawing.Point(245, 168);
-            this.cbOPS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbOPS.Location = new System.Drawing.Point(218, 134);
             this.cbOPS.Name = "cbOPS";
             this.cbOPS.Size = new System.Drawing.Size(77, 29);
             this.cbOPS.TabIndex = 15;
@@ -351,8 +591,7 @@
             // cbPHBP
             // 
             this.cbPHBP.AutoSize = true;
-            this.cbPHBP.Location = new System.Drawing.Point(245, 81);
-            this.cbPHBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPHBP.Location = new System.Drawing.Point(218, 65);
             this.cbPHBP.Name = "cbPHBP";
             this.cbPHBP.Size = new System.Drawing.Size(74, 29);
             this.cbPHBP.TabIndex = 13;
@@ -363,8 +602,7 @@
             // cbSLG
             // 
             this.cbSLG.AutoSize = true;
-            this.cbSLG.Location = new System.Drawing.Point(245, 125);
-            this.cbSLG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSLG.Location = new System.Drawing.Point(218, 100);
             this.cbSLG.Name = "cbSLG";
             this.cbSLG.Size = new System.Drawing.Size(74, 29);
             this.cbSLG.TabIndex = 14;
@@ -375,8 +613,7 @@
             // cbPSO
             // 
             this.cbPSO.AutoSize = true;
-            this.cbPSO.Location = new System.Drawing.Point(245, 38);
-            this.cbPSO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPSO.Location = new System.Drawing.Point(218, 30);
             this.cbPSO.Name = "cbPSO";
             this.cbPSO.Size = new System.Drawing.Size(64, 29);
             this.cbPSO.TabIndex = 12;
@@ -387,8 +624,7 @@
             // cbOBP
             // 
             this.cbOBP.AutoSize = true;
-            this.cbOBP.Location = new System.Drawing.Point(245, 81);
-            this.cbOBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbOBP.Location = new System.Drawing.Point(218, 65);
             this.cbOBP.Name = "cbOBP";
             this.cbOBP.Size = new System.Drawing.Size(76, 29);
             this.cbOBP.TabIndex = 13;
@@ -399,8 +635,7 @@
             // cbPIBB
             // 
             this.cbPIBB.AutoSize = true;
-            this.cbPIBB.Location = new System.Drawing.Point(166, 168);
-            this.cbPIBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPIBB.Location = new System.Drawing.Point(148, 134);
             this.cbPIBB.Name = "cbPIBB";
             this.cbPIBB.Size = new System.Drawing.Size(65, 29);
             this.cbPIBB.TabIndex = 11;
@@ -411,8 +646,7 @@
             // cbAVG
             // 
             this.cbAVG.AutoSize = true;
-            this.cbAVG.Location = new System.Drawing.Point(245, 38);
-            this.cbAVG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbAVG.Location = new System.Drawing.Point(218, 30);
             this.cbAVG.Name = "cbAVG";
             this.cbAVG.Size = new System.Drawing.Size(77, 29);
             this.cbAVG.TabIndex = 12;
@@ -423,8 +657,7 @@
             // cbPBB
             // 
             this.cbPBB.AutoSize = true;
-            this.cbPBB.Location = new System.Drawing.Point(166, 125);
-            this.cbPBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPBB.Location = new System.Drawing.Point(148, 100);
             this.cbPBB.Name = "cbPBB";
             this.cbPBB.Size = new System.Drawing.Size(60, 29);
             this.cbPBB.TabIndex = 10;
@@ -435,8 +668,7 @@
             // cbSO
             // 
             this.cbSO.AutoSize = true;
-            this.cbSO.Location = new System.Drawing.Point(166, 168);
-            this.cbSO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSO.Location = new System.Drawing.Point(148, 134);
             this.cbSO.Name = "cbSO";
             this.cbSO.Size = new System.Drawing.Size(64, 29);
             this.cbSO.TabIndex = 11;
@@ -447,8 +679,7 @@
             // cbHRGivenUp
             // 
             this.cbHRGivenUp.AutoSize = true;
-            this.cbHRGivenUp.Location = new System.Drawing.Point(165, 80);
-            this.cbHRGivenUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHRGivenUp.Location = new System.Drawing.Point(147, 64);
             this.cbHRGivenUp.Name = "cbHRGivenUp";
             this.cbHRGivenUp.Size = new System.Drawing.Size(61, 29);
             this.cbHRGivenUp.TabIndex = 9;
@@ -459,8 +690,7 @@
             // cbBB
             // 
             this.cbBB.AutoSize = true;
-            this.cbBB.Location = new System.Drawing.Point(166, 125);
-            this.cbBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBB.Location = new System.Drawing.Point(148, 100);
             this.cbBB.Name = "cbBB";
             this.cbBB.Size = new System.Drawing.Size(60, 29);
             this.cbBB.TabIndex = 10;
@@ -471,8 +701,7 @@
             // cbER
             // 
             this.cbER.AutoSize = true;
-            this.cbER.Location = new System.Drawing.Point(166, 38);
-            this.cbER.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbER.Location = new System.Drawing.Point(148, 30);
             this.cbER.Name = "cbER";
             this.cbER.Size = new System.Drawing.Size(60, 29);
             this.cbER.TabIndex = 8;
@@ -483,8 +712,7 @@
             // cbCS
             // 
             this.cbCS.AutoSize = true;
-            this.cbCS.Location = new System.Drawing.Point(166, 80);
-            this.cbCS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbCS.Location = new System.Drawing.Point(148, 64);
             this.cbCS.Name = "cbCS";
             this.cbCS.Size = new System.Drawing.Size(63, 29);
             this.cbCS.TabIndex = 9;
@@ -495,8 +723,7 @@
             // cbTotalRuns
             // 
             this.cbTotalRuns.AutoSize = true;
-            this.cbTotalRuns.Location = new System.Drawing.Point(87, 168);
-            this.cbTotalRuns.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTotalRuns.Location = new System.Drawing.Point(77, 134);
             this.cbTotalRuns.Name = "cbTotalRuns";
             this.cbTotalRuns.Size = new System.Drawing.Size(47, 29);
             this.cbTotalRuns.TabIndex = 7;
@@ -507,8 +734,7 @@
             // cbSB
             // 
             this.cbSB.AutoSize = true;
-            this.cbSB.Location = new System.Drawing.Point(166, 37);
-            this.cbSB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSB.Location = new System.Drawing.Point(148, 30);
             this.cbSB.Name = "cbSB";
             this.cbSB.Size = new System.Drawing.Size(61, 29);
             this.cbSB.TabIndex = 8;
@@ -519,8 +745,7 @@
             // cbPitcherH
             // 
             this.cbPitcherH.AutoSize = true;
-            this.cbPitcherH.Location = new System.Drawing.Point(87, 125);
-            this.cbPitcherH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPitcherH.Location = new System.Drawing.Point(77, 100);
             this.cbPitcherH.Name = "cbPitcherH";
             this.cbPitcherH.Size = new System.Drawing.Size(48, 29);
             this.cbPitcherH.TabIndex = 6;
@@ -531,8 +756,7 @@
             // cbRBI
             // 
             this.cbRBI.AutoSize = true;
-            this.cbRBI.Location = new System.Drawing.Point(82, 168);
-            this.cbRBI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbRBI.Location = new System.Drawing.Point(73, 134);
             this.cbRBI.Name = "cbRBI";
             this.cbRBI.Size = new System.Drawing.Size(65, 29);
             this.cbRBI.TabIndex = 7;
@@ -543,8 +767,7 @@
             // cbIP
             // 
             this.cbIP.AutoSize = true;
-            this.cbIP.Location = new System.Drawing.Point(87, 80);
-            this.cbIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbIP.Location = new System.Drawing.Point(77, 64);
             this.cbIP.Name = "cbIP";
             this.cbIP.Size = new System.Drawing.Size(52, 29);
             this.cbIP.TabIndex = 5;
@@ -555,8 +778,7 @@
             // cbHR
             // 
             this.cbHR.AutoSize = true;
-            this.cbHR.Location = new System.Drawing.Point(82, 125);
-            this.cbHR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHR.Location = new System.Drawing.Point(73, 100);
             this.cbHR.Name = "cbHR";
             this.cbHR.Size = new System.Drawing.Size(61, 29);
             this.cbHR.TabIndex = 6;
@@ -567,8 +789,7 @@
             // cbSV
             // 
             this.cbSV.AutoSize = true;
-            this.cbSV.Location = new System.Drawing.Point(87, 38);
-            this.cbSV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSV.Location = new System.Drawing.Point(77, 30);
             this.cbSV.Name = "cbSV";
             this.cbSV.Size = new System.Drawing.Size(62, 29);
             this.cbSV.TabIndex = 4;
@@ -579,8 +800,7 @@
             // cb3B
             // 
             this.cb3B.AutoSize = true;
-            this.cb3B.Location = new System.Drawing.Point(82, 80);
-            this.cb3B.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cb3B.Location = new System.Drawing.Point(73, 64);
             this.cb3B.Name = "cb3B";
             this.cb3B.Size = new System.Drawing.Size(58, 29);
             this.cb3B.TabIndex = 5;
@@ -591,8 +811,7 @@
             // cbGS
             // 
             this.cbGS.AutoSize = true;
-            this.cbGS.Location = new System.Drawing.Point(8, 168);
-            this.cbGS.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbGS.Location = new System.Drawing.Point(7, 134);
             this.cbGS.Name = "cbGS";
             this.cbGS.Size = new System.Drawing.Size(63, 29);
             this.cbGS.TabIndex = 3;
@@ -603,8 +822,7 @@
             // cb2B
             // 
             this.cb2B.AutoSize = true;
-            this.cb2B.Location = new System.Drawing.Point(82, 38);
-            this.cb2B.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cb2B.Location = new System.Drawing.Point(73, 30);
             this.cb2B.Name = "cb2B";
             this.cb2B.Size = new System.Drawing.Size(58, 29);
             this.cb2B.TabIndex = 4;
@@ -615,8 +833,7 @@
             // cbGames
             // 
             this.cbGames.AutoSize = true;
-            this.cbGames.Location = new System.Drawing.Point(8, 125);
-            this.cbGames.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbGames.Location = new System.Drawing.Point(7, 100);
             this.cbGames.Name = "cbGames";
             this.cbGames.Size = new System.Drawing.Size(49, 29);
             this.cbGames.TabIndex = 2;
@@ -627,8 +844,7 @@
             // cbH
             // 
             this.cbH.AutoSize = true;
-            this.cbH.Location = new System.Drawing.Point(8, 169);
-            this.cbH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbH.Location = new System.Drawing.Point(7, 135);
             this.cbH.Name = "cbH";
             this.cbH.Size = new System.Drawing.Size(48, 29);
             this.cbH.TabIndex = 3;
@@ -639,8 +855,7 @@
             // cbLosses
             // 
             this.cbLosses.AutoSize = true;
-            this.cbLosses.Location = new System.Drawing.Point(8, 80);
-            this.cbLosses.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbLosses.Location = new System.Drawing.Point(7, 64);
             this.cbLosses.Name = "cbLosses";
             this.cbLosses.Size = new System.Drawing.Size(45, 29);
             this.cbLosses.TabIndex = 1;
@@ -651,8 +866,7 @@
             // cbR
             // 
             this.cbR.AutoSize = true;
-            this.cbR.Location = new System.Drawing.Point(8, 125);
-            this.cbR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbR.Location = new System.Drawing.Point(7, 100);
             this.cbR.Name = "cbR";
             this.cbR.Size = new System.Drawing.Size(47, 29);
             this.cbR.TabIndex = 2;
@@ -664,8 +878,7 @@
             // 
             this.cbWins.AutoSize = true;
             this.cbWins.BackColor = System.Drawing.SystemColors.Control;
-            this.cbWins.Location = new System.Drawing.Point(8, 38);
-            this.cbWins.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbWins.Location = new System.Drawing.Point(7, 30);
             this.cbWins.Name = "cbWins";
             this.cbWins.Size = new System.Drawing.Size(54, 29);
             this.cbWins.TabIndex = 0;
@@ -676,8 +889,7 @@
             // cbAB
             // 
             this.cbAB.AutoSize = true;
-            this.cbAB.Location = new System.Drawing.Point(8, 80);
-            this.cbAB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbAB.Location = new System.Drawing.Point(7, 64);
             this.cbAB.Name = "cbAB";
             this.cbAB.Size = new System.Drawing.Size(61, 29);
             this.cbAB.TabIndex = 1;
@@ -689,8 +901,7 @@
             // 
             this.cbPA.AutoSize = true;
             this.cbPA.BackColor = System.Drawing.SystemColors.Control;
-            this.cbPA.Location = new System.Drawing.Point(8, 38);
-            this.cbPA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPA.Location = new System.Drawing.Point(7, 30);
             this.cbPA.Name = "cbPA";
             this.cbPA.Size = new System.Drawing.Size(61, 29);
             this.cbPA.TabIndex = 0;
@@ -700,6 +911,20 @@
             // 
             // gbAdvanced
             // 
+            this.gbAdvanced.Controls.Add(this.cbREBPG);
+            this.gbAdvanced.Controls.Add(this.cbASTTO);
+            this.gbAdvanced.Controls.Add(this.cbBLKPG);
+            this.gbAdvanced.Controls.Add(this.cbASTSPG);
+            this.gbAdvanced.Controls.Add(this.cbTOPG);
+            this.gbAdvanced.Controls.Add(this.cbSTLPG);
+            this.gbAdvanced.Controls.Add(this.cbSHEFF);
+            this.gbAdvanced.Controls.Add(this.cbSCEFF);
+            this.gbAdvanced.Controls.Add(this.cbTS);
+            this.gbAdvanced.Controls.Add(this.cbTSA);
+            this.gbAdvanced.Controls.Add(this.cbFTP);
+            this.gbAdvanced.Controls.Add(this.cbTPP);
+            this.gbAdvanced.Controls.Add(this.cbFGP);
+            this.gbAdvanced.Controls.Add(this.cbMPG);
             this.gbAdvanced.Controls.Add(this.cbFIP);
             this.gbAdvanced.Controls.Add(this.cbSORate);
             this.gbAdvanced.Controls.Add(this.cbBBRate);
@@ -725,21 +950,172 @@
             this.gbAdvanced.Controls.Add(this.cbISO);
             this.gbAdvanced.Controls.Add(this.cbBABIP);
             this.gbAdvanced.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbAdvanced.Location = new System.Drawing.Point(814, 16);
-            this.gbAdvanced.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gbAdvanced.Location = new System.Drawing.Point(724, 13);
             this.gbAdvanced.Name = "gbAdvanced";
-            this.gbAdvanced.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gbAdvanced.Size = new System.Drawing.Size(352, 270);
+            this.gbAdvanced.Size = new System.Drawing.Size(313, 266);
             this.gbAdvanced.TabIndex = 9;
             this.gbAdvanced.TabStop = false;
             this.gbAdvanced.Text = "Advanced Statistics";
             this.gbAdvanced.Visible = false;
             // 
+            // cbREBPG
+            // 
+            this.cbREBPG.AutoSize = true;
+            this.cbREBPG.Location = new System.Drawing.Point(119, 236);
+            this.cbREBPG.Name = "cbREBPG";
+            this.cbREBPG.Size = new System.Drawing.Size(107, 29);
+            this.cbREBPG.TabIndex = 39;
+            this.cbREBPG.Text = "REB/PG";
+            this.cbREBPG.UseVisualStyleBackColor = true;
+            this.cbREBPG.Visible = false;
+            // 
+            // cbASTTO
+            // 
+            this.cbASTTO.AutoSize = true;
+            this.cbASTTO.Location = new System.Drawing.Point(7, 236);
+            this.cbASTTO.Name = "cbASTTO";
+            this.cbASTTO.Size = new System.Drawing.Size(110, 29);
+            this.cbASTTO.TabIndex = 38;
+            this.cbASTTO.Text = "AST/TO";
+            this.cbASTTO.UseVisualStyleBackColor = true;
+            this.cbASTTO.Visible = false;
+            // 
+            // cbBLKPG
+            // 
+            this.cbBLKPG.AutoSize = true;
+            this.cbBLKPG.Location = new System.Drawing.Point(119, 204);
+            this.cbBLKPG.Name = "cbBLKPG";
+            this.cbBLKPG.Size = new System.Drawing.Size(106, 29);
+            this.cbBLKPG.TabIndex = 37;
+            this.cbBLKPG.Text = "BLK/PG";
+            this.cbBLKPG.UseVisualStyleBackColor = true;
+            this.cbBLKPG.Visible = false;
+            // 
+            // cbASTSPG
+            // 
+            this.cbASTSPG.AutoSize = true;
+            this.cbASTSPG.Location = new System.Drawing.Point(7, 204);
+            this.cbASTSPG.Name = "cbASTSPG";
+            this.cbASTSPG.Size = new System.Drawing.Size(109, 29);
+            this.cbASTSPG.TabIndex = 36;
+            this.cbASTSPG.Text = "AST/PG";
+            this.cbASTSPG.UseVisualStyleBackColor = true;
+            this.cbASTSPG.Visible = false;
+            // 
+            // cbTOPG
+            // 
+            this.cbTOPG.AutoSize = true;
+            this.cbTOPG.Location = new System.Drawing.Point(119, 166);
+            this.cbTOPG.Name = "cbTOPG";
+            this.cbTOPG.Size = new System.Drawing.Size(97, 29);
+            this.cbTOPG.TabIndex = 35;
+            this.cbTOPG.Text = "TO/PG";
+            this.cbTOPG.UseVisualStyleBackColor = true;
+            this.cbTOPG.Visible = false;
+            // 
+            // cbSTLPG
+            // 
+            this.cbSTLPG.AutoSize = true;
+            this.cbSTLPG.Location = new System.Drawing.Point(7, 169);
+            this.cbSTLPG.Name = "cbSTLPG";
+            this.cbSTLPG.Size = new System.Drawing.Size(106, 29);
+            this.cbSTLPG.TabIndex = 34;
+            this.cbSTLPG.Text = "STL/PG";
+            this.cbSTLPG.UseVisualStyleBackColor = true;
+            this.cbSTLPG.Visible = false;
+            // 
+            // cbSHEFF
+            // 
+            this.cbSHEFF.AutoSize = true;
+            this.cbSHEFF.Location = new System.Drawing.Point(119, 134);
+            this.cbSHEFF.Name = "cbSHEFF";
+            this.cbSHEFF.Size = new System.Drawing.Size(106, 29);
+            this.cbSHEFF.TabIndex = 33;
+            this.cbSHEFF.Text = "SH-EFF";
+            this.cbSHEFF.UseVisualStyleBackColor = true;
+            this.cbSHEFF.Visible = false;
+            // 
+            // cbSCEFF
+            // 
+            this.cbSCEFF.AutoSize = true;
+            this.cbSCEFF.Location = new System.Drawing.Point(119, 99);
+            this.cbSCEFF.Name = "cbSCEFF";
+            this.cbSCEFF.Size = new System.Drawing.Size(107, 29);
+            this.cbSCEFF.TabIndex = 32;
+            this.cbSCEFF.Text = "SC-EFF";
+            this.cbSCEFF.UseVisualStyleBackColor = true;
+            this.cbSCEFF.Visible = false;
+            // 
+            // cbTS
+            // 
+            this.cbTS.AutoSize = true;
+            this.cbTS.Location = new System.Drawing.Point(119, 65);
+            this.cbTS.Name = "cbTS";
+            this.cbTS.Size = new System.Drawing.Size(79, 29);
+            this.cbTS.TabIndex = 31;
+            this.cbTS.Text = "TS%";
+            this.cbTS.UseVisualStyleBackColor = true;
+            this.cbTS.Visible = false;
+            // 
+            // cbTSA
+            // 
+            this.cbTSA.AutoSize = true;
+            this.cbTSA.Location = new System.Drawing.Point(119, 30);
+            this.cbTSA.Name = "cbTSA";
+            this.cbTSA.Size = new System.Drawing.Size(75, 29);
+            this.cbTSA.TabIndex = 30;
+            this.cbTSA.Text = "TSA";
+            this.cbTSA.UseVisualStyleBackColor = true;
+            this.cbTSA.Visible = false;
+            // 
+            // cbFTP
+            // 
+            this.cbFTP.AutoSize = true;
+            this.cbFTP.Location = new System.Drawing.Point(7, 134);
+            this.cbFTP.Name = "cbFTP";
+            this.cbFTP.Size = new System.Drawing.Size(77, 29);
+            this.cbFTP.TabIndex = 29;
+            this.cbFTP.Text = "FT%";
+            this.cbFTP.UseVisualStyleBackColor = true;
+            this.cbFTP.Visible = false;
+            // 
+            // cbTPP
+            // 
+            this.cbTPP.AutoSize = true;
+            this.cbTPP.Location = new System.Drawing.Point(7, 99);
+            this.cbTPP.Name = "cbTPP";
+            this.cbTPP.Size = new System.Drawing.Size(76, 29);
+            this.cbTPP.TabIndex = 28;
+            this.cbTPP.Text = "3P%";
+            this.cbTPP.UseVisualStyleBackColor = true;
+            this.cbTPP.Visible = false;
+            // 
+            // cbFGP
+            // 
+            this.cbFGP.AutoSize = true;
+            this.cbFGP.Location = new System.Drawing.Point(7, 64);
+            this.cbFGP.Name = "cbFGP";
+            this.cbFGP.Size = new System.Drawing.Size(79, 29);
+            this.cbFGP.TabIndex = 27;
+            this.cbFGP.Text = "FG%";
+            this.cbFGP.UseVisualStyleBackColor = true;
+            this.cbFGP.Visible = false;
+            // 
+            // cbMPG
+            // 
+            this.cbMPG.AutoSize = true;
+            this.cbMPG.Location = new System.Drawing.Point(7, 30);
+            this.cbMPG.Name = "cbMPG";
+            this.cbMPG.Size = new System.Drawing.Size(79, 29);
+            this.cbMPG.TabIndex = 26;
+            this.cbMPG.Text = "MPG";
+            this.cbMPG.UseVisualStyleBackColor = true;
+            this.cbMPG.Visible = false;
+            // 
             // cbFIP
             // 
             this.cbFIP.AutoSize = true;
-            this.cbFIP.Location = new System.Drawing.Point(244, 169);
-            this.cbFIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbFIP.Location = new System.Drawing.Point(217, 135);
             this.cbFIP.Name = "cbFIP";
             this.cbFIP.Size = new System.Drawing.Size(64, 29);
             this.cbFIP.TabIndex = 25;
@@ -750,8 +1126,7 @@
             // cbSORate
             // 
             this.cbSORate.AutoSize = true;
-            this.cbSORate.Location = new System.Drawing.Point(244, 125);
-            this.cbSORate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSORate.Location = new System.Drawing.Point(217, 100);
             this.cbSORate.Name = "cbSORate";
             this.cbSORate.Size = new System.Drawing.Size(82, 29);
             this.cbSORate.TabIndex = 25;
@@ -762,8 +1137,7 @@
             // cbBBRate
             // 
             this.cbBBRate.AutoSize = true;
-            this.cbBBRate.Location = new System.Drawing.Point(244, 80);
-            this.cbBBRate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBBRate.Location = new System.Drawing.Point(217, 64);
             this.cbBBRate.Name = "cbBBRate";
             this.cbBBRate.Size = new System.Drawing.Size(78, 29);
             this.cbBBRate.TabIndex = 25;
@@ -774,8 +1148,7 @@
             // cbSOBB
             // 
             this.cbSOBB.AutoSize = true;
-            this.cbSOBB.Location = new System.Drawing.Point(244, 38);
-            this.cbSOBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSOBB.Location = new System.Drawing.Point(217, 30);
             this.cbSOBB.Name = "cbSOBB";
             this.cbSOBB.Size = new System.Drawing.Size(96, 29);
             this.cbSOBB.TabIndex = 25;
@@ -786,8 +1159,7 @@
             // cbSOper9
             // 
             this.cbSOper9.AutoSize = true;
-            this.cbSOper9.Location = new System.Drawing.Point(134, 169);
-            this.cbSOper9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSOper9.Location = new System.Drawing.Point(119, 135);
             this.cbSOper9.Name = "cbSOper9";
             this.cbSOper9.Size = new System.Drawing.Size(81, 29);
             this.cbSOper9.TabIndex = 24;
@@ -798,8 +1170,7 @@
             // cbBBper9
             // 
             this.cbBBper9.AutoSize = true;
-            this.cbBBper9.Location = new System.Drawing.Point(134, 125);
-            this.cbBBper9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBBper9.Location = new System.Drawing.Point(119, 100);
             this.cbBBper9.Name = "cbBBper9";
             this.cbBBper9.Size = new System.Drawing.Size(77, 29);
             this.cbBBper9.TabIndex = 23;
@@ -810,8 +1181,7 @@
             // cbHitsPer9
             // 
             this.cbHitsPer9.AutoSize = true;
-            this.cbHitsPer9.Location = new System.Drawing.Point(134, 81);
-            this.cbHitsPer9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHitsPer9.Location = new System.Drawing.Point(119, 65);
             this.cbHitsPer9.Name = "cbHitsPer9";
             this.cbHitsPer9.Size = new System.Drawing.Size(65, 29);
             this.cbHitsPer9.TabIndex = 22;
@@ -822,8 +1192,7 @@
             // cbHRper9
             // 
             this.cbHRper9.AutoSize = true;
-            this.cbHRper9.Location = new System.Drawing.Point(134, 38);
-            this.cbHRper9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHRper9.Location = new System.Drawing.Point(119, 30);
             this.cbHRper9.Name = "cbHRper9";
             this.cbHRper9.Size = new System.Drawing.Size(78, 29);
             this.cbHRper9.TabIndex = 18;
@@ -834,8 +1203,7 @@
             // cbWHIP
             // 
             this.cbWHIP.AutoSize = true;
-            this.cbWHIP.Location = new System.Drawing.Point(8, 168);
-            this.cbWHIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbWHIP.Location = new System.Drawing.Point(7, 134);
             this.cbWHIP.Name = "cbWHIP";
             this.cbWHIP.Size = new System.Drawing.Size(86, 29);
             this.cbWHIP.TabIndex = 21;
@@ -846,8 +1214,7 @@
             // cbWPCT
             // 
             this.cbWPCT.AutoSize = true;
-            this.cbWPCT.Location = new System.Drawing.Point(8, 124);
-            this.cbWPCT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbWPCT.Location = new System.Drawing.Point(7, 99);
             this.cbWPCT.Name = "cbWPCT";
             this.cbWPCT.Size = new System.Drawing.Size(95, 29);
             this.cbWPCT.TabIndex = 20;
@@ -858,8 +1225,7 @@
             // cbERAPlus
             // 
             this.cbERAPlus.AutoSize = true;
-            this.cbERAPlus.Location = new System.Drawing.Point(8, 80);
-            this.cbERAPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbERAPlus.Location = new System.Drawing.Point(7, 64);
             this.cbERAPlus.Name = "cbERAPlus";
             this.cbERAPlus.Size = new System.Drawing.Size(86, 29);
             this.cbERAPlus.TabIndex = 19;
@@ -870,8 +1236,7 @@
             // cbERA
             // 
             this.cbERA.AutoSize = true;
-            this.cbERA.Location = new System.Drawing.Point(8, 38);
-            this.cbERA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbERA.Location = new System.Drawing.Point(7, 30);
             this.cbERA.Name = "cbERA";
             this.cbERA.Size = new System.Drawing.Size(74, 29);
             this.cbERA.TabIndex = 18;
@@ -882,8 +1247,7 @@
             // cbSF
             // 
             this.cbSF.AutoSize = true;
-            this.cbSF.Location = new System.Drawing.Point(244, 168);
-            this.cbSF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbSF.Location = new System.Drawing.Point(217, 134);
             this.cbSF.Name = "cbSF";
             this.cbSF.Size = new System.Drawing.Size(60, 29);
             this.cbSF.TabIndex = 12;
@@ -894,8 +1258,7 @@
             // cbIBB
             // 
             this.cbIBB.AutoSize = true;
-            this.cbIBB.Location = new System.Drawing.Point(244, 124);
-            this.cbIBB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbIBB.Location = new System.Drawing.Point(217, 99);
             this.cbIBB.Name = "cbIBB";
             this.cbIBB.Size = new System.Drawing.Size(65, 29);
             this.cbIBB.TabIndex = 11;
@@ -906,8 +1269,7 @@
             // cbHBP
             // 
             this.cbHBP.AutoSize = true;
-            this.cbHBP.Location = new System.Drawing.Point(244, 81);
-            this.cbHBP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbHBP.Location = new System.Drawing.Point(217, 65);
             this.cbHBP.Name = "cbHBP";
             this.cbHBP.Size = new System.Drawing.Size(74, 29);
             this.cbHBP.TabIndex = 10;
@@ -918,8 +1280,7 @@
             // cbTB
             // 
             this.cbTB.AutoSize = true;
-            this.cbTB.Location = new System.Drawing.Point(244, 38);
-            this.cbTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbTB.Location = new System.Drawing.Point(217, 30);
             this.cbTB.Name = "cbTB";
             this.cbTB.Size = new System.Drawing.Size(60, 29);
             this.cbTB.TabIndex = 9;
@@ -930,8 +1291,7 @@
             // cbwRCPlus
             // 
             this.cbwRCPlus.AutoSize = true;
-            this.cbwRCPlus.Location = new System.Drawing.Point(134, 81);
-            this.cbwRCPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwRCPlus.Location = new System.Drawing.Point(119, 65);
             this.cbwRCPlus.Name = "cbwRCPlus";
             this.cbwRCPlus.Size = new System.Drawing.Size(88, 29);
             this.cbwRCPlus.TabIndex = 7;
@@ -942,8 +1302,7 @@
             // cbwOBA
             // 
             this.cbwOBA.AutoSize = true;
-            this.cbwOBA.Location = new System.Drawing.Point(134, 124);
-            this.cbwOBA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwOBA.Location = new System.Drawing.Point(119, 99);
             this.cbwOBA.Name = "cbwOBA";
             this.cbwOBA.Size = new System.Drawing.Size(91, 29);
             this.cbwOBA.TabIndex = 6;
@@ -954,8 +1313,7 @@
             // cbwRAA
             // 
             this.cbwRAA.AutoSize = true;
-            this.cbwRAA.Location = new System.Drawing.Point(134, 168);
-            this.cbwRAA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbwRAA.Location = new System.Drawing.Point(119, 134);
             this.cbwRAA.Name = "cbwRAA";
             this.cbwRAA.Size = new System.Drawing.Size(89, 29);
             this.cbwRAA.TabIndex = 5;
@@ -966,8 +1324,7 @@
             // cbRC
             // 
             this.cbRC.AutoSize = true;
-            this.cbRC.Location = new System.Drawing.Point(134, 36);
-            this.cbRC.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbRC.Location = new System.Drawing.Point(119, 29);
             this.cbRC.Name = "cbRC";
             this.cbRC.Size = new System.Drawing.Size(62, 29);
             this.cbRC.TabIndex = 4;
@@ -978,8 +1335,7 @@
             // cbPASO
             // 
             this.cbPASO.AutoSize = true;
-            this.cbPASO.Location = new System.Drawing.Point(8, 168);
-            this.cbPASO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbPASO.Location = new System.Drawing.Point(7, 134);
             this.cbPASO.Name = "cbPASO";
             this.cbPASO.Size = new System.Drawing.Size(97, 29);
             this.cbPASO.TabIndex = 3;
@@ -990,8 +1346,7 @@
             // cbOPSPlus
             // 
             this.cbOPSPlus.AutoSize = true;
-            this.cbOPSPlus.Location = new System.Drawing.Point(8, 124);
-            this.cbOPSPlus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbOPSPlus.Location = new System.Drawing.Point(7, 99);
             this.cbOPSPlus.Name = "cbOPSPlus";
             this.cbOPSPlus.Size = new System.Drawing.Size(89, 29);
             this.cbOPSPlus.TabIndex = 2;
@@ -1002,8 +1357,7 @@
             // cbISO
             // 
             this.cbISO.AutoSize = true;
-            this.cbISO.Location = new System.Drawing.Point(8, 80);
-            this.cbISO.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbISO.Location = new System.Drawing.Point(7, 64);
             this.cbISO.Name = "cbISO";
             this.cbISO.Size = new System.Drawing.Size(69, 29);
             this.cbISO.TabIndex = 1;
@@ -1014,8 +1368,7 @@
             // cbBABIP
             // 
             this.cbBABIP.AutoSize = true;
-            this.cbBABIP.Location = new System.Drawing.Point(8, 38);
-            this.cbBABIP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbBABIP.Location = new System.Drawing.Point(7, 30);
             this.cbBABIP.Name = "cbBABIP";
             this.cbBABIP.Size = new System.Drawing.Size(92, 29);
             this.cbBABIP.TabIndex = 0;
@@ -1060,10 +1413,9 @@
             "Texas Rangers",
             "Toronto Blue Jays",
             "Washington Nationals"});
-            this.lbMLBTeams.Location = new System.Drawing.Point(1173, 22);
-            this.lbMLBTeams.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbMLBTeams.Location = new System.Drawing.Point(1043, 18);
             this.lbMLBTeams.Name = "lbMLBTeams";
-            this.lbMLBTeams.Size = new System.Drawing.Size(352, 129);
+            this.lbMLBTeams.Size = new System.Drawing.Size(313, 104);
             this.lbMLBTeams.TabIndex = 10;
             this.lbMLBTeams.Visible = false;
             // 
@@ -1083,20 +1435,18 @@
             "Center Field",
             "Right Field",
             "Designated Hitter"});
-            this.lbHitterPosition.Location = new System.Drawing.Point(1173, 154);
-            this.lbHitterPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbHitterPosition.Location = new System.Drawing.Point(1043, 123);
             this.lbHitterPosition.Name = "lbHitterPosition";
-            this.lbHitterPosition.Size = new System.Drawing.Size(352, 129);
+            this.lbHitterPosition.Size = new System.Drawing.Size(313, 104);
             this.lbHitterPosition.TabIndex = 11;
             this.lbHitterPosition.Visible = false;
             // 
             // btnDictionary
             // 
             this.btnDictionary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnDictionary.Location = new System.Drawing.Point(15, 238);
-            this.btnDictionary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDictionary.Location = new System.Drawing.Point(13, 190);
             this.btnDictionary.Name = "btnDictionary";
-            this.btnDictionary.Size = new System.Drawing.Size(214, 49);
+            this.btnDictionary.Size = new System.Drawing.Size(190, 39);
             this.btnDictionary.TabIndex = 12;
             this.btnDictionary.Text = "Dictionary";
             this.btnDictionary.UseVisualStyleBackColor = true;
@@ -1104,26 +1454,105 @@
             // 
             // gbDivisions
             // 
+            this.gbDivisions.Controls.Add(this.radSouthwest);
+            this.gbDivisions.Controls.Add(this.radPacific);
+            this.gbDivisions.Controls.Add(this.radSoutheast);
+            this.gbDivisions.Controls.Add(this.radNorthwest);
+            this.gbDivisions.Controls.Add(this.radAtlantic);
+            this.gbDivisions.Controls.Add(this.radCentralNBA);
             this.gbDivisions.Controls.Add(this.radAllDivisions);
             this.gbDivisions.Controls.Add(this.radWest);
             this.gbDivisions.Controls.Add(this.radCentral);
             this.gbDivisions.Controls.Add(this.radEast);
             this.gbDivisions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gbDivisions.Location = new System.Drawing.Point(236, 122);
+            this.gbDivisions.Location = new System.Drawing.Point(210, 98);
             this.gbDivisions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbDivisions.Name = "gbDivisions";
             this.gbDivisions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbDivisions.Size = new System.Drawing.Size(213, 164);
+            this.gbDivisions.Size = new System.Drawing.Size(189, 205);
             this.gbDivisions.TabIndex = 14;
             this.gbDivisions.TabStop = false;
             this.gbDivisions.Text = "Divisions";
             this.gbDivisions.Visible = false;
             // 
+            // radSouthwest
+            // 
+            this.radSouthwest.AutoSize = true;
+            this.radSouthwest.Location = new System.Drawing.Point(6, 147);
+            this.radSouthwest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radSouthwest.Name = "radSouthwest";
+            this.radSouthwest.Size = new System.Drawing.Size(125, 29);
+            this.radSouthwest.TabIndex = 8;
+            this.radSouthwest.Text = "Southwest";
+            this.radSouthwest.UseVisualStyleBackColor = true;
+            this.radSouthwest.Visible = false;
+            // 
+            // radPacific
+            // 
+            this.radPacific.AutoSize = true;
+            this.radPacific.Location = new System.Drawing.Point(99, 53);
+            this.radPacific.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radPacific.Name = "radPacific";
+            this.radPacific.Size = new System.Drawing.Size(90, 29);
+            this.radPacific.TabIndex = 7;
+            this.radPacific.Text = "Pacific";
+            this.radPacific.UseVisualStyleBackColor = true;
+            this.radPacific.Visible = false;
+            // 
+            // radSoutheast
+            // 
+            this.radSoutheast.AutoSize = true;
+            this.radSoutheast.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radSoutheast.Location = new System.Drawing.Point(6, 176);
+            this.radSoutheast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radSoutheast.Name = "radSoutheast";
+            this.radSoutheast.Size = new System.Drawing.Size(122, 29);
+            this.radSoutheast.TabIndex = 9;
+            this.radSoutheast.Text = "Southeast";
+            this.radSoutheast.UseVisualStyleBackColor = true;
+            this.radSoutheast.Visible = false;
+            // 
+            // radNorthwest
+            // 
+            this.radNorthwest.AutoSize = true;
+            this.radNorthwest.Location = new System.Drawing.Point(6, 114);
+            this.radNorthwest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radNorthwest.Name = "radNorthwest";
+            this.radNorthwest.Size = new System.Drawing.Size(120, 29);
+            this.radNorthwest.TabIndex = 6;
+            this.radNorthwest.Text = "Northwest";
+            this.radNorthwest.UseVisualStyleBackColor = true;
+            this.radNorthwest.Visible = false;
+            // 
+            // radAtlantic
+            // 
+            this.radAtlantic.AutoSize = true;
+            this.radAtlantic.Location = new System.Drawing.Point(6, 53);
+            this.radAtlantic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radAtlantic.Name = "radAtlantic";
+            this.radAtlantic.Size = new System.Drawing.Size(97, 29);
+            this.radAtlantic.TabIndex = 5;
+            this.radAtlantic.Text = "Atlantic";
+            this.radAtlantic.UseVisualStyleBackColor = true;
+            this.radAtlantic.Visible = false;
+            // 
+            // radCentralNBA
+            // 
+            this.radCentralNBA.AutoSize = true;
+            this.radCentralNBA.Location = new System.Drawing.Point(6, 81);
+            this.radCentralNBA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radCentralNBA.Name = "radCentralNBA";
+            this.radCentralNBA.Size = new System.Drawing.Size(96, 29);
+            this.radCentralNBA.TabIndex = 4;
+            this.radCentralNBA.Text = "Central";
+            this.radCentralNBA.UseVisualStyleBackColor = true;
+            this.radCentralNBA.Visible = false;
+            // 
             // radAllDivisions
             // 
             this.radAllDivisions.AutoSize = true;
             this.radAllDivisions.Checked = true;
-            this.radAllDivisions.Location = new System.Drawing.Point(6, 31);
+            this.radAllDivisions.Location = new System.Drawing.Point(5, 25);
             this.radAllDivisions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radAllDivisions.Name = "radAllDivisions";
             this.radAllDivisions.Size = new System.Drawing.Size(138, 29);
@@ -1135,7 +1564,7 @@
             // radWest
             // 
             this.radWest.AutoSize = true;
-            this.radWest.Location = new System.Drawing.Point(97, 66);
+            this.radWest.Location = new System.Drawing.Point(86, 53);
             this.radWest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radWest.Name = "radWest";
             this.radWest.Size = new System.Drawing.Size(79, 29);
@@ -1146,7 +1575,7 @@
             // radCentral
             // 
             this.radCentral.AutoSize = true;
-            this.radCentral.Location = new System.Drawing.Point(6, 101);
+            this.radCentral.Location = new System.Drawing.Point(5, 81);
             this.radCentral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radCentral.Name = "radCentral";
             this.radCentral.Size = new System.Drawing.Size(96, 29);
@@ -1157,7 +1586,7 @@
             // radEast
             // 
             this.radEast.AutoSize = true;
-            this.radEast.Location = new System.Drawing.Point(6, 66);
+            this.radEast.Location = new System.Drawing.Point(5, 53);
             this.radEast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radEast.Name = "radEast";
             this.radEast.Size = new System.Drawing.Size(72, 29);
@@ -1168,11 +1597,10 @@
             // rtbLabels
             // 
             this.rtbLabels.Font = new System.Drawing.Font("Courier New", 12F);
-            this.rtbLabels.Location = new System.Drawing.Point(0, 341);
-            this.rtbLabels.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rtbLabels.Location = new System.Drawing.Point(0, 308);
             this.rtbLabels.Name = "rtbLabels";
             this.rtbLabels.ReadOnly = true;
-            this.rtbLabels.Size = new System.Drawing.Size(1556, 36);
+            this.rtbLabels.Size = new System.Drawing.Size(1384, 30);
             this.rtbLabels.TabIndex = 15;
             this.rtbLabels.Text = "";
             // 
@@ -1186,18 +1614,123 @@
             "Starter",
             "Reliever",
             "Closer"});
-            this.lbStaff.Location = new System.Drawing.Point(1173, 154);
-            this.lbStaff.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbStaff.Location = new System.Drawing.Point(1043, 123);
             this.lbStaff.Name = "lbStaff";
-            this.lbStaff.Size = new System.Drawing.Size(352, 129);
+            this.lbStaff.Size = new System.Drawing.Size(313, 104);
             this.lbStaff.TabIndex = 17;
             this.lbStaff.Visible = false;
             // 
-            // Form1
+            // lbNBATeams
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.lbNBATeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbNBATeams.FormattingEnabled = true;
+            this.lbNBATeams.ItemHeight = 25;
+            this.lbNBATeams.Items.AddRange(new object[] {
+            "All Teams",
+            "Atlanta Hawks",
+            "Boston Celtics",
+            "Brooklyn Nets",
+            "Charlotte Hornets",
+            "Chicago Bulls",
+            "Cleveland Cavaliers",
+            "Dallas Mavericks",
+            "Denver Nuggets",
+            "Detroit Pistons",
+            "Golden State Warriors",
+            "Houston Rockets",
+            "Indiana Pacers",
+            "Los Angeles Clippers",
+            "Los Angeles Lakers",
+            "Memphis Grizzlies",
+            "Miami Heat",
+            "Milwaukee Bucks",
+            "Minnesota Timberwolves",
+            "New Orleans Pelicans",
+            "New York Knicks",
+            "Oklahoma City Thunder",
+            "Orlando Magic",
+            "Philadelphia 76ers",
+            "Phoenix Suns",
+            "Portland Trail Blazers",
+            "Sacramento Kings",
+            "San Antonio Spurs",
+            "Toronto Raptors",
+            "Utah Jazz",
+            "Washington Wizards"});
+            this.lbNBATeams.Location = new System.Drawing.Point(1043, 18);
+            this.lbNBATeams.Name = "lbNBATeams";
+            this.lbNBATeams.Size = new System.Drawing.Size(313, 104);
+            this.lbNBATeams.TabIndex = 19;
+            this.lbNBATeams.Visible = false;
+            // 
+            // lbNBApositions
+            // 
+            this.lbNBApositions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbNBApositions.FormattingEnabled = true;
+            this.lbNBApositions.ItemHeight = 25;
+            this.lbNBApositions.Items.AddRange(new object[] {
+            "All Positions",
+            "Point Guard",
+            "Shooting Guard",
+            "Small Forward",
+            "Power Forward",
+            "Center"});
+            this.lbNBApositions.Location = new System.Drawing.Point(1043, 123);
+            this.lbNBApositions.Name = "lbNBApositions";
+            this.lbNBApositions.Size = new System.Drawing.Size(313, 104);
+            this.lbNBApositions.TabIndex = 20;
+            this.lbNBApositions.Visible = false;
+            // 
+            // lbWNBATeams
+            // 
+            this.lbWNBATeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbWNBATeams.FormattingEnabled = true;
+            this.lbWNBATeams.ItemHeight = 25;
+            this.lbWNBATeams.Items.AddRange(new object[] {
+            "All Teams",
+            "Atlanta Dream",
+            "Chicago Sky",
+            "Connecticut Sun",
+            "Dallas Wings",
+            "Indiana Fever",
+            "Las Vegas Aces",
+            "Los Angeles Sparks",
+            "Minnesota Lynx",
+            "New York Liberty",
+            "Phoenix Mercury",
+            "Seattle Storm",
+            "Washington Mystics"});
+            this.lbWNBATeams.Location = new System.Drawing.Point(1043, 18);
+            this.lbWNBATeams.Name = "lbWNBATeams";
+            this.lbWNBATeams.Size = new System.Drawing.Size(313, 104);
+            this.lbWNBATeams.TabIndex = 21;
+            this.lbWNBATeams.Visible = false;
+            // 
+            // lbWNBApositions
+            // 
+            this.lbWNBApositions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbWNBApositions.FormattingEnabled = true;
+            this.lbWNBApositions.ItemHeight = 25;
+            this.lbWNBApositions.Items.AddRange(new object[] {
+            "All Positions",
+            "Guard",
+            "Forward",
+            "Center"});
+            this.lbWNBApositions.Location = new System.Drawing.Point(1043, 125);
+            this.lbWNBApositions.Name = "lbWNBApositions";
+            this.lbWNBApositions.Size = new System.Drawing.Size(313, 104);
+            this.lbWNBApositions.TabIndex = 22;
+            this.lbWNBApositions.Visible = false;
+            // 
+            // LeagueForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1557, 912);
+            this.ClientSize = new System.Drawing.Size(1384, 730);
+            this.Controls.Add(this.lbWNBApositions);
+            this.Controls.Add(this.lbWNBATeams);
+            this.Controls.Add(this.lbNBApositions);
+            this.Controls.Add(this.lbNBATeams);
             this.Controls.Add(this.lbStaff);
             this.Controls.Add(this.rtbLabels);
             this.Controls.Add(this.gbDivisions);
@@ -1209,11 +1742,9 @@
             this.Controls.Add(this.gbNLorAL);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.gbLeague);
             this.Controls.Add(this.rtbOut);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Form1";
+            this.Name = "LeagueForm";
             this.Text = "OOD Final Project";
             this.gbLeague.ResumeLayout(false);
             this.gbLeague.PerformLayout();
@@ -1226,7 +1757,6 @@
             this.gbDivisions.ResumeLayout(false);
             this.gbDivisions.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1238,7 +1768,6 @@
         private System.Windows.Forms.RadioButton radWNBA;
         private System.Windows.Forms.RadioButton radNBA;
         private System.Windows.Forms.RadioButton radPitchers;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.GroupBox gbNLorAL;
@@ -1312,6 +1841,47 @@
         private System.Windows.Forms.CheckBox cbSORate;
         private System.Windows.Forms.CheckBox cbBBRate;
         private System.Windows.Forms.CheckBox cbSOBB;
+        private System.Windows.Forms.ListBox lbNBATeams;
+        private System.Windows.Forms.ListBox lbNBApositions;
+        private System.Windows.Forms.RadioButton radEastNBA;
+        private System.Windows.Forms.RadioButton radWestNBA;
+        private System.Windows.Forms.RadioButton radCentralNBA;
+        private System.Windows.Forms.RadioButton radAtlantic;
+        private System.Windows.Forms.RadioButton radNorthwest;
+        private System.Windows.Forms.RadioButton radPacific;
+        private System.Windows.Forms.RadioButton radSouthwest;
+        private System.Windows.Forms.CheckBox cbGamesPlayed;
+        private System.Windows.Forms.RadioButton radSoutheast;
+        private System.Windows.Forms.CheckBox cbMinutes;
+        private System.Windows.Forms.CheckBox cbFGattempts;
+        private System.Windows.Forms.CheckBox cbFGmakes;
+        private System.Windows.Forms.CheckBox cb3PA;
+        private System.Windows.Forms.CheckBox cb3PM;
+        private System.Windows.Forms.CheckBox cbFTA;
+        private System.Windows.Forms.CheckBox cbFTM;
+        private System.Windows.Forms.CheckBox cbDB;
+        private System.Windows.Forms.CheckBox cbOB;
+        private System.Windows.Forms.CheckBox cbSteals;
+        private System.Windows.Forms.CheckBox cbBlocks;
+        private System.Windows.Forms.CheckBox cbAssists;
+        private System.Windows.Forms.CheckBox cbTO;
+        private System.Windows.Forms.CheckBox cbPoints;
+        private System.Windows.Forms.CheckBox cbFGP;
+        private System.Windows.Forms.CheckBox cbMPG;
+        private System.Windows.Forms.CheckBox cbTPP;
+        private System.Windows.Forms.CheckBox cbFTP;
+        private System.Windows.Forms.CheckBox cbTSA;
+        private System.Windows.Forms.CheckBox cbTS;
+        private System.Windows.Forms.CheckBox cbSCEFF;
+        private System.Windows.Forms.CheckBox cbSHEFF;
+        private System.Windows.Forms.CheckBox cbSTLPG;
+        private System.Windows.Forms.CheckBox cbTOPG;
+        private System.Windows.Forms.CheckBox cbASTSPG;
+        private System.Windows.Forms.CheckBox cbBLKPG;
+        private System.Windows.Forms.CheckBox cbASTTO;
+        private System.Windows.Forms.CheckBox cbREBPG;
+        private System.Windows.Forms.ListBox lbWNBATeams;
+        private System.Windows.Forms.ListBox lbWNBApositions;
     }
 }
 

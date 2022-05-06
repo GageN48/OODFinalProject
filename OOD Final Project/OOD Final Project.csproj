@@ -53,9 +53,11 @@
       <DependentUpon>LeagueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Hitters.cs" />
+    <Compile Include="NBA.cs" />
     <Compile Include="Pitchers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WNBA.cs" />
     <EmbeddedResource Include="LeagueForm.resx">
       <DependentUpon>LeagueForm.cs</DependentUpon>
     </EmbeddedResource>
