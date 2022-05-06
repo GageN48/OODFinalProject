@@ -10902,7 +10902,7 @@ namespace OOD_Final_Project
                             }
                         }
                     }
-                    else if (radMLB.Checked && radEast.Checked)
+                    else if (radMLB.Checked && radCentralNBA.Checked)
                     {
                         if (NBADivision[num] == "CENTRAL")
                         {
@@ -11910,7 +11910,7 @@ namespace OOD_Final_Project
                             }
                         }
                     }
-                    else if (radEastNBA.Checked && radEast.Checked)
+                    else if (radEastNBA.Checked && radCentralNBA.Checked)
                     {
                         if (NBAConference[num] == "EASTERN" && NBADivision[num] == "CENTRAL")
                         {
@@ -14204,6 +14204,7 @@ namespace OOD_Final_Project
                 radPacific.Visible = true;
                 radSoutheast.Visible = true;
                 radSouthwest.Visible = true;
+                cbMPG.Visible = true;
                 cbTSA.Visible = true;
                 cbTS.Visible = true;
                 cbTPP.Visible = true;
@@ -14249,6 +14250,7 @@ namespace OOD_Final_Project
                 radPacific.Visible = false;
                 radSoutheast.Visible = false;
                 radSouthwest.Visible = false;
+                cbMPG.Visible = false;
                 cbTSA.Visible = false;
                 cbTS.Visible = false;
                 cbTPP.Visible = false;
